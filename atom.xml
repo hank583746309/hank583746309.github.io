@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小韩的blog</title>
+  
+  <subtitle>IT创业路漫漫～</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://zhixingmei.ren/"/>
+  <updated>2018-07-02T02:31:43.783Z</updated>
+  <id>http://zhixingmei.ren/</id>
+  
+  <author>
+    <name>hank</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hank 在做的</title>
+    <link href="http://zhixingmei.ren/2018/05/29/hank-%E5%9C%A8%E5%81%9A%E7%9A%84/"/>
+    <id>http://zhixingmei.ren/2018/05/29/hank-在做的/</id>
+    <published>2018-05-29T06:48:24.000Z</published>
+    <updated>2018-07-02T02:31:43.783Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/pro/os/jiayou.jpeg" alt="思索"></p><p>打算近期整理下之前的积累，包括做的、看的和想的，以及之前零散的的东西,都打算整理到自己的知识库中，一来，给之前的东西梳理一遍，二来看能否从中获取新的思路。</p><ul><li>Java相关的</li><li>android相关的</li><li>html5相关的</li><li>javascript相关的</li><li>nodejs相关的</li><li>sql相关的</li><li>创业相关的</li><li>包括今年来的阅读相关的整理</li><li>把上述的整理过程，尽量通过技术手段梳理，达到梳理过程中节省自己的时间</li><li>继续计划，将目前的几个项目整合，最终是想形成自己的知识库，方便自己检阅，同时也为了往后过程中，自动记录自己的所见所闻，至于所感部分，那就看自己了，想着也得写点什么东西，毕竟这些东西于人无害，于己利丰啊。</li></ul><h3 id="先简单记录下，最近两三周的东西"><a href="#先简单记录下，最近两三周的东西" class="headerlink" title="先简单记录下，最近两三周的东西"></a>先简单记录下，最近两三周的东西</h3><ul><li>完成了<code>消息中心</code>的开发,其中邮件和短信发送支持了多平台、服务使用了多线程控制提供了消息发送效率。</li><li>基本完成了<code>基于oos(对象存储)</code>的本地、阿里、腾讯、京东的多平台多场景支持，目前已初步实现基于此的个人网盘开发，后续是想扩展支持团队内部资料存储（团队网盘-使用本地存储即可满足）</li><li>完善了<code>支付</code>方式的支持，使用场景因为需要支持多个商户，同时收账功能因为大客户对资金管理控制的比较紧，故平台内所有收款发起，均需调用对应商户，微信官方目前并支持（后查证美团小程序可以，至于方法目前官方没给我答复），同时考虑用户支付方式多样化，故支付方式目前支持：基于商户分发的二维码支付、基于桥接方式的二维码支付。其他支付方式需要openid的，均不支持。</li><li>花了一周时间研究各种<code>自动化测试</code>，后来大都基于接口的自动化以及部分UI自动话，觉得都比较复杂，后面就自行研发了一套基于<code>接口管理</code>，支持<code>多流程管理</code>的自动化测试框架，目前技术储备足够支持这套框架完成以下工作，并有很多优点：<ul><li><code>restassured</code> 网路框架</li><li><code>fastjson</code> JSON解析框架（目前只支持JSON响应格式）</li><li><code>aviator</code> el解析器框架</li><li>支持 <code>excel 配置</code>接口、流程 简化配置复杂度</li><li>支持<code>el表达式</code>，可以在请求参数中配置el表达式，获取之前同一流程的响应结果</li><li>支持<code>mock</code>，不用再造固定的模拟请求数据，基于aviator扩展的方法完美生成多种测试请求数据</li><li>支持<code>API生成</code>,测试完成即生成API</li><li>支持生成<code>测试报告（report）</code>,测试完成生成测试报告 <a href="/pro/itest/6bff95cdd68cbb37d4e2d20338ab7793/dev/">点我查看</a>.</li><li>后续支持：<code>根据excel生成接口管理</code>、<code>流程管理</code>；<code>提供mock</code>模拟响应数据，方便前后端调试和开发；</li><li><a href="/2018/05/21/itest%EF%BC%88%E7%88%B1%E6%B5%8B%E8%AF%95%EF%BC%89%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E8%AF%B4%E6%98%8E/">点击查看框架详情</a></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/pro/os/jiayou.jpeg&quot; alt=&quot;思索&quot;&gt;&lt;/p&gt;
+&lt;p&gt;打算近期整理下之前的积累，包括做的、看的和想的，以及之前零散的的东西,都打算整理到自己的知识库中，一来，给之前的东西梳理一遍，二来看能否从中获取新的思路。&lt;/p&gt;
+&lt;ul&gt;
+&lt;l
+      
+    
+    </summary>
+    
+      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="感悟" scheme="http://zhixingmei.ren/tags/%E6%84%9F%E6%82%9F/"/>
+    
+      <category term="生活" scheme="http://zhixingmei.ren/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo 使用笔记</title>
+    <link href="http://zhixingmei.ren/2018/05/28/hexo-%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
+    <id>http://zhixingmei.ren/2018/05/28/hexo-使用笔记/</id>
+    <published>2018-05-28T11:37:47.000Z</published>
+    <updated>2018-06-29T11:24:33.762Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/pro/os/sisuo.jpeg" alt="思索"></p><p>关于博客的选型,我思索了好久，想过jpress等第三方开源，也试过php版本的、nodejs版本的,后来还曾想自己开发一版简易博客自己使用,最后在尝试过很多种方式之后，我还是老老实实用第三方博客吧，再后来因为考虑到自己知识库的建立，方便记录和积累和完善自己的知识体系，就使用了有道云笔记之类的软件，最后仍然发现很大的一个问题，在不同平台看到的东西或者记录的东西还是无法有效聚合。</p><p>相信这种场景不止我一个人遇到吧，我后来打算怎么办呢？这便有了后来hexo学习了，既然现在markdown和html之间可以互转，也意味着很多知识便可以建立在markdown的标准下，包括对信息分类、标签和信息检索。</p><p>既然有了如上思路，那就建个个人博客，专门记录生成markdown文件，这样便又了信息显示的平台，我原本打算购买个云服务，后来想了想既然使用了<code>hexo</code>,为何不利用github pages 直接搭建一个个人知识库呢（目前仅博客）？</p><p>其他平台数据怎么办？图片外链怎么办？几个问题涌上心头，基于之前的技术大致归类：</p><ul><li>微信等封闭平台，如收藏、公众号文章，考虑人工 + 爬虫。</li><li>头条等开放平台，如历史、收藏等文章，考虑<strong><code>爬虫</code></strong>。</li><li>其他平台，有其他第三方的平台，如csdn，其实有些工具了，但之前我接触了几个不怎么好用，也用爬虫。</li><li><strong><code>图片存储</code></strong>放哪里，以上平台均有可能导致图片禁止外链，后来想到已经有了os <a href="http://zhixingmei.ren/2018/05/29/hank-%E5%9C%A8%E5%81%9A%E7%9A%84/">对象存储想关内容</a> ，那就利用el、正则啊将图片下载到本地目录（在hexo/public下专门存储），然后转化标签地址即可。</li><li>将html内容爬虫下载完成后，再使用<strong><code>html转markdown工具</code></strong>类将其根据规则转化到srouce/_posts目录下。</li></ul><p>基于以上思路,就可以实现将之前的信息记录聚合到独立的平台，当然这只是第一步。</p><h3 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h3><ul><li>移动平台下-开发android程序（目前只擅长Android,当然后面ios再学习下）,将看到的文章分享时，分享到自己的app中,由app发起对该内容的爬取，最后执行之前逻辑。</li><li>移动平台下-或者使用第三方，如python登陆微信,将分享的消息获取并执行（又或者个人公众号，链接发送到公众号，独立后台执行）</li><li>pc下,利用已有的搜索项目（自己搭建的基于百度/360/google等搜索引擎的搜索服务）敢兴趣的内容，一键爬取并记录。</li></ul><p>啰嗦了好多,记录几个命令</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo g  #生成</span><br><span class="line">hexo s  #运行</span><br><span class="line">hexo clean # 遇到一些奇怪问题,可以先清理再生成</span><br><span class="line">hexo d  #发布到git hexo d -g</span><br><span class="line">hexo deploy # git重新load</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/pro/os/sisuo.jpeg&quot; alt=&quot;思索&quot;&gt;&lt;/p&gt;
+&lt;p&gt;关于博客的选型,我思索了好久，想过jpress等第三方开源，也试过php版本的、nodejs版本的,后来还曾想自己开发一版简易博客自己使用,最后在尝试过很多种方式之后，我还是老老实
+      
+    
+    </summary>
+    
+      <category term="学习笔记" scheme="http://zhixingmei.ren/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="hexo" scheme="http://zhixingmei.ren/tags/hexo/"/>
+    
+      <category term="笔记" scheme="http://zhixingmei.ren/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>itest（爱测试）自动化测试框架说明</title>
+    <link href="http://zhixingmei.ren/2018/05/21/itest%EF%BC%88%E7%88%B1%E6%B5%8B%E8%AF%95%EF%BC%89%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E8%AF%B4%E6%98%8E/"/>
+    <id>http://zhixingmei.ren/2018/05/21/itest（爱测试）自动化测试框架说明/</id>
+    <published>2018-05-21T15:12:24.000Z</published>
+    <updated>2018-06-29T13:17:46.115Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/pro/os/test.jpg" alt="itest"></p><h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p>开发过程中,免不了做API测试,同时测试人员也避免不了来来回回、反反复复测试相同的功能（这里不考虑UI测试框架，因为我不熟悉，我单看了一些软件安装都够了）。以测试登陆为例，避免不了每次先登陆再测试，pc还好，如果是android、ios是不是很烦，如果是小程序模拟多个角色用户，你一个微信可咋办呢，开发环境还稍微好办，难道测试环境还要开发人员给你分配模拟？显然，这里的一切，我没找到合适的解决办法。<br>    后来想到API测试，通常来讲，开发人员做单元测试或者使用testNG集合reportNG就可以实现API测试了，但我想，你开发人员能一次测试模拟多个用户吗？能测试不同场景的组合吗？<br>    显然，在网络上搜索了众多测试框架后，我决定了，从简单出发，构建一个实用的测试框架。以下为做测试框架前，参考的资料：</p><ul><li>测试框架部分<ul><li><a href="https://www.cnblogs.com/weientesting/p/7407425.html" target="_blank" rel="noopener">APIAutoTest框架</a><ul><li>数据驱动设计，使用TestNG中的$DataProvider读取Excel中存储的自动化测试用例。</li><li>基于TestNG测试框架</li><li>使用HttpClient发送Http请求，并统一接口response返回值为String</li><li>使用fastJson和Jsoup进行数据解析，由于请求返回值的统一，解析数据异常方便，方便接入不同接口类型的数据</li><li>独立封装的检查点“Jsonpath”检查点，极大方便检查点的设置</li><li>在线报告以及Email报告</li><li>持续集成、持续交付、自动构建与测试</li></ul></li><li><a href="http://www.51testing.com/html/85/n-3686785.html" target="_blank" rel="noopener">API自动化测试框架</a><ul><li>数据驱动</li><li>简单流程覆盖，快速迭代</li><li>组合Case不需要Coding</li></ul></li><li><a href="https://testerhome.com/topics/3572" target="_blank" rel="noopener">javaWeb–API 自动化测试框架</a></li><li><a href="https://testerhome.com/topics/7260" target="_blank" rel="noopener">python实现的测试思路</a></li><li><a href="https://blog.csdn.net/wwg377655460/article/details/49978957" target="_blank" rel="noopener">TestFrameWork API接口测试框架</a></li><li><a href="https://www.jianshu.com/p/47e5af367db1" target="_blank" rel="noopener">接口自动化测试 — Rest Assured</a></li><li><a href="https://testerhome.com/topics/8055" target="_blank" rel="noopener">http(s)接口自动化测试框架</a></li><li><a href="https://my.oschina.net/hellotest/blog/499719" target="_blank" rel="noopener">http接口测试—自动化测试框架设计</a></li><li><a href="https://blog.csdn.net/tobetheender/article/details/53333059" target="_blank" rel="noopener">ITester接口测试框架</a></li></ul></li><li>mock部分<ul><li><a href="http://baijiahao.baidu.com/s?id=1596395206616971243&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">自动化数据模拟平台</a></li><li><a href="https://www.oschina.net/p/jmockdata" target="_blank" rel="noopener">随机模拟 java 数据插件</a></li><li><a href="https://www.oschina.net/p/jmockdata" target="_blank" rel="noopener">javamock生成对象</a></li><li><a href="https://blog.csdn.net/zhoudaxia/article/details/33056093" target="_blank" rel="noopener">Mockito：一个强大的用于Java开发的模拟测试框架</a></li><li><a href="https://github.com/Marak/faker.js" target="_blank" rel="noopener">基于mock.js的更加丰富</a></li><li><a href="https://cnodejs.org/topic/553e06ba3575612520161a12" target="_blank" rel="noopener">一个强大的测试数据生成器 （yod）</a></li></ul></li></ul><p>在参考了如上（其他很多觉得不合适的，就没在此列出）信息后，考虑到当前项目进展情况和需求，只能动手实现了，目标实现：</p><ul><li>第一步<strong>实现excel配置化</strong>，完成<strong>基础的api接口参数配置</strong>、<strong>post/get请求</strong>、<strong>session/token验证</strong>、<strong>返回结果断言</strong>。<a href="/pro/os/自动化测试框架.xlsx">点击查看配置</a></li><li>第二步实现<strong>请求参数模拟数据生成</strong></li><li><strong>测试报表</strong>生成研究，已经实现，<a href="/pro/itest/6bff95cdd68cbb37d4e2d20338ab7793/dev">点击查看结果</a></li><li>实现 flow/inter 测试断言中逻辑跳转（分两阶段，第一阶段实现excel配置往下可跳转）</li><li>实现测试接口可独立添加,流程可自由配置，支持第二阶段的断言可跳（依然只往下,不回跳,容易导致死循环）</li><li>实现定时测试和自动发送相关报告(其中测试报告已实<strong>现邮件发送</strong>，且可<strong>下载zip包</strong>查看测试报告&amp;接口详情)</li></ul><h3 id="进度说明"><a href="#进度说明" class="headerlink" title="进度说明"></a>进度说明</h3><ul><li>已经实现前三步，基本上测试报告可用和接口说明可用。<strong>其中file上传测试逻辑暂时搁置</strong>。</li><li>主要参考和借用了了<strong>excel配置方式</strong>、<strong>JSON解析</strong>、<strong>Assured网络请求框架</strong>、<strong>Aviator解析器</strong>、<strong>mock.js和yod模拟数据</strong>生成等思路和技术。</li><li>后面在考虑使用内存数据库，实现基础配置，这样可以支持团队内部使用；届时开源和提供网络接口服务。</li></ul><h3 id="扩展部分"><a href="#扩展部分" class="headerlink" title="扩展部分"></a>扩展部分</h3><ul><li>本部分扩展了Aviator解析器，实现了如下函数：<ul><li>$name()</li><li>$cname()</li><li>$age(0,120)</li><li>$color()</li><li>$date(‘yyyy-MM-dd’)</li><li>$url()</li><li>$cparagraph()</li><li>$email()</li><li>$phone()</li><li>$tel()</li><li>$card()</li><li>$integer(0,100)</li><li>$double()</li><li>$long()</li><li>$qq()</li><li>$avatar</li><li>$vin()</li><li>… 后续根据需求增加</li></ul></li><li>测试部分</li></ul><pre><code class="java">AviatorEvaluator.execute(<span class="string">"$name()"</span>));AviatorEvaluator.execute(<span class="string">"$cname()"</span>));AviatorEvaluator.execute(<span class="string">"$age()"</span>));AviatorEvaluator.execute(<span class="string">"$age(10,99)"</span>));AviatorEvaluator.execute(<span class="string">"$color()"</span>));AviatorEvaluator.execute(<span class="string">"$date.now('yyyy-MM-dd HH:mm:ss.SS')"</span>));AviatorEvaluator.execute(<span class="string">"$qq() + '@qq.com'"</span>));AviatorEvaluator.execute(<span class="string">"$phone()"</span>));AviatorEvaluator.execute(<span class="string">"$url()"</span>));AviatorEvaluator.execute(<span class="string">"$email()"</span>));AviatorEvaluator.execute(<span class="string">"$cparagraph(30,100)"</span>));AviatorEvaluator.execute(<span class="string">"$card()"</span>));AviatorEvaluator.execute(<span class="string">"$tel()"</span>));AviatorEvaluator.execute(<span class="string">"$tel('021')"</span>));AviatorEvaluator.execute(<span class="string">"$tel('0371',8)"</span>));AviatorEvaluator.execute(<span class="string">"$vin()"</span>));AviatorEvaluator.execute(<span class="string">"$title()"</span>));AviatorEvaluator.execute(<span class="string">"$avatar()"</span>));AviatorEvaluator.execute(<span class="string">"$double(2.1,3.4,1)"</span>));AviatorEvaluator.execute(<span class="string">"$long(2,4)"</span>));AviatorEvaluator.execute(<span class="string">"$date.between('2018-01-01 12:01:10','2018-01-11 19:01:10','yyyy-MM-dd HH:mm:ss')"</span>));AviatorEvaluator.execute(<span class="string">"$array.names(2)"</span>));</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/pro/os/test.jpg&quot; alt=&quot;itest&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h3&gt;&lt;p&gt;开发过程中,免不了做API测试,同时测试人员
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="java" scheme="http://zhixingmei.ren/tags/java/"/>
+    
+      <category term="测试框架" scheme="http://zhixingmei.ren/tags/%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="el表达式" scheme="http://zhixingmei.ren/tags/el%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+      <category term="AviatorEvaluator 解析器" scheme="http://zhixingmei.ren/tags/AviatorEvaluator-%E8%A7%A3%E6%9E%90%E5%99%A8/"/>
+    
+      <category term="Rest Assured 请求框架" scheme="http://zhixingmei.ren/tags/Rest-Assured-%E8%AF%B7%E6%B1%82%E6%A1%86%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何用一个月让自己焕然一新？</title>
+    <link href="http://zhixingmei.ren/2017/10/17/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%80%E4%B8%AA%E6%9C%88%E8%AE%A9%E8%87%AA%E5%B7%B1%E7%84%95%E7%84%B6%E4%B8%80%E6%96%B0%EF%BC%9F%E6%96%87%E9%83%BD%E8%80%83%E7%A0%94/"/>
+    <id>http://zhixingmei.ren/2017/10/17/如何用一个月让自己焕然一新？文都考研/</id>
+    <published>2017-10-17T01:46:54.000Z</published>
+    <updated>2018-07-09T08:24:10.396Z</updated>
+    
+    <content type="html"><![CDATA[<p>也许你并不满意现在的自己</p><p>也许你正在发愁自己以后要怎么办</p><p>也许你一片迷茫</p><p>别担心，用一个月的时间来改变自己！</p><p><img src="/pro/os/crawler/2URE-F27V-E6ZB.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/NMYV-VEBR-UJZV.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/67JV-NZUB-R2II.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/QZQV-VR2Y-IUM3.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/J6RF-NQ7F-VFAA.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/AABV-IJFE-YVFV.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/MAVI-IFVQ-BJU2.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/3II7-Z37N-7RZI.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/6RI3-6R6F-V7V2.jpg" alt="如何用一个月让自己焕然一新？"></p><ul><li><strong>原文作者：</strong> 文都考研</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6477690351518745102/" target="_blank" rel="noopener">https://www.toutiao.com/item/6477690351518745102/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;也许你并不满意现在的自己&lt;/p&gt;
+&lt;p&gt;也许你正在发愁自己以后要怎么办&lt;/p&gt;
+&lt;p&gt;也许你一片迷茫&lt;/p&gt;
+&lt;p&gt;别担心，用一个月的时间来改变自己！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/2URE-F27V-E6ZB.jpg&quot; alt=&quot;如何用
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="美文" scheme="http://zhixingmei.ren/tags/%E7%BE%8E%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信小程序 开发简易情绪音乐播放器</title>
+    <link href="http://zhixingmei.ren/2016/09/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%BC%80%E5%8F%91%E7%AE%80%E6%98%93%E6%83%85%E7%BB%AA%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8xiaohan1990718/"/>
+    <id>http://zhixingmei.ren/2016/09/30/微信小程序 开发简易情绪音乐播放器xiaohan1990718/</id>
+    <published>2016-09-30T06:53:13.000Z</published>
+    <updated>2018-07-02T07:57:16.442Z</updated>
+    
+    <content type="html"><![CDATA[<p>时间原因，写简单粗暴点(几年不写<strong>生疏了</strong>)：</p><p>一、微信小程序 - 微信web开发工具 下载</p><p>二、新建项目 具体教程详见： <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/?t=1475052048858" target="_blank" rel="noopener"> 微信小程序API</a></p><p>三、这里直接更改index包下资源 :</p><p>第一步 UI 绘制</p><p>修改index.wxml + index.wxss</p><p>第二部 JS 控制<br>修改 index.js</p><p>使用到的API :</p><p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html?t=1475052055756" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html?t=1475052055756</a></p><p>1、微信小程序API - 框架 - 视图层 - WXML - 数据绑定、条件渲染、事件</p><p>2、WXSS 其中这个版本暂未适配 请依照官方推荐</p><p>3、组件 : view、text、loading、image</p><p>四、界面截图</p><p><img src="/pro/os/crawler/FUFY-QYZF-MQYM.jpg" alt="FUFY-QYZF-MQYM.jpg"></p><p>五、<a href="http://download.csdn.net/detail/xiaohan1990718/9643957" target="_blank" rel="noopener">下载地址</a></p><p>六、v0.0.3 完整版 完成后 将会发布到 github ，<a href="https://github.com/hank583746309/wmusic" target="_blank" rel="noopener">访问地址</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;时间原因，写简单粗暴点(几年不写&lt;strong&gt;生疏了&lt;/strong&gt;)：&lt;/p&gt;
+&lt;p&gt;一、微信小程序 - 微信web开发工具 下载&lt;/p&gt;
+&lt;p&gt;二、新建项目 具体教程详见： &lt;a href=&quot;https://mp.weixin.qq.com/debug/wxadoc
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="微信小程序" scheme="http://zhixingmei.ren/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爬虫遇到图片禁止访问（如403）</title>
+    <link href="http://zhixingmei.ren/2016/07/08/%E7%88%AC%E8%99%AB%E9%81%87%E5%88%B0%E5%9B%BE%E7%89%87%E7%A6%81%E6%AD%A2%E8%AE%BF%E9%97%AE%EF%BC%88%E5%A6%82403%EF%BC%89lf_breeze/"/>
+    <id>http://zhixingmei.ren/2016/07/08/爬虫遇到图片禁止访问（如403）lf_breeze/</id>
+    <published>2016-07-08T08:35:16.000Z</published>
+    <updated>2018-07-02T07:57:16.321Z</updated>
+    
+    <content type="html"><![CDATA[<p>今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。</p><p>对于低级的图片防盗链可以通过改变Referer来解决。</p><p>访问图片资源：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = new URL(src);</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                con.setConnectTimeout(5*1000);</span><br><span class="line">                String referer = url.getProtocol()+&quot;://&quot;+url.getHost();</span><br><span class="line">                con.setRequestProperty(&quot;Referer&quot;, referer);</span><br></pre></td></tr></table></figure><p>在jsoup中也可以通过下面方式访问：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jsoup.connect(url).ignoreContentType(true).referrer(referer).get()</span><br></pre></td></tr></table></figure><ul><li><strong>原文作者：</strong> lf_breeze</li><li><strong>原文链接：</strong> <a href="https://blog.csdn.net/lf_breeze/article/details/51862107" target="_blank" rel="noopener">https://blog.csdn.net/lf_breeze/article/details/51862107</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。&lt;/p&gt;
+&lt;p&gt;对于低级的图片防盗链可以通过改变Referer来解决。&lt;/p&gt;
+&lt;p&gt;访问图片资源：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;ta
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="爬虫" scheme="http://zhixingmei.ren/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>程序员追求的是什么？</title>
+    <link href="http://zhixingmei.ren/2013/04/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%BD%E6%B1%82%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Fxiaohan1990718/"/>
+    <id>http://zhixingmei.ren/2013/04/01/程序员追求的是什么？xiaohan1990718/</id>
+    <published>2013-04-01T14:10:04.000Z</published>
+    <updated>2018-07-02T08:19:50.458Z</updated>
+    
+    <content type="html"><![CDATA[<p>上周我收到三位Halmstad大学学生的电子邮件，他们正在做一个为期三月的项目，内容是关于程序员在工作中追求的是什么，以及企业如何吸引有才华的程序员。下面是我对他们问题的答案，按重要程度排序。显然人们会有不同的偏好，所以我很有兴趣听到你们赞同哪些，反对哪些，重要性的评判，以及你们认为遗漏了的要点。</p><ol><li><p>做软件产品。我希望我参与编写的程序成为公司的主要业务。这就排除了IT维护工作，因为这种工作只是间接 地支持了真正的业务（不管它是什么）。我也希望参与系统核心部分的工作，越重要的越好。如果我做的东西出错了，它应该马上成为一个紧急问题。最后，我不愿 意参与仅仅是配置、<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=20" target="_blank" rel="noopener">应用</a>或整合其他公司的软件 — 我希望自己来实现关键性的功能。</p></li><li><p>优秀的同事。和对软件开发充满激情的聪明程序员一起工作是催人奋进的。我一次又一次地看到和同事一起谈论一些问题或设计是如何产生比我们任何一个人自己闷头想出来更好的思路的。这种合作方式不光是产生更好的代码，过程本身就是非常令人享受的。</p><p>你怎么知道某人是不是一个优秀程序员呢？一个特别好的特征就是看他们是否持续学习和提高他们的技能，例如通过读书、看博客、参加培训课程、以及参加 技术大会。这倒也不是一个必要条件，我就曾经和很多不干这些事的很棒的开发者共事。最后，优秀的开发者会吸引其他的优秀开发者，因为以上原因。如果一个企 业有很多优秀的开发者，它就更容易招到更多的优秀开发者。</p></li><li><p>挑战难题。程序员通过代码解决问题。开发的产品起码在某些角度需要聪明的思路，比如低延迟、大量并发请 求、或有限的硬件资源。不过，很多软件产品都是由常规代码组成，没有什么难做的部分。所以你也不能只是盼着做“困难问题”而避开其他的所有需求。而且，组 织好那些看起来很无聊的代码，让它们容易理解和维护，这本身也是一个巨大的挑战。</p></li><li><p>很酷的技术。这主要是关于使用有趣的编程语言（例 如Clojure、 Erlang 或者 Go），但也包括框架和应用（例如Hadoop 或 Cassandra）。这可能是某些公司有问题的地方。如果它们的应用是用某个语言（比如C++）写的，它就不会改了。所以如果你想改用一些新的语言，你 可能需要换个工作。例如，如果你在斯德哥尔摩想用Erlang，你可以给Klarna 或 Campanja公司投个简历试试。</p></li><li><p>用户。编码的乐趣之一是做出一些对别人有用的东西。做了东西却没人用就无聊了。要让用户（越多越好）关注你开发的努力并且给予有价值的反馈。唯一例外的可能是创业的时候，但是之后就要把吸引尽可能多的用户作为最优先的事情。</p></li><li><p>不错的薪水。拥有大量优秀开发者的公司懂得优秀人才的价值。因为优秀和一般程序员之间的差别是巨大的，所 以报酬向优秀开发者倾斜在经济上是有道理的 — 其实在生产效率上的差别远大于薪酬上的差别。反过来说，那些不舍得给程序员较好薪水的公司往往把程序员看作是可以随意更换的“资源”。那么这些公司在其他 方面的表现恐怕也是你看不上的，不仅仅是低薪水。</p></li><li><p>很好的工具。这个因素的重要性几乎是不言自明的。一台快速的计算机和几个显示器可以加快开发过程 — 谁会反对这一点呢？（好吧，那些光看成本不看效率的秃头老板可能会反对）</p></li></ol><p><a href="/pro/os/crawler/FZJU-6RQM-AZUV.jpg"><img src="/pro/os/crawler/FZJU-6RQM-AZUV.jpg" alt="145444mqmhc3h1z1my4611.jpg"></a></p><ol start="8"><li><p>一周工作40小时。如果你总是要加班完成任务，肯定是你工作的单位有一些问题。而且，长时间工作也不等于有效率。</p></li><li><p>最少的官僚主义。对于开发过程来说，或多或少会有敏捷开发方法的影子，看起来大家都采用了这种思路。根据我的体会，在大公司里日常管理的那些琐事基本上都是躲不开的问题。</p></li><li><p>在家工作。 有时候能在家工作是有效的，不过我不常这么做。我喜欢在办公室里，和同事交流。我曾经通过视频会议、聊天工具和电子邮件在一个远程办公室工作，但这样的工作效率还是不如现场合作的高。</p></li><li><p>离家近。显然这不容易强求，但是能不用每天花几个小时在路上多好啊。</p></li></ol><p>评论</p><p> 如果你是咨询顾问（而不是程序员），这个列表上某些项可能会不一样。我总是愿意在产品公司工作，主要因为我喜欢深入了解系统，看着它随时间如何演 变。所以我没有作为咨询顾问的第一手工作经验，不过我觉得是这样的：作为一个咨询顾问，你更容易接触到很酷的新技术，因为你有机会和很多不同的客户一起工 作。但是，即使你有很棒的同事，你可能也不会每天和他们在一起工作，因为你们会被派到不同的客户那里去。</p><p> 这就是我在单位里最看重的几个因素，按重要程度排序。在现实生活中总会打一些折扣，但越是列在前面的因素，我就越不愿意给它们打折扣。你看重的因素有哪些呢？</p><p>英文原文：<a href="http://henrikwarne.com/2013/03/26/what-do-programmers-want/" target="_blank" rel="noopener">Henrik Warne</a>，编译：伯乐在线 - <a href="http://weibo.com/ned11" target="_blank" rel="noopener">@老码农的自留地</a></p><p>译文链接：<a href="http://blog.jobbole.com/37078/" target="_blank" rel="noopener">http://blog.jobbole.com/37078/</a></p><p>-———————————————–</p><p>随心走～ 心系未来，努力在当下。</p><p> 2013-04-01</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;上周我收到三位Halmstad大学学生的电子邮件，他们正在做一个为期三月的项目，内容是关于程序员在工作中追求的是什么，以及企业如何吸引有才华的程序员。下面是我对他们问题的答案，按重要程度排序。显然人们会有不同的偏好，所以我很有兴趣听到你们赞同哪些，反对哪些，重要性的评判，以
+      
+    
+    </summary>
+    
+      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="职业发展" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用户考虑的是什么？简单，简便，易操作</title>
+    <link href="http://zhixingmei.ren/2013/03/26/%E7%94%A8%E6%88%B7%E8%80%83%E8%99%91%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E7%AE%80%E5%8D%95%EF%BC%8C%E7%AE%80%E4%BE%BF%EF%BC%8C%E6%98%93%E6%93%8D%E4%BD%9Cxiaohan1990718/"/>
+    <id>http://zhixingmei.ren/2013/03/26/用户考虑的是什么？简单，简便，易操作xiaohan1990718/</id>
+    <published>2013-03-26T15:54:09.000Z</published>
+    <updated>2018-07-02T08:24:57.073Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/pro/os/crawler/JEVF-BFJE-3AER.jpg" alt="设计"></p><p>小区里面有一条铺好的路，只是略微拐了一个小弯，但是硬是在旁边的草地上被踩出了一条近路，其实踩这条路，只比那个设计好的路少两步而已……</p><p>所以网站策划设计，也是同样的道理，应该用最简单高效的方式、最短的流程和路径引导用户到达目的地，应该适应用户的习惯和需求。</p><p>一切以用户为中心，以用户的需求为导向，按照用户的习惯和需求去设计、提倡参与式设计，在设计策划的过程中，实现充分的用户参与，则会尽最大可能的降低以 后产品上线不符合用户习惯的情况发生。</p><p>如果两条路是一样的，用户会不假思索的、潜意识的走最近的路，因为用户没有理由要多走两步，但是如果你硬要用户多走两步，也需要策划了，比如在这条近路旁 边放一个小牌子，提醒用户“小草正在休息，请勿打扰~”，或者也许到雨天，用户就不会走这条路了，因为会打湿鞋子、粘上泥巴，所以，用户要走最近的、不需 要思考、不需要理由，完全是潜意识和本能。</p><p>如果你想让用户多走两步，必须给他一个理由，给他一个理由，不让用户思考、不给用户分心的机会、节约用户的脑 力，还有，不要让这条近路形成，因为一旦第一个人丛这里走过，就会出现破窗效应，一旦形成路、就会形成从众的效应，所以，虽然看起来只是两步路，其实背后 还是蛮复杂的~，这是两条路之间的竞争，远路比近路多两步，要赢得用户的脚，必须得有自己的优势，就是让用户觉得这条路虽然远那么一点，但是还有另外的优 势在，比如这条路前面有个花丛、有个鱼池、这条路不会弄脏鞋子、不会践踏小草，所以，这还涉及到差异化。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/pro/os/crawler/JEVF-BFJE-3AER.jpg&quot; alt=&quot;设计&quot;&gt;&lt;/p&gt;
+&lt;p&gt;小区里面有一条铺好的路，只是略微拐了一个小弯，但是硬是在旁边的草地上被踩出了一条近路，其实踩这条路，只比那个设计好的路少两步而已……&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+    
+    
+      <category term="职业发展" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://zhixingmei.ren/2011/11/09/hello-world/"/>
+    <id>http://zhixingmei.ren/2011/11/09/hello-world/</id>
+    <published>2011-11-09T10:28:20.000Z</published>
+    <updated>2018-06-29T08:25:40.254Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
