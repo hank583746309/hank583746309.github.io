@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhixingmei.ren/"/>
-  <updated>2018-07-02T02:31:43.783Z</updated>
+  <updated>2018-07-05T12:26:23.104Z</updated>
   <id>http://zhixingmei.ren/</id>
   
   <author>
@@ -17,78 +17,22 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hank 在做的</title>
-    <link href="http://zhixingmei.ren/2018/05/29/hank-%E5%9C%A8%E5%81%9A%E7%9A%84/"/>
-    <id>http://zhixingmei.ren/2018/05/29/hank-在做的/</id>
-    <published>2018-05-29T06:48:24.000Z</published>
-    <updated>2018-07-02T02:31:43.783Z</updated>
+    <title>7年的Java后端最终免不了被淘汰，一路北漂辛酸史！</title>
+    <link href="http://zhixingmei.ren/2018/07/02/7%E5%B9%B4%E7%9A%84Java%E5%90%8E%E7%AB%AF%E6%9C%80%E7%BB%88%E5%85%8D%E4%B8%8D%E4%BA%86%E8%A2%AB%E6%B7%98%E6%B1%B0%EF%BC%8C%E4%B8%80%E8%B7%AF%E5%8C%97%E6%BC%82%E8%BE%9B%E9%85%B8%E5%8F%B2%EF%BC%81%E5%BF%86%E8%93%89%E4%B9%8B%E5%BF%83/"/>
+    <id>http://zhixingmei.ren/2018/07/02/7年的Java后端最终免不了被淘汰，一路北漂辛酸史！忆蓉之心/</id>
+    <published>2018-07-02T02:33:45.000Z</published>
+    <updated>2018-07-05T12:26:23.104Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/pro/os/jiayou.jpeg" alt="思索"></p><p>打算近期整理下之前的积累，包括做的、看的和想的，以及之前零散的的东西,都打算整理到自己的知识库中，一来，给之前的东西梳理一遍，二来看能否从中获取新的思路。</p><ul><li>Java相关的</li><li>android相关的</li><li>html5相关的</li><li>javascript相关的</li><li>nodejs相关的</li><li>sql相关的</li><li>创业相关的</li><li>包括今年来的阅读相关的整理</li><li>把上述的整理过程，尽量通过技术手段梳理，达到梳理过程中节省自己的时间</li><li>继续计划，将目前的几个项目整合，最终是想形成自己的知识库，方便自己检阅，同时也为了往后过程中，自动记录自己的所见所闻，至于所感部分，那就看自己了，想着也得写点什么东西，毕竟这些东西于人无害，于己利丰啊。</li></ul><h3 id="先简单记录下，最近两三周的东西"><a href="#先简单记录下，最近两三周的东西" class="headerlink" title="先简单记录下，最近两三周的东西"></a>先简单记录下，最近两三周的东西</h3><ul><li>完成了<code>消息中心</code>的开发,其中邮件和短信发送支持了多平台、服务使用了多线程控制提供了消息发送效率。</li><li>基本完成了<code>基于oos(对象存储)</code>的本地、阿里、腾讯、京东的多平台多场景支持，目前已初步实现基于此的个人网盘开发，后续是想扩展支持团队内部资料存储（团队网盘-使用本地存储即可满足）</li><li>完善了<code>支付</code>方式的支持，使用场景因为需要支持多个商户，同时收账功能因为大客户对资金管理控制的比较紧，故平台内所有收款发起，均需调用对应商户，微信官方目前并支持（后查证美团小程序可以，至于方法目前官方没给我答复），同时考虑用户支付方式多样化，故支付方式目前支持：基于商户分发的二维码支付、基于桥接方式的二维码支付。其他支付方式需要openid的，均不支持。</li><li>花了一周时间研究各种<code>自动化测试</code>，后来大都基于接口的自动化以及部分UI自动话，觉得都比较复杂，后面就自行研发了一套基于<code>接口管理</code>，支持<code>多流程管理</code>的自动化测试框架，目前技术储备足够支持这套框架完成以下工作，并有很多优点：<ul><li><code>restassured</code> 网路框架</li><li><code>fastjson</code> JSON解析框架（目前只支持JSON响应格式）</li><li><code>aviator</code> el解析器框架</li><li>支持 <code>excel 配置</code>接口、流程 简化配置复杂度</li><li>支持<code>el表达式</code>，可以在请求参数中配置el表达式，获取之前同一流程的响应结果</li><li>支持<code>mock</code>，不用再造固定的模拟请求数据，基于aviator扩展的方法完美生成多种测试请求数据</li><li>支持<code>API生成</code>,测试完成即生成API</li><li>支持生成<code>测试报告（report）</code>,测试完成生成测试报告 <a href="/pro/itest/6bff95cdd68cbb37d4e2d20338ab7793/dev/">点我查看</a>.</li><li>后续支持：<code>根据excel生成接口管理</code>、<code>流程管理</code>；<code>提供mock</code>模拟响应数据，方便前后端调试和开发；</li><li><a href="/2018/05/21/itest%EF%BC%88%E7%88%B1%E6%B5%8B%E8%AF%95%EF%BC%89%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E8%AF%B4%E6%98%8E/">点击查看框架详情</a></li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;/pro/os/jiayou.jpeg&quot; alt=&quot;思索&quot;&gt;&lt;/p&gt;
-&lt;p&gt;打算近期整理下之前的积累，包括做的、看的和想的，以及之前零散的的东西,都打算整理到自己的知识库中，一来，给之前的东西梳理一遍，二来看能否从中获取新的思路。&lt;/p&gt;
-&lt;ul&gt;
-&lt;l
-      
-    
-    </summary>
-    
-      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-    
-    
-      <category term="感悟" scheme="http://zhixingmei.ren/tags/%E6%84%9F%E6%82%9F/"/>
-    
-      <category term="生活" scheme="http://zhixingmei.ren/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo 使用笔记</title>
-    <link href="http://zhixingmei.ren/2018/05/28/hexo-%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"/>
-    <id>http://zhixingmei.ren/2018/05/28/hexo-使用笔记/</id>
-    <published>2018-05-28T11:37:47.000Z</published>
-    <updated>2018-06-29T11:24:33.762Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/pro/os/sisuo.jpeg" alt="思索"></p><p>关于博客的选型,我思索了好久，想过jpress等第三方开源，也试过php版本的、nodejs版本的,后来还曾想自己开发一版简易博客自己使用,最后在尝试过很多种方式之后，我还是老老实实用第三方博客吧，再后来因为考虑到自己知识库的建立，方便记录和积累和完善自己的知识体系，就使用了有道云笔记之类的软件，最后仍然发现很大的一个问题，在不同平台看到的东西或者记录的东西还是无法有效聚合。</p><p>相信这种场景不止我一个人遇到吧，我后来打算怎么办呢？这便有了后来hexo学习了，既然现在markdown和html之间可以互转，也意味着很多知识便可以建立在markdown的标准下，包括对信息分类、标签和信息检索。</p><p>既然有了如上思路，那就建个个人博客，专门记录生成markdown文件，这样便又了信息显示的平台，我原本打算购买个云服务，后来想了想既然使用了<code>hexo</code>,为何不利用github pages 直接搭建一个个人知识库呢（目前仅博客）？</p><p>其他平台数据怎么办？图片外链怎么办？几个问题涌上心头，基于之前的技术大致归类：</p><ul><li>微信等封闭平台，如收藏、公众号文章，考虑人工 + 爬虫。</li><li>头条等开放平台，如历史、收藏等文章，考虑<strong><code>爬虫</code></strong>。</li><li>其他平台，有其他第三方的平台，如csdn，其实有些工具了，但之前我接触了几个不怎么好用，也用爬虫。</li><li><strong><code>图片存储</code></strong>放哪里，以上平台均有可能导致图片禁止外链，后来想到已经有了os <a href="http://zhixingmei.ren/2018/05/29/hank-%E5%9C%A8%E5%81%9A%E7%9A%84/">对象存储想关内容</a> ，那就利用el、正则啊将图片下载到本地目录（在hexo/public下专门存储），然后转化标签地址即可。</li><li>将html内容爬虫下载完成后，再使用<strong><code>html转markdown工具</code></strong>类将其根据规则转化到srouce/_posts目录下。</li></ul><p>基于以上思路,就可以实现将之前的信息记录聚合到独立的平台，当然这只是第一步。</p><h3 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h3><ul><li>移动平台下-开发android程序（目前只擅长Android,当然后面ios再学习下）,将看到的文章分享时，分享到自己的app中,由app发起对该内容的爬取，最后执行之前逻辑。</li><li>移动平台下-或者使用第三方，如python登陆微信,将分享的消息获取并执行（又或者个人公众号，链接发送到公众号，独立后台执行）</li><li>pc下,利用已有的搜索项目（自己搭建的基于百度/360/google等搜索引擎的搜索服务）敢兴趣的内容，一键爬取并记录。</li></ul><p>啰嗦了好多,记录几个命令</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo g  #生成</span><br><span class="line">hexo s  #运行</span><br><span class="line">hexo clean # 遇到一些奇怪问题,可以先清理再生成</span><br><span class="line">hexo d  #发布到git hexo d -g</span><br><span class="line">hexo deploy # git重新load</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>本人Java开发6年半不到7年的样子。</p><p>英语专业，临毕业跟着隔壁专业去培训了四个月 Java 。</p><p>跟他们一起来了北京找工作，一找就是 5 个多月，面试 100 多家公司。最终还是隔壁专业的同学介绍到他们公司才就业了。</p><p>入职后同学就是我的领导，技术相对一般，我们做 Java 游戏后端的，时间很快，一眨眼，我就跟着混了四年，每天就看些博客，书籍，业务上也会做功能，但自觉做的比较蠢。没什么太大进步。四年时间很快乐，跟着老板，同学，从一点不会，到能独立完成工作，能自主做一点小小设计。但技术上说真的，差得太远。</p><p>随着心越来越慌，工资水平属实也太低 6K 多，于是四年这个节点，我跳槽了，工资翻倍。这是一份非常苦的工作，曾经2个多月没放假，也曾经连续四天四夜没回家，工作到凌晨 3 点是司空见惯。然而我只是个小兵，加班加了 10 个月，游戏上线两个月，人员就全部裁掉了。由于 Java 一直感觉没有入门，框架方面 掌握的也比较少，这个 MMO 的项目本是练手大好时机，连忙带懒就也这么过来了。</p><p>随后不知道算走运还是算倒霉，找到了上市公司的工作，20K「我梦想中的工资是 25K，如果达到就打算不再跳槽了，为什么是25K？因为游戏Java后端基本上 30K 算是一个封顶，哈，当时比较幼稚，以为就这么干着，早早晚晚也能混到最后，就算技术不行，吃透两套框架，在游戏圈就能立住脚」。 说是走运，因为工作相对简单，我 1 个后端对 6 个前端，听起来挺唬人，但其实还是做业务，但因为只有我一个人接手这个项目，所以我也算是主程，当时我觉得我的人生的每一步真是走的太好了，缺什么来什么，想要架构，想要自己来就有机会了，这一年多感觉特别顺利，也觉得自己终于像是入了门，不再害怕工作上的需求了。但说是倒霉呢 ，其实也就是因为这一切其实都是假象，我根本还是几年前的那个自己，只是因为业务熟练了，以为自己行了。</p><p>这公司也是裁员，我在这里做了一年半不到，临走给了 N+1，美美的拿着钱，找自己梦想中的 25K 去了。并且决定不做游戏了，因为游戏公司有名的就那几家，没啥大发展，还是互联网好，差不到 40K 封顶，我以上所说的封顶都是指很普通的人啊，大佬就别跟我计较了。就在裁员的第二天，我面试了京东一个物流创新部，好像是这个名字，那天我记得特别清楚，经过了一下午面试（面试的难度真是超级低，我在那里侃侃而谈，最难的问题也只是线程池那几个参数）。然后，过了。我真的感觉自己要一飞冲天，当时在想，在这里不能做太久，公司的文化太诡异，一切围绕着强东转，公司的人说话好像都在躲着什么东西，加班也是每天固定，然后大小周。因为正赶上过年，面试的人说年后人事会联系我走流程，就能入职。这一去就天差地别了，我在家等了一个半月，中间经过无数询问面试者，人事等，后来，流程跑着跑着就没了。当时觉得京东真是让人开眼，还特么带这么玩的。</p><p>这时候，我还是不知道愁~然而，马上就要觉醒了。我又去面试，还是25K，有时候你认真的要价真的比猥琐要好很多，我当时就是愣要，大部分人还真信。记得收到的OFFER有必要商城，赢时胜等等，后来去了一家做语音的公司负责做云平台。哈哈，这份工作只做了三天半。从入职第一天就夜夜失眠，为毛？因为看不懂代码，压力很大。以前做游戏觉得大家都是吊丝，每天在一起呼呼哈哈，确实也快乐，有什么需求甚至直接在座位上喊着沟通这样。但是这家公司就比较正规了，我以为互联网公司都是这个样子的，同事之间一天一句话都不说，主程也只给我简单说了说流程，就自己看代码吧。我虽然技术渣，但有时候对自己要求还是挺高的，总想快速的上手代码，这代码这手上一天，两天，三天，连个皮毛都没看出来，就慌的不行，当时就开始知道自己代码水平有点渣了，但以为自己是不适应，这次找工作其实也挺波折，醒悟是一个缓慢的过程。所以还是想着回游戏行业，毕竟自己历经三家公司，都没碰到什么难度，虽然寻路啊，地图啊，战斗啊这些自己都完全整不了，但是还是能完成普通工作的，此时的我还以为自己能搭框架呢，啊哈哈。于是我就辞了，公司真的不错，14薪，要走还好顿要留我。当时以为自己是不适应走的。现在回头想想，其实怕暴露真实代码水平，不好意思才走的「身体不骗人，我的脑子居然会骗自己」。</p><p>于是，我开始面游戏了，还是 2 ，但面着面着觉得不对劲，为何大部分面试我都答不上来个啥，三问两问就瘪了。两周时间，居然 10 家只收到 1 个 OFFER，并且是小公司做主程。我开始慌了，很慌，这 10 天里我慢慢认清自己的真实水平了，不敢细想，细想连面向对象都不怎么会，那些继承啊接口啊，从来也没写得好看过，都是照着别人已有的模块，拿来粘贴，还做得挺快。多线程一想就蒙蔽，数据库就会点简单操作，Linux 也是一样就会个CP MV CAT top啥的，最常用的是 ps -aux|grep。 原来，原来我什么都不会啊。但是上天还是眷顾我的，居然这十几家我最看好的那家公司，第 11 个面试。过了，哈哈，当然这时薪资下来了一点，但是我管不了那么多，从上家裁员到现在，已经整整过了 2 个月零一周了，这些天过得真不怎么样，每天都特别焦虑。也瘦了七八斤。就这样吧，入职好好干吧，我收到OFFER时，暗暗想着，我要为公司肝脑涂地，它在我危难之时，向我伸出了关爱之手，感谢公司。</p><p>于是更大的噩梦开始了~~入职到现在 2 个月了，我几乎毛也没做。每天都想逃避都想跑，心脏压得我天天疼，好堵啊，现在也还是如此。这 2 个月我彻底认清了自我，和入职半年的新生小手差不多的水平，一直用这水平干了这六年工作。。真汗颜，以前用的 SVN,到了新公司学 git，这 git 是真难啊，怎么都学不会，网上那堆教程跟屎一样，看着好像是会了，用着都特么不对，差得远呢，到现在还只会create a branch，写， pull develop ，切回来把develop 合过来，然后再把branch合回到develop，再push，基本上是在用svn的方法在用git，而且 git我感觉很奇怪，好像没几个真的会用，不管是网上还是我的同事。</p><p>光说痛苦了，说说自己为什么痛苦吧，我知道每个人都有自己的心酸事。我只是想说说我的。</p><p>哎，主要说说新公司的事吧，这么多天了，我死去活来，难受的要命。比如我从刚入行就不大懂开发的根本问题是什么，也许书本上的解释我也看得懂，但是真要理解这件事，应该不是只停留在字面理解，如果你有懂那一天，你应该立刻就知道，它会直接在头脑中告诉你—啊我入门了。鉴于此，我一直都保存着前几家的源码，我想着，开发既然自己不能理解好，也没有举一返三的能力，也不会自主写出什么东西。 那就收集多多的代码，涉及到的哪一部分不懂，可能就能在其中找到例子，灵感。这样就可以在框架层面也不至于什么都没有积累。这次的工作，服务端也分了好几个进程，之前我都是用redis搞数据沟通，比如你要生成唯一ID，每个子服务里都有redis，incr就好。新的框架也是这个主程用了好多年的了，不想加入新的东西，但是又要求我按他的思路去做，又说代码版权等问题，之前所有的源码都不能给我看，我想其实也是合理的，毕竟我是 P6，高级开发哎。按理说，招我进来可以从 0 开始搭建架构的。我的能力也就是 curd 了，甚至可能 curd 还做不太好，也就说不上怎么能硬气的跟他说明。比如上面 id 的问题，那我可能就要每个服启动时，去 mysql 查一批id存放在每个子服务上面，设一个警戒值，不够了再取。但是这样吧，对我来说就很难，这就要考虑到警戒值不够用了怎么办，各服务启动时要把id拿到才能对外服务，还有 id 如果实在没有了，可能要进行同步阻塞去查询，但是同步怎么写？不会写同步~~ 另外再举例子，如果是加好友功能，这种单用mysql，而且还弄出一个 dbserver 的服务，什么都要写个异步的协议过去，那加好友原来是：</p><p>addFriend {</p><p>各种条件判断，不合条件返回个tips</p><p>执行加好友</p><p>}</p><p>现在可能变成这样了：</p><p>addFriend {</p><p>异步去查数据库了</p><p>}</p><p>gameserver -&gt; dbserver ，当dbserver-&gt;gameserver返回时，又是另一个协议，handler什么的又得另写，执行判断，再返回，等等。 当然写得好的人，这些问题都不存在，而我只会直肠子写Java，就会个 List.add if else for循环。这基本上是我的全部本领了。就在这框架里有很多难处。还有个问题是怎么写gate与game的玩家session对应，想了N久才想出个办法，包装了个protobuf二层协议，，哦问题多了去了。应该都是开发者该在工作中解决的基本问题，而我一步一个坎。</p><p>再者公司的氛围也是头疼的紧，一整天也没人说话，除了要甩锅的时候，根本没人会沟通。交待任务啥的，给我压力也特别大，比如主程今天说，docker了解一样。然后明天让我搭 dokcer 自动化部署流程了。今天说git flow了解一下，明天就要严格执行 git 工作流了。还是那句话，可能这是一个 P6 真正要掌握的本领，就是有个关键词，然后就能自己看外文文档，然后就能搭建出一个看上去很像样的工程化产品。好吧，这样来看我离真实的 P6 的实力，至少得差 5 个档次。</p><p>自己特别的低迷，心脏堵的难受，每天早上一醒来就感觉自己活不起了。有天晚上梦中，看见一堆代码，却怎么看都不懂，又醒不了，难过，懊丧了一整夜，连睡觉的时间都不放过我，自己的痛苦多了就经常跟朋友家人说，到后来反倒让我认清了，什么狗鸡巴朋友，哪有朋友，没人会care你一丁点，各自有自己的烦心事不说吧，没有共同经历的也难为互相理解。总之，在朋友对我的反应上，基本就是你想多了;你不干得挺好的吗;程序员一个拿那么多钱你还瞎苦恼个什么;不光你，谁没困难;其中特别好的一个也差不多最多宽慰两句，你行，你可以挺过去之类的。之后就再无信息。当时也是苦恼了好一阵，认识你们有个什么用，你说我最想听什么，我联系你们的目的是什么，哈哈，算了算了，都是故事，你们并没有那么好。但回头吧，仔细想想不禁就明了了这件事。</p><p>30多岁了，这是关乎你自己生存的问题，这个问题不是靠什么运气和神迹才能改善的，它积累在你多年生活的每一天里，你的理解是什么，你对工作的态度如何，你怎么利用你的时间的。这一切的一切都是你自己该解决该思考的问题，别人帮不上任何忙。然而这些年我都是养生过来的，一直都没学会如何去思考，这应该是与有所成就的人最大的区别了。有人说做职业规划，而我脑中也只有这四个字的浅层意思。也许有的人对这个就比较上心，有着深刻理解也说不定。也就是说别人怎么决定你的人生，别人怎么决定你的想法，都得自己去选择，自己去承担，指望着别人给你的，只能是「放松心情了解一下努力了解一下」这样看似没用实际也没用的东西。</p><p>今天先写到这吧，写得乱糟糟。</p><p>无论怎么写也写不出你真的在痛苦时那种无助与万念俱焚，你很难再去回想，你是怎么失眠一个月的，你很难想你在公司楼下对着镜子，颤抖着害怕着不敢回办公桌时的心情。然而这一切都没意义，生活不会因为你痛苦就突然变好了，别人不会因为你痛苦就能放过你了，这些对任何人都没意义。</p><p>我还将继续下去，这家干不了了，还要找下家，还要每天学习「虽然效果不怎么样」。然后等待着，这些迟早该发生的事。</p><p>你再想想，今天虽然这么痛苦，是不是可能是你接下来生活的最好的一天了。毕竟你就坐在那里十几个小时，就有人几百上千的送给你。然后我干不下去这行了去做什么，销售？开个麻辣烫店？去工地真正的搬砖？ hi，哈哈哈哈哈，外人看叫矫情，自己看属实是活不起。</p><blockquote><p>原文地址：<a href="https://www.oschina.net/question/3465562\_2281392" target="_blank" rel="noopener">https://www.oschina.net/question/3465562\_2281392</a></p></blockquote><p>—————END—————</p><p>看更多技术好文，请关注本号。</p><ul><li><strong>原文作者：</strong> 忆蓉之心</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6573441665330053646/" target="_blank" rel="noopener">https://www.toutiao.com/item/6573441665330053646/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;img src=&quot;/pro/os/sisuo.jpeg&quot; alt=&quot;思索&quot;&gt;&lt;/p&gt;
-&lt;p&gt;关于博客的选型,我思索了好久，想过jpress等第三方开源，也试过php版本的、nodejs版本的,后来还曾想自己开发一版简易博客自己使用,最后在尝试过很多种方式之后，我还是老老实
-      
-    
-    </summary>
-    
-      <category term="学习笔记" scheme="http://zhixingmei.ren/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="hexo" scheme="http://zhixingmei.ren/tags/hexo/"/>
-    
-      <category term="笔记" scheme="http://zhixingmei.ren/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>itest（爱测试）自动化测试框架说明</title>
-    <link href="http://zhixingmei.ren/2018/05/21/itest%EF%BC%88%E7%88%B1%E6%B5%8B%E8%AF%95%EF%BC%89%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E8%AF%B4%E6%98%8E/"/>
-    <id>http://zhixingmei.ren/2018/05/21/itest（爱测试）自动化测试框架说明/</id>
-    <published>2018-05-21T15:12:24.000Z</published>
-    <updated>2018-06-29T13:17:46.115Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/pro/os/test.jpg" alt="itest"></p><h3 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h3><p>开发过程中,免不了做API测试,同时测试人员也避免不了来来回回、反反复复测试相同的功能（这里不考虑UI测试框架，因为我不熟悉，我单看了一些软件安装都够了）。以测试登陆为例，避免不了每次先登陆再测试，pc还好，如果是android、ios是不是很烦，如果是小程序模拟多个角色用户，你一个微信可咋办呢，开发环境还稍微好办，难道测试环境还要开发人员给你分配模拟？显然，这里的一切，我没找到合适的解决办法。<br>    后来想到API测试，通常来讲，开发人员做单元测试或者使用testNG集合reportNG就可以实现API测试了，但我想，你开发人员能一次测试模拟多个用户吗？能测试不同场景的组合吗？<br>    显然，在网络上搜索了众多测试框架后，我决定了，从简单出发，构建一个实用的测试框架。以下为做测试框架前，参考的资料：</p><ul><li>测试框架部分<ul><li><a href="https://www.cnblogs.com/weientesting/p/7407425.html" target="_blank" rel="noopener">APIAutoTest框架</a><ul><li>数据驱动设计，使用TestNG中的$DataProvider读取Excel中存储的自动化测试用例。</li><li>基于TestNG测试框架</li><li>使用HttpClient发送Http请求，并统一接口response返回值为String</li><li>使用fastJson和Jsoup进行数据解析，由于请求返回值的统一，解析数据异常方便，方便接入不同接口类型的数据</li><li>独立封装的检查点“Jsonpath”检查点，极大方便检查点的设置</li><li>在线报告以及Email报告</li><li>持续集成、持续交付、自动构建与测试</li></ul></li><li><a href="http://www.51testing.com/html/85/n-3686785.html" target="_blank" rel="noopener">API自动化测试框架</a><ul><li>数据驱动</li><li>简单流程覆盖，快速迭代</li><li>组合Case不需要Coding</li></ul></li><li><a href="https://testerhome.com/topics/3572" target="_blank" rel="noopener">javaWeb–API 自动化测试框架</a></li><li><a href="https://testerhome.com/topics/7260" target="_blank" rel="noopener">python实现的测试思路</a></li><li><a href="https://blog.csdn.net/wwg377655460/article/details/49978957" target="_blank" rel="noopener">TestFrameWork API接口测试框架</a></li><li><a href="https://www.jianshu.com/p/47e5af367db1" target="_blank" rel="noopener">接口自动化测试 — Rest Assured</a></li><li><a href="https://testerhome.com/topics/8055" target="_blank" rel="noopener">http(s)接口自动化测试框架</a></li><li><a href="https://my.oschina.net/hellotest/blog/499719" target="_blank" rel="noopener">http接口测试—自动化测试框架设计</a></li><li><a href="https://blog.csdn.net/tobetheender/article/details/53333059" target="_blank" rel="noopener">ITester接口测试框架</a></li></ul></li><li>mock部分<ul><li><a href="http://baijiahao.baidu.com/s?id=1596395206616971243&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">自动化数据模拟平台</a></li><li><a href="https://www.oschina.net/p/jmockdata" target="_blank" rel="noopener">随机模拟 java 数据插件</a></li><li><a href="https://www.oschina.net/p/jmockdata" target="_blank" rel="noopener">javamock生成对象</a></li><li><a href="https://blog.csdn.net/zhoudaxia/article/details/33056093" target="_blank" rel="noopener">Mockito：一个强大的用于Java开发的模拟测试框架</a></li><li><a href="https://github.com/Marak/faker.js" target="_blank" rel="noopener">基于mock.js的更加丰富</a></li><li><a href="https://cnodejs.org/topic/553e06ba3575612520161a12" target="_blank" rel="noopener">一个强大的测试数据生成器 （yod）</a></li></ul></li></ul><p>在参考了如上（其他很多觉得不合适的，就没在此列出）信息后，考虑到当前项目进展情况和需求，只能动手实现了，目标实现：</p><ul><li>第一步<strong>实现excel配置化</strong>，完成<strong>基础的api接口参数配置</strong>、<strong>post/get请求</strong>、<strong>session/token验证</strong>、<strong>返回结果断言</strong>。<a href="/pro/os/自动化测试框架.xlsx">点击查看配置</a></li><li>第二步实现<strong>请求参数模拟数据生成</strong></li><li><strong>测试报表</strong>生成研究，已经实现，<a href="/pro/itest/6bff95cdd68cbb37d4e2d20338ab7793/dev">点击查看结果</a></li><li>实现 flow/inter 测试断言中逻辑跳转（分两阶段，第一阶段实现excel配置往下可跳转）</li><li>实现测试接口可独立添加,流程可自由配置，支持第二阶段的断言可跳（依然只往下,不回跳,容易导致死循环）</li><li>实现定时测试和自动发送相关报告(其中测试报告已实<strong>现邮件发送</strong>，且可<strong>下载zip包</strong>查看测试报告&amp;接口详情)</li></ul><h3 id="进度说明"><a href="#进度说明" class="headerlink" title="进度说明"></a>进度说明</h3><ul><li>已经实现前三步，基本上测试报告可用和接口说明可用。<strong>其中file上传测试逻辑暂时搁置</strong>。</li><li>主要参考和借用了了<strong>excel配置方式</strong>、<strong>JSON解析</strong>、<strong>Assured网络请求框架</strong>、<strong>Aviator解析器</strong>、<strong>mock.js和yod模拟数据</strong>生成等思路和技术。</li><li>后面在考虑使用内存数据库，实现基础配置，这样可以支持团队内部使用；届时开源和提供网络接口服务。</li></ul><h3 id="扩展部分"><a href="#扩展部分" class="headerlink" title="扩展部分"></a>扩展部分</h3><ul><li>本部分扩展了Aviator解析器，实现了如下函数：<ul><li>$name()</li><li>$cname()</li><li>$age(0,120)</li><li>$color()</li><li>$date(‘yyyy-MM-dd’)</li><li>$url()</li><li>$cparagraph()</li><li>$email()</li><li>$phone()</li><li>$tel()</li><li>$card()</li><li>$integer(0,100)</li><li>$double()</li><li>$long()</li><li>$qq()</li><li>$avatar</li><li>$vin()</li><li>… 后续根据需求增加</li></ul></li><li>测试部分</li></ul><pre><code class="java">AviatorEvaluator.execute(<span class="string">"$name()"</span>));AviatorEvaluator.execute(<span class="string">"$cname()"</span>));AviatorEvaluator.execute(<span class="string">"$age()"</span>));AviatorEvaluator.execute(<span class="string">"$age(10,99)"</span>));AviatorEvaluator.execute(<span class="string">"$color()"</span>));AviatorEvaluator.execute(<span class="string">"$date.now('yyyy-MM-dd HH:mm:ss.SS')"</span>));AviatorEvaluator.execute(<span class="string">"$qq() + '@qq.com'"</span>));AviatorEvaluator.execute(<span class="string">"$phone()"</span>));AviatorEvaluator.execute(<span class="string">"$url()"</span>));AviatorEvaluator.execute(<span class="string">"$email()"</span>));AviatorEvaluator.execute(<span class="string">"$cparagraph(30,100)"</span>));AviatorEvaluator.execute(<span class="string">"$card()"</span>));AviatorEvaluator.execute(<span class="string">"$tel()"</span>));AviatorEvaluator.execute(<span class="string">"$tel('021')"</span>));AviatorEvaluator.execute(<span class="string">"$tel('0371',8)"</span>));AviatorEvaluator.execute(<span class="string">"$vin()"</span>));AviatorEvaluator.execute(<span class="string">"$title()"</span>));AviatorEvaluator.execute(<span class="string">"$avatar()"</span>));AviatorEvaluator.execute(<span class="string">"$double(2.1,3.4,1)"</span>));AviatorEvaluator.execute(<span class="string">"$long(2,4)"</span>));AviatorEvaluator.execute(<span class="string">"$date.between('2018-01-01 12:01:10','2018-01-11 19:01:10','yyyy-MM-dd HH:mm:ss')"</span>));AviatorEvaluator.execute(<span class="string">"$array.names(2)"</span>));</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;/pro/os/test.jpg&quot; alt=&quot;itest&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h3&gt;&lt;p&gt;开发过程中,免不了做API测试,同时测试人员
+        &lt;p&gt;本人Java开发6年半不到7年的样子。&lt;/p&gt;
+&lt;p&gt;英语专业，临毕业跟着隔壁专业去培训了四个月 Java 。&lt;/p&gt;
+&lt;p&gt;跟他们一起来了北京找工作，一找就是 5 个多月，面试 100 多家公司。最终还是隔壁专业的同学介绍到他们公司才就业了。&lt;/p&gt;
+&lt;p&gt;入职后同学就是
       
     
     </summary>
@@ -96,63 +40,560 @@
       <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="java" scheme="http://zhixingmei.ren/tags/java/"/>
+      <category term="Java" scheme="http://zhixingmei.ren/tags/Java/"/>
     
-      <category term="测试框架" scheme="http://zhixingmei.ren/tags/%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/"/>
+      <category term="面试" scheme="http://zhixingmei.ren/tags/%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="el表达式" scheme="http://zhixingmei.ren/tags/el%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+      <category term="NoSQL" scheme="http://zhixingmei.ren/tags/NoSQL/"/>
     
-      <category term="AviatorEvaluator 解析器" scheme="http://zhixingmei.ren/tags/AviatorEvaluator-%E8%A7%A3%E6%9E%90%E5%99%A8/"/>
+      <category term="Git" scheme="http://zhixingmei.ren/tags/Git/"/>
     
-      <category term="Rest Assured 请求框架" scheme="http://zhixingmei.ren/tags/Rest-Assured-%E8%AF%B7%E6%B1%82%E6%A1%86%E6%9E%B6/"/>
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
   </entry>
   
   <entry>
-    <title>如何用一个月让自己焕然一新？</title>
-    <link href="http://zhixingmei.ren/2017/10/17/%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%80%E4%B8%AA%E6%9C%88%E8%AE%A9%E8%87%AA%E5%B7%B1%E7%84%95%E7%84%B6%E4%B8%80%E6%96%B0%EF%BC%9F%E6%96%87%E9%83%BD%E8%80%83%E7%A0%94/"/>
-    <id>http://zhixingmei.ren/2017/10/17/如何用一个月让自己焕然一新？文都考研/</id>
-    <published>2017-10-17T01:46:54.000Z</published>
-    <updated>2018-07-09T08:24:10.396Z</updated>
+    <title>模块化还是微服务-为什么说大部分团队微服务化都走入了陷阱</title>
+    <link href="http://zhixingmei.ren/2018/07/01/%E6%A8%A1%E5%9D%97%E5%8C%96%E8%BF%98%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E5%A4%A7%E9%83%A8%E5%88%86%E5%9B%A2%E9%98%9F%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8C%96%E9%83%BD%E8%B5%B0%E5%85%A5%E4%BA%86%E9%99%B7%E9%98%B1%E4%BA%92%E8%81%94%E7%BD%91%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1/"/>
+    <id>http://zhixingmei.ren/2018/07/01/模块化还是微服务-为什么说大部分团队微服务化都走入了陷阱互联网技能图谱/</id>
+    <published>2018-07-01T13:18:13.000Z</published>
+    <updated>2018-07-05T12:26:23.839Z</updated>
     
-    <content type="html"><![CDATA[<p>也许你并不满意现在的自己</p><p>也许你正在发愁自己以后要怎么办</p><p>也许你一片迷茫</p><p>别担心，用一个月的时间来改变自己！</p><p><img src="/pro/os/crawler/2URE-F27V-E6ZB.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/NMYV-VEBR-UJZV.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/67JV-NZUB-R2II.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/QZQV-VR2Y-IUM3.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/J6RF-NQ7F-VFAA.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/AABV-IJFE-YVFV.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/MAVI-IFVQ-BJU2.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/3II7-Z37N-7RZI.jpg" alt="如何用一个月让自己焕然一新？"></p><p><img src="/pro/os/crawler/6RI3-6R6F-V7V2.jpg" alt="如何用一个月让自己焕然一新？"></p><ul><li><strong>原文作者：</strong> 文都考研</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6477690351518745102/" target="_blank" rel="noopener">https://www.toutiao.com/item/6477690351518745102/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    <content type="html"><![CDATA[<p><img src="/pro/os/crawler/ER7V-ZUYE-ZRQU.jpg" alt="模块化还是微服务-为什么说大部分团队微服务化都走入了陷阱"></p><p><strong>最佳选择其实是应用模块化系统设计原则，同时避免微服务的操作复杂性。</strong></p><p>关于从巨型服务打碎成微服务的说法已经很多。但是这种方法真的是组织的最佳选择吗？的确，维护混乱的整体应用程序有很多缺点。但有一个令人信服的替代方案，常常被忽视：模块化应用程序开发。在本文中，我们将探讨这一选择所带来的内容，并展示它与构建微服务的关系。</p><h1 id="模块化微服务"><a href="#模块化微服务" class="headerlink" title="模块化微服务"></a>模块化微服务</h1><p>“通过微服务，我们最终可以让团队独立工作”，或者“我们的整体太复杂，使我们慢下来。”这些表达式只是导致开发团队走上微服务路径的许多原因中的一小部分。另一个是对可伸缩性和弹性的需求。开发者共同渴望的是系统设计和开发的模块化方法。软件开发中的模块化可以归结为三个指导原则：</p><p><strong>强封装</strong>：隐藏组件内部的实现细节，导致不同部件之间的低耦合。团队可以在系统的去耦部分隔离工作。</p><p><strong>定义良好的接口</strong>：你不能隐藏所有的东西（或者你的系统不会做任何有意义的事情），所以必须在组件之间定义明确和稳定的API。组件可以由符合接口规范的任何实现来替换。</p><p><strong>显式依赖</strong>：具有模块化系统意味着不同的组件必须协同工作。你最好用一种好的方式来表达和验证他们之间的关系。</p><p>这些原则中的许多可以通过微服务实现。微服务可以以任何方式实现，只要它为其他服务公开一个定义良好的接口（通常是REST API）。它的实现细节是服务内部的，并且可以在没有系统范围影响或协调的情况下改变。在开发时，微服务之间的依赖关系通常不十分明确，导致运行时可能出现服务编排失败。我们可以说，最后一个模块化原则可以在大多数微服务架构中使用。</p><p>因此，微服务实现了重要的模块化原则，从而带来切实的好处：</p><p>团队可以独立工作和规模化。</p><p>微服务是小型和集中的，减少复杂性。</p><p>服务可以在不影响整体的情况下进行内部更改或替换。</p><p>有什么不对的地方吗？一路上，你已经从一个单一的（虽然稍微肥胖）应用到一个分布式的微服务系统。这带来了大量的操作复杂性。突然，你需要不断地部署许多不同的（可能是容器化的）服务。出现新的关注点：服务发现、分布式日志记录、跟踪等。你现在更倾向于分布式计算，接口和配置管理的版本化成为主要关注点，等等等等。</p><p>事实证明，微观服务之间的连接有着复杂的逻辑，因为所有的单个微服务的组合业务逻辑都存在。为了到达这里，你不能只顾着砍掉你的巨大系统。而留在整体代码库中的“意大利面条代码”是有问题的，将网络边界置于两者之间，将这些纠缠问题升级为彻头彻尾的痛苦。</p><h1 id="模块化替代方案"><a href="#模块化替代方案" class="headerlink" title="模块化替代方案"></a>模块化替代方案</h1><p>这是否意味着我们要么沦落到混乱的庞然大物，要么淹没在微服务疯狂的复杂性中？模块化也可以通过其他手段来实现。重要的是我们可以在开发过程中有效地绘制和执行边界。但我们也可以通过建立一个结构良好的整体来实现这一目标。当然，这意味着接受从编程语言和开发工具中获得的任何帮助来执行模块化的原则。</p><p>例如，在Java中，有几个可以帮助构建应用程序的模块系统。OSGi是最著名的一个，但是随着Java 9的发布，一个本地模块系统被添加到Java平台本身。模块现在是语言和平台的一部分，是一流的结构。Java模块可以表示依赖于其他模块，并公开导出接口，同时强封装实现类。甚至Java平台本身（一个巨大的代码库）也被使用了新的Java模块系统模块化。</p><p>其他语言也提供类似的机制。例如，JavaScript得到了ES2015的模块系统。在此之前，Node.js已经为JavaScript后端提供了一个非标准的模块系统。然而，作为一种动态语言，JavaScript对执行模块间的接口（类型）和封装有较弱的支持。您可以考虑使用JavaScript之上的Type Script来恢复这个优势。微软的.NET Framework确实具有像Java那样的强类型化，但是它在强大的封装性和组件之间的显式依赖性方面没有直接等同于Java即将到来的模块系统。尽管如此，通过使用在.NET中标准化的控制模式和创建逻辑相关的程序集，可以实现良好的模块化架构。甚至C++正在考虑在将来的修订中添加模块系统。许多语言正在获得模块化的增值，这本身就是一个惊人的发展。</p><p>当你有意识地使用你的开发平台的模块化特性时，你就可以获得与早期的微服务相同的模块化好处。基本上，模块系统越好，开发过程中的帮助越多。不同的团队可以在不同的部分工作，其中只有定义良好的接口是团队之间的接触点。然而，在部署时，模块在一个部署单元中聚集在一起。通过这种方式，您可以防止与移动服务开发和管理相关的复杂性和成本。确实，这意味着不能在不同的技术堆栈上构建每个模块。但是你的组织真的准备好了吗？</p><h1 id="模块设计"><a href="#模块设计" class="headerlink" title="模块设计"></a>模块设计</h1><p>创建好的模块需要与创建良好的微服务一样的设计严谨性。模块应该对域的单个有界上下文建模（部分）。选择微服务边界是一个架构重大的决策，当出错时会带来昂贵的后果。模块化应用程序中的模块边界更容易更改。跨模块的重构通常由类型系统和编译器支持。重新绘制微服务边界涉及大量的个人间通信，以便不让问题在运行时爆发。</p><p>在很多方面，静态类型语言中的模块为定义良好的接口提供了更好的构造。通过另一个模块公开的类型化接口调用方法比更改另一个微服务上的REST服务更方便。REST + JSON是普遍存在的，但在没有（编译器检查）模式的情况下，它不是良好互操作性的标志。网络传输方面，序列化和反序列化需要耗费资源，更不用说图片的处理了。更重要的是，许多模块系统允许在其他模块上表达依赖关系。当这些依赖关系被违反时，模块系统将会禁止它。微服务之间的依赖性只在运行时实现，导致系统难以调试。</p><p>模块也是代码所有权的自然单位。团队可以负责系统中的一个或多个模块。与其他团队共享的唯一东西是他们的模块的公共API。在运行时，与微服务相比，模块之间的隔离度更小。毕竟，一切都在同一过程中运行。</p><p>一个巨型服务中的模块没有理由不能像一个好的微服务一样控制它的数据。在模块化应用程序中共享，然后通过模块间定义良好的接口或消息交互，而不是通过共享数据存储，并且在同一进程中执行。不应低估最终一致性的问题。通过模块，最终的一致性可以是一种深思熟虑的战略选择。或者，您可以“逻辑地”将数据存储在同一数据存储区中，并暂时使用跨域事务。对于微服务，你没有选择：最终的一致性是给定的，你需要适应。</p><h1 id="什么时候您的系统适合使用微服务？"><a href="#什么时候您的系统适合使用微服务？" class="headerlink" title="什么时候您的系统适合使用微服务？"></a>什么时候您的系统适合使用微服务？</h1><p>那么，你应该什么时候转向微服务呢？到目前为止，我们主要集中于通过模块化来解决复杂性。因此，微服务和模块化应用都可以。但除了目前所提出的挑战之外，还有一些不同的挑战。</p><p>当你的组织处于谷歌或Netflix的规模时，拥抱微服务是完全有意义的。你有能力建立自己的平台和工具包，工程师的数量太大导致不能使用任何整体方法。但是大多数组织都没有这样的规模经营。即使你认为你的组织总有一天会变成十亿美元的独角兽，用模块化的开发不会有太大的伤害。</p><p>另一个很好的原因是，不同的服务本质上更适合于不同的技术栈。然后，你必须有足够的规模来吸引这些不同的栈上的人才，并保持这些平台的运行。</p><p>微服务还能够独立部署系统的不同部分，这在大多数模块化平台中更难（甚至不可能）。隔离部署增加了系统的弹性和容错性。此外，每个微服务的缩放特性可能是不同的。可以部署不同的微服务来匹配硬件。模块化的整块也可以水平缩放，但是您可以将所有模块扩展到一起。虽然在实践中，你可以通过这种方法得到很好的结果，但这并不总是最好的。</p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>一如既往，最好的选择是找到一个平衡。这两种方法都有优点，哪种方法最好取决于环境、组织和应用本身。为什么不从模块化应用开始呢？你可以选择以后迁移到微服务。然后，不用去敲碎你的巨型服务，因为你已经有了合理的模块边界。它甚至不是唯一的选择：您也可以使用模块来在内部构造微服务。问题是，为什么微服务必须是“微”？</p><p>即使你离开了一个单一的模块化应用程序，你的服务也不必是微小的，而是可以维护的。同样，在服务中应用模块化的原则，使他们能够超越通常被认为是微观服务的复杂性。模块和微服务可以并存。实际成本节约可以通过减少体系结构中的服务数量来实现。模块可以帮助构造和缩放服务，就像它们可以帮助构建单个单片应用程序一样。</p><p>如果你在追求模块化的好处，那就确保你不要欺骗你自己。探索您最喜爱的技术栈的模块化特征或框架。你会在实施模块化设计中尝到甜头，而不是仅仅依靠约定来避免意大利面条代码。然后，慎重选择是否要接受微服务的复杂性。有时候你不得不这样做，但通常情况下，你可以找到更好的前进方向。</p><ul><li><strong>原文作者：</strong> 互联网技能图谱</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6573237348656480775/" target="_blank" rel="noopener">https://www.toutiao.com/item/6573237348656480775/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;也许你并不满意现在的自己&lt;/p&gt;
-&lt;p&gt;也许你正在发愁自己以后要怎么办&lt;/p&gt;
-&lt;p&gt;也许你一片迷茫&lt;/p&gt;
-&lt;p&gt;别担心，用一个月的时间来改变自己！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/2URE-F27V-E6ZB.jpg&quot; alt=&quot;如何用
+        &lt;p&gt;&lt;img src=&quot;/pro/os/crawler/ER7V-ZUYE-ZRQU.jpg&quot; alt=&quot;模块化还是微服务-为什么说大部分团队微服务化都走入了陷阱&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最佳选择其实是应用模块化系统设计原则，同时避免微服务的操作复杂性。&lt;/stron
       
     
     </summary>
     
       <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
     
+    
+      <category term="软件" scheme="http://zhixingmei.ren/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="Google" scheme="http://zhixingmei.ren/tags/Google/"/>
+    
+      <category term="JavaScript" scheme="http://zhixingmei.ren/tags/JavaScript/"/>
+    
+      <category term="工程师" scheme="http://zhixingmei.ren/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>自媒体多账号管理工具 轻松发布文章一键搞定</title>
+    <link href="http://zhixingmei.ren/2018/07/01/%E8%87%AA%E5%AA%92%E4%BD%93%E5%A4%9A%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%20%E8%BD%BB%E6%9D%BE%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0%E4%B8%80%E9%94%AE%E6%90%9E%E5%AE%9A%E7%A7%A6%E7%BB%AA%E6%96%87%E6%9C%89%E8%AF%9D%E8%AF%B4/"/>
+    <id>http://zhixingmei.ren/2018/07/01/自媒体多账号管理工具 轻松发布文章一键搞定秦绪文有话说/</id>
+    <published>2018-07-01T10:07:02.000Z</published>
+    <updated>2018-07-05T12:26:21.973Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于很多做自媒体的人来说，发布文章是最痛苦的时候，因为发布文章需要耗费时间太多了，登录发布，再登录再发布，有可能发布十篇文章需要花费3个到5个小时，真的太难受了，那么有没有简单快捷的自媒体管理工具，可以实现一键一键登录，快速发布呢？答案是有的，而且不止一个，下面我们就来看看这些神奇的秘密工具吧：</p><p><strong>1.乐观号</strong></p><p><img src="/pro/os/crawler/I3Q2-EUUQ-YQ3Q.jpg" alt="自媒体多账号管理工具 轻松发布文章一键搞定"></p><p>这个网站非常神奇，可以发布头条号，大鱼号，百家号，微信公众平台，一点号，企鹅号，快传号，网易号，搜狐号，凤凰号，QQ公众平台，时间号，网易阅读，新浪看点，阿里创作，京东达人，只要你能想到的自媒体平台它都可以管理，简直是自媒体人的不二之选。</p><p>除了可以管理发布文章之外，它还能实现一键排版，海量图库等功能，让你在这里又能编辑又能发布，简直了！</p><p><strong>2.微小宝</strong></p><p><img src="/pro/os/crawler/QI2E-7J36-JBQY.jpg" alt="自媒体多账号管理工具 轻松发布文章一键搞定"></p><p>没错，你没有看错，这个网站就叫微小宝，和韦小宝就差一个字，差了一个字，但是霸气丝毫不逊色于他，他支持公众号，微博，企鹅，头条，知乎，简书，大鱼号，搜狐自媒体等11个平台的管理和发布。</p><p>而且除了提供编辑功能之外，还提供数据分析，推广盈利还有小说分销的渠道，也就是一边应用，还能时不时的赚钱，工作赚钱两不误。</p><p><strong>3.简媒</strong></p><p><img src="/pro/os/crawler/YMNR-F3ZM-VZFY.jpg" alt="自媒体多账号管理工具 轻松发布文章一键搞定"></p><p>简媒的功能就比较单一了，只有一个自媒体平台管理和发布的功能，不过自媒体平台比微小宝多了四个，一共有整整15个平台可以管理，新增了趣头条和东方号，还有快传号。</p><p>上面的就是目前比较风行自媒体界的管理发布神器，自媒体兄弟姐妹们，还等啥呢？抓紧用起来吧！</p><ul><li><strong>原文作者：</strong> 秦绪文有话说</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6573188126250893831/" target="_blank" rel="noopener">https://www.toutiao.com/item/6573188126250893831/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于很多做自媒体的人来说，发布文章是最痛苦的时候，因为发布文章需要耗费时间太多了，登录发布，再登录再发布，有可能发布十篇文章需要花费3个到5个小时，真的太难受了，那么有没有简单快捷的自媒体管理工具，可以实现一键一键登录，快速发布呢？答案是有的，而且不止一个，下面我们就来看看
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="自媒体" scheme="http://zhixingmei.ren/tags/%E8%87%AA%E5%AA%92%E4%BD%93/"/>
+    
+      <category term="新浪" scheme="http://zhixingmei.ren/tags/%E6%96%B0%E6%B5%AA/"/>
+    
+      <category term="搜狐" scheme="http://zhixingmei.ren/tags/%E6%90%9C%E7%8B%90/"/>
+    
+      <category term="简书" scheme="http://zhixingmei.ren/tags/%E7%AE%80%E4%B9%A6/"/>
+    
+      <category term="网易" scheme="http://zhixingmei.ren/tags/%E7%BD%91%E6%98%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Excel快速实现中英文翻译</title>
+    <link href="http://zhixingmei.ren/2018/06/29/%E7%94%A8Excel%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E4%B8%AD%E8%8B%B1%E6%96%87%E7%BF%BB%E8%AF%91Excel%E8%87%AA%E5%AD%A6%E6%88%90%E6%89%8D/"/>
+    <id>http://zhixingmei.ren/2018/06/29/用Excel快速实现中英文翻译Excel自学成才/</id>
+    <published>2018-06-29T15:49:10.000Z</published>
+    <updated>2018-07-05T12:26:21.784Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。"><a href="#近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。" class="headerlink" title="近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。"></a>近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。</h1><p>在A列输入中文句子或英文句子，在B列便能得到翻译的结果，如下所示：</p><p><img src="/pro/os/crawler/NBZ2-IENE-UQ6B.gif" alt="用Excel快速实现中英文翻译"></p><p>在B列只需要输入一个公式，便可以得到结果：</p><p>在B2输入的公式为：</p><p>=TRIM(SUBSTITUTE(MID(SUBSTITUTE(WEBSERVICE(“<a href="http://fanyi.youdao.com/translate?&amp;i=&quot;&amp;A2&amp;&quot;&amp;doctype=json&quot;),&quot;&quot;&quot;tgt&quot;&quot;:&quot;&quot;&quot;,REPT" target="_blank" rel="noopener">http://fanyi.youdao.com/translate?&amp;i=&quot;&amp;A2&amp;&quot;&amp;doctype=json&quot;),&quot;&quot;&quot;tgt&quot;&quot;:&quot;&quot;&quot;,REPT</a>(“ “,500)),500,500),”””}]]}“,””))</p><p>有可能公式不会正常显示，下面将完整公式用图片格式再发一次：</p><p><img src="/pro/os/crawler/AVUF-M23M-VYFF.jpg" alt="用Excel快速实现中英文翻译"></p><p><strong>公式解释：</strong></p><p>❶首先使用webservice函数嵌套使用，去有道翻译里面获取数据，WEBSERVICE(“<a href="http://fanyi.youdao.com/translate?&amp;i=&quot;&amp;A2&amp;&quot;&amp;doctype=json&quot;" target="_blank" rel="noopener">http://fanyi.youdao.com/translate?&amp;i=&quot;&amp;A2&amp;&quot;&amp;doctype=json&quot;</a>)</p><p>这部分公式（后面简称公式❶）得到的数据结果是：</p><p>{“type”:”ZH_CN2EN”,”errorCode”:0,”elapsedTime”:0,”translateResult”:[[{“src”:”你好啊”,”tgt”:”How are you?”}]]}</p><p>很明显，我们想把”tgt”:”后面的结果进行输出显示</p><p>❷所以使用SUBSTITUTE(公式❶,””<strong>“tgt””:”</strong>“”,REPT(“ “,500))，将”tgt”:”替换成500个空格，所以得到的结果是：</p><p>{“type”:”ZH_CN2EN”,”errorCode”:0,”elapsedTime”:0,”translateResult”:[[{“src”:”你好啊”,<strong>500个空格</strong>How are you?”}]]}</p><p>❸再使用Mid(公式❷,500,500)，从第500个字符开始取，那么前面所有的数据会自动被删除掉，然后再取500个数（或者更大都可以），这部分数据得到的结果是：</p><p><strong>少数空格</strong>How are you?”}]]}</p><p>❹使用我们将”}]]}替换成空字符，也就是使用公式substitude(公式❸,”””}]]}“,””)，得到的结果是：</p><p>少数空格How are you?</p><p>❺最后使用trim函数将少数空格去除，trim(公式❹)，便得到了我们最终的结果</p><p>How are you?</p><p>上面是公式的理解过程，这套公式经常用来提取特定字符后面的数据，也是万金油公式之一吧，理解了对提取数据技巧上有所帮助，</p><p>如果没理解也没关系，我们直接套用公式使用</p><p><img src="/pro/os/crawler/NBZ2-IENE-UQ6B.gif" alt="用Excel快速实现中英文翻译"></p><p>你学会了吗？欢迎在下方留言讨论！</p><p>-————————-</p><p>欢迎关注，更多精彩内容持续更新中….</p><ul><li><strong>原文作者：</strong> Excel自学成才</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6572534125608043011/" target="_blank" rel="noopener">https://www.toutiao.com/item/6572534125608043011/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。&quot;&gt;&lt;a href=&quot;#近日，刷到一条抖音，看到用Excel进行中英文翻译，今天给大家讲解一种实现的方法。&quot; class=&quot;headerlink&quot; title=&quot;近日，刷到一条抖音，
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="JSON" scheme="http://zhixingmei.ren/tags/JSON/"/>
+    
+      <category term="Excel" scheme="http://zhixingmei.ren/tags/Excel/"/>
+    
+      <category term="英语" scheme="http://zhixingmei.ren/tags/%E8%8B%B1%E8%AF%AD/"/>
+    
+      <category term="网易有道" scheme="http://zhixingmei.ren/tags/%E7%BD%91%E6%98%93%E6%9C%89%E9%81%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于SSM实现的简易员工管理系统</title>
+    <link href="http://zhixingmei.ren/2018/06/29/%E5%9F%BA%E4%BA%8ESSM%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E5%91%98%E5%B7%A5%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B0%8F%E6%96%B0%E4%BA%BA%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://zhixingmei.ren/2018/06/29/基于SSM实现的简易员工管理系统程序员小新人学习/</id>
+    <published>2018-06-29T09:22:17.000Z</published>
+    <updated>2018-07-05T12:26:34.820Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先，页面的UI是使用了Bootstrap框架快速搭建的，这个框架还是比较好用的，不但快速，而且美观，风格偏扁平化。而且对于我这种英文渣渣来说，有中文的帮助文档，简直不要太好上手，然后搭建好的大致效果图就如1-1所示，当然搭建好的只是静态页面，下面的数据，按钮的button_click事件都是后面自行编写的。</p><p><img src="/pro/os/crawler/QRYQ-6VZB-NNBI.jpg" alt="基于SSM实现的简易员工管理系统"></p><p>图1-1</p><p>然后就要介绍介绍SSM框架的具体流程了，因为是在本地访问，没有放到联网服务器上，所以使用了Tomcat作为服务器，项目前端发起请求，发送到SpringMVC前端控制器中，再由SpringMVC前端控制器判断，是否能进行处理，能处理的，再发送给Controller，不能处理如静态页面之类的，直接发送给Tomcat服务器，让服务器进行解析。发送到Controller的数据，再调用Service层的业务逻辑。假如要进行数据库层的交互，就将其交给Dao层的组件，而Dao层的组件都是用MyBatis来写的，MyBatis的某某Mapper再进行与数据库的交互，同时，这些Mapper的文件和接口都是通过MyBatis Generator(MBG)自动生成的，但由于查询的时候还有多表联合查询，所以还在xml文件中，新写了两个方法，用来实现多表联合查询。同时，基本上的增删改查都是通过Ajax实现的，由Ajax发送请求，再返回Json，使用JS解析Json并在页面中显示。</p><p>项目是使用Maven进行依赖管理的，简单来说，就是通过Maven去下载项目所需的jar包，同时在项目完成后，可以用Maven构建war包，使项目部署在真正的服务器而不是Eclipse中的镜像服务器。</p><p>大体构建说完了，来说说项目中实际运用的注意点吧，在添加新员工的时候进行了前端、后端都校验的方法，可以极大程度的避免脏数据的添加，同时用了一些正则表达式来判断姓名和邮箱是否合法。前端发送的Ajax请求，要传递到后台处理，都只需要在方法上添加@ResponseBody和@RequestMapping(“路径尾缀”)即可。</p><p>最后，实现的图例演示。</p><p>员工添加功能的实现：</p><p><img src="/pro/os/crawler/EMYB-Z3FE-A7VY.jpg" alt="基于SSM实现的简易员工管理系统"></p><p><img src="/pro/os/crawler/QYQU-3AA7-ZBFV.jpg" alt="基于SSM实现的简易员工管理系统"></p><p><img src="/pro/os/crawler/VQMN-U2UM-FZIR.jpg" alt="基于SSM实现的简易员工管理系统"></p><p>修改功能的实现：</p><p><img src="/pro/os/crawler/JAA6-7ZNA-RAYE.jpg" alt="基于SSM实现的简易员工管理系统"></p><p><img src="/pro/os/crawler/67BZ-Q3QF-Z7FV.jpg" alt="基于SSM实现的简易员工管理系统"></p><p>单个删除的实现：</p><p><img src="/pro/os/crawler/B7BN-QIAJ-IUUA.jpg" alt="基于SSM实现的简易员工管理系统"></p><p><img src="/pro/os/crawler/UZNI-FIER-EN6N.jpg" alt="基于SSM实现的简易员工管理系统"></p><p>批量删除：</p><p><img src="/pro/os/crawler/RUUY-UAZ6-RYRZ.jpg" alt="基于SSM实现的简易员工管理系统"></p><p><img src="/pro/os/crawler/ZMYR-UFJB-FUAI.jpg" alt="基于SSM实现的简易员工管理系统"></p><p>这个基于SSM的基础员工管理系统，大致功能都如上图所示了，实现了基本的增删改查，下一步，如果继续完善，则添加上登陆页，再将项目发布到互联网的服务器上，没有登陆页的弊端太多了，就不论述了，再加上现在的都是测试数据，没有实际意义，所以暂不考虑发布到互联网。</p><ul><li><strong>原文作者：</strong> 程序员小新人学习</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6572434426075021832/" target="_blank" rel="noopener">https://www.toutiao.com/item/6572434426075021832/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;首先，页面的UI是使用了Bootstrap框架快速搭建的，这个框架还是比较好用的，不但快速，而且美观，风格偏扁平化。而且对于我这种英文渣渣来说，有中文的帮助文档，简直不要太好上手，然后搭建好的大致效果图就如1-1所示，当然搭建好的只是静态页面，下面的数据，按钮的button
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="JSON" scheme="http://zhixingmei.ren/tags/JSON/"/>
+    
+      <category term="Tomcat" scheme="http://zhixingmei.ren/tags/Tomcat/"/>
+    
+      <category term="XML" scheme="http://zhixingmei.ren/tags/XML/"/>
+    
+      <category term="Eclipse" scheme="http://zhixingmei.ren/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速构建SpingBoot应用框架之动态切换数据源（五）</title>
+    <link href="http://zhixingmei.ren/2018/06/28/%E5%BF%AB%E9%80%9F%E6%9E%84%E5%BB%BASpingBoot%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E4%B9%8B%E5%8A%A8%E6%80%81%E5%88%87%E6%8D%A2%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%88%E4%BA%94%EF%BC%89%E8%81%8A%E7%A0%81Java/"/>
+    <id>http://zhixingmei.ren/2018/06/28/快速构建SpingBoot应用框架之动态切换数据源（五）聊码Java/</id>
+    <published>2018-06-28T09:03:59.000Z</published>
+    <updated>2018-07-05T12:26:33.305Z</updated>
+    
+    <content type="html"><![CDATA[<p>在实际的生产应用中，往往会出现一个系统需要连接多个数据源的问题，尤其最近非常流行动不动就来个读写分离的系统忽悠外行，装个高大上。下面我给大家介绍一种动态切换多数据源的方案，供大家参考学习，有不对的地方请大家指教，话不累述，开始：</p><p>首先、新建4个Java类和一个自定义注解：</p><p>Java类：</p><p>DynamicDataSource.java 获取数据源</p><p><img src="/pro/os/crawler/3IFJ-QRNY-ZA7R.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>DynamicDataSourceAspect.java 负责拦截需要切换数据源的类</p><p><img src="/pro/os/crawler/NNZY-BJAR-RUMU.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>DynamicDataSourceRegister.java 动态数据源注册：</p><p><img src="/pro/os/crawler/YYVY-2A6F-MA3Y.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p><img src="/pro/os/crawler/JBBB-BAFE-BJBM.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p><img src="/pro/os/crawler/NMU3-Y3IF-7RYU.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p><img src="/pro/os/crawler/URJ6-RNQZ-2EFB.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>自定义注解：</p><p>TargetDataSource.java 负责指定数据源</p><p><img src="/pro/os/crawler/II7V-EUFA-FJQY.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>其次application.yml文件配置如下：</p><p><img src="/pro/os/crawler/IMF6-3QIN-R3IB.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>然后新建自己的Mapper文件，名字随便取：</p><p><img src="/pro/os/crawler/EYN3-22EN-QYMN.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><p>运行结果请各位亲，自行运行这里就不做列子。</p><p>至此Mapper多数据源介绍完毕，有不懂的同学，欢迎留言.有问毕答！</p><p><img src="/pro/os/crawler/YJRR-NIAQ-V2YM.jpg" alt="快速构建SpingBoot应用框架之动态切换数据源（五）"></p><ul><li><strong>原文作者：</strong> 聊码Java</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6572056572254487048/" target="_blank" rel="noopener">https://www.toutiao.com/item/6572056572254487048/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在实际的生产应用中，往往会出现一个系统需要连接多个数据源的问题，尤其最近非常流行动不动就来个读写分离的系统忽悠外行，装个高大上。下面我给大家介绍一种动态切换多数据源的方案，供大家参考学习，有不对的地方请大家指教，话不累述，开始：&lt;/p&gt;
+&lt;p&gt;首先、新建4个Java类和一个
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Java" scheme="http://zhixingmei.ren/tags/Java/"/>
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！</title>
+    <link href="http://zhixingmei.ren/2018/06/28/%E5%88%9A%E5%AD%A6%E4%BA%86%E4%B8%A4%E5%A4%A9%E7%88%AC%E8%99%AB%EF%BC%8C%E5%B0%B1%E5%86%99%E4%BA%86%E4%B8%80%E4%B8%AA%E7%88%AC%E8%99%AB%EF%BC%81%E5%88%86%E4%BA%AB%E7%BB%99%E5%A4%A7%E5%AE%B6%EF%BC%81%E7%88%AC%E8%99%AB%E7%9C%9F%E7%9A%84%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%81%E7%B9%81%E5%8D%8E%E8%90%BD%E5%B0%BDand%E6%9B%B2%E7%BB%88%E4%BA%BA%E6%95%A3/"/>
+    <id>http://zhixingmei.ren/2018/06/28/刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！繁华落尽and曲终人散/</id>
+    <published>2018-06-28T06:44:42.000Z</published>
+    <updated>2018-07-05T12:26:31.814Z</updated>
+    
+    <content type="html"><![CDATA[<p>经过两天的摸索，终于写出了一个小小小爬虫。这其中的波折是这样的，听我娓娓道来。我的电脑是没有配置python环境的，所以首先要上官网下载python的环境文件。</p><p><img src="/pro/os/crawler/IYNQ-VA2M-NB3U.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>点击点头指向的按钮，下载到桌面，它是一个这样的文件“python-3.6.5.exe”，下载成功后直接点击安装，安装成功后，那接下来就是配置环境变量啦。</p><p><img src="/pro/os/crawler/BZEJ-A332-YFM2.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p><img src="/pro/os/crawler/ZIQE-JJBY-Z3YR.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p><img src="/pro/os/crawler/NV6B-MBRF-NRRQ.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>嘻嘻~那我也跟着尝试一下，去发现我IDEA竟然这样..</p><p><img src="/pro/os/crawler/FZEY-IRVE-JQU3.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>尴尬…………………………………………………………………………………………………………………………………………………………..</p><p>虽然尴尬但是依旧要保持理智，果断卸载了这个版本的IDEA,上官网下载最新版本的IDEA。</p><p>官方地址：<a href="https://www.jetbrains.com/idea/download/\#section=windows" target="_blank" rel="noopener">https://www.jetbrains.com/idea/download/\#section=windows</a></p><p><img src="/pro/os/crawler/YVMR-ZVAI-ARNI.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p><img src="/pro/os/crawler/IUFE-7NMQ-Q6R3.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>是的，下载了最新的idea就没问题了。既然没问题了直接点击install，稍后片刻就安装成功了。 铺垫了这么多，这回是真的可以编写代码了，让我先乐一会，嘻嘻！</p><p>-—————————————————————–</p><p>在此先展示一下代码的效果</p><p>pic1：输入您想要的的图片的关键词</p><p><img src="/pro/os/crawler/VRAB-FNNV-JNBE.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>pic3：成果</p><p><img src="/pro/os/crawler/IVYR-MFUU-NMB2.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p>哈哈，作为一个伪球迷，我还是非常喜欢C罗的。那么直接贴上代码吧。</p><p>-————————–图片爬取代码————————-</p><p><img src="/pro/os/crawler/E6ZY-RIVJ-ZB7V.jpg" alt="刚学了两天爬虫，就写了一个爬虫！分享给大家！爬虫真的很简单！"></p><p><strong>私信小编007 即可获取数十套PDF哦！</strong></p><ul><li><strong>原文作者：</strong> 繁华落尽and曲终人散</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6572022729912877571/" target="_blank" rel="noopener">https://www.toutiao.com/item/6572022729912877571/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;经过两天的摸索，终于写出了一个小小小爬虫。这其中的波折是这样的，听我娓娓道来。我的电脑是没有配置python环境的，所以首先要上官网下载python的环境文件。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/IYNQ-VA2M-NB3U.jpg&quot; alt
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络爬虫" scheme="http://zhixingmei.ren/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="Windows" scheme="http://zhixingmei.ren/tags/Windows/"/>
+    
+      <category term="Python" scheme="http://zhixingmei.ren/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！</title>
+    <link href="http://zhixingmei.ren/2018/06/28/%E6%9D%A5%E8%87%AA%E7%BB%8F%E9%94%80%E5%95%86%E7%9A%84%E5%BF%A0%E5%91%8A%EF%BC%9A%E6%83%B3%E8%B5%9A%E9%92%B1%EF%BC%8C%E5%B0%B1%E8%A6%81%E5%AD%A6%E4%BC%9A%E5%88%A9%E7%94%A8%E4%BA%BA%E6%80%A7%E7%9A%84%E5%BC%B1%E7%82%B9%E6%9D%A5%E8%90%A5%E9%94%80%EF%BC%81%E6%96%B0%E7%BB%8F%E9%94%80%E6%93%8D%E7%9B%98%E6%89%8B/"/>
+    <id>http://zhixingmei.ren/2018/06/28/来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！新经销操盘手/</id>
+    <published>2018-06-28T02:38:15.000Z</published>
+    <updated>2018-07-06T07:15:25.189Z</updated>
+    
+    <content type="html"><![CDATA[<p>来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！</p><p><img src="/pro/os/crawler/RRUY-UIIE-QUJA.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/QEEJ-U3ZF-BMFV.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/IUZN-I2RM-MFMJ.jpg" alt="来自经销���的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/IVF2-IBQN-EFUA.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/BJEA-7FNV-ZFEI.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/NMUY-ZQIM-IIJI.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/VNAE-VMRM-3YI3.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来��销！"></p><p><img src="/pro/os/crawler/VIRE-3ABA-UIUZ.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/QQAU-FYBV-3EUY.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/NYVV-U3QQ-2M7F.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/ZVFU-JEFQ-YJEA.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/QABY-Q2JF-RAVI.jpg" alt="来自经销商的忠告：想��钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/AJQY-QFEI-6ZZZ.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/UVEN-UBMU-IEQZ.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><p><img src="/pro/os/crawler/UJZ2-2AIQ-UYAQ.jpg" alt="来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！"></p><ul><li><strong>原文作者：</strong> 新经销操盘手</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571959222425092621/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571959222425092621/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注��出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/RRUY-UIIE-QUJA.jpg&quot; alt=&quot;来自经销商的忠告：想赚钱，就要学会利用人性的弱点来营销！&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/p
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="职场" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E5%9C%BA/"/>
+    
+      <category term="市场营销" scheme="http://zhixingmei.ren/tags/%E5%B8%82%E5%9C%BA%E8%90%A5%E9%94%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高性能缓存架构</title>
+    <link href="http://zhixingmei.ren/2018/06/28/%E9%AB%98%E6%80%A7%E8%83%BD%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84%E6%B9%96%E7%95%94%E5%AD%A6%E9%99%A2/"/>
+    <id>http://zhixingmei.ren/2018/06/28/高性能缓存架构湖畔学院/</id>
+    <published>2018-06-28T01:56:24.000Z</published>
+    <updated>2018-07-05T12:26:30.682Z</updated>
+    
+    <content type="html"><![CDATA[<p>虽然我们可以通过各种手段来提升存储系统的性能，但在某些复杂的业务场景下，单纯依靠存储系统的性能提升不够的，典型的场景有：</p><p>• 需要经过复杂运算后得出的数据，存储系统无能为力</p><p>例如，一个论坛需要在首页展示当前有多少用户同时在线，如果使用 MySQL 来存储当前用户状态，则每次获取这个总数都要“count(*)”大量数据，这样的操</p><p>作无论怎么优化 MySQL，性能都不会太高。如果要实时展示用户同时在线数，则 MySQL 性能无法支撑。</p><p>• 读多写少的数据，存储系统有心无力</p><p>绝大部分在线业务都是读多写少。例如，微博、淘宝、微信这类互联网业务，读业务占了整体业务量的 90% 以上。以微博为例：一个明星发一条微博，可</p><p>能几千万人来浏览。如果使用 MySQL 来存储微博，用户写微博只有一条 insert 语句，但每个用户浏览时都要 select 一次，即使有索引，几千万条 select 语句对 MySQL 数据库的压力也会非常大。</p><p>缓存就是为了弥补存储系统在这些复杂业务场景下的不足，其基本原理是将可能重复使用的数据放到内存中，一次生成、多次使用，避免每次使用都去访问存储系统。</p><p>缓存能够带来性能的大幅提升，以 Memcache 为例，单台 Memcache 服务器简单的 key-value 查询能够达到 TPS 50000 以上，其基本的架构是：</p><p><img src="/pro/os/crawler/ZQVE-VJMM-REJ2.jpg" alt="高性能缓存架构"></p><p>（<a href="http://pic001.cnblogs.com/img/dudu/200809/2008092816494460.png）" target="_blank" rel="noopener">http://pic001.cnblogs.com/img/dudu/200809/2008092816494460.png）</a></p><p>缓存虽然能够大大减轻存储系统的压力，但同时也给架构引入了更多复杂性。架构设计时如果没有针对缓存的复杂性进行处理，某些场景下甚至会导致整个系统崩溃。今天，我来逐一分析缓存的架构设计要点。</p><h1 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h1><p>缓存穿透是指缓存没有发挥作用，业务系统虽然去缓存查询数据，但缓存中没有数据，业务系统需要再次去存储系统查询数据。通常情况下有两种情况：</p><ol><li>存储数据不存在</li></ol><p>第一种情况是被访问的数据确实不存在。一般情况下，如果存储系统中没有某个数据，则不会在缓存中存储相应的数据，这样就导致用户查询的时候，在缓存中找不到对应的数据，每次都要去存储系统中再查询一遍，然后返回数据不存在。缓存在这个场景中并没有起到分担存储系统访问压力的作用。</p><p>通常情况下，业务上读取不存在的数据的请求量并不会太大，但如果出现一些异常情况，例如被黑客攻击，故意大量访问某些读取不存在数据的业务，有可能会将存储系统拖垮。这种情况的解决办法比较简单，如果查询存储系统的数据没有找到，则直接设置一个默认值（可以是空值，也可以是具体的值）存到缓存中，这样第二次读取缓存时就会获取到默认值，而不会继续访问存储系统。</p><ol start="2"><li>缓存数据生成耗费大量时间或者资源</li></ol><p>第二种情况是存储系统中存在数据，但生成缓存数据需要耗费较长时间或者耗费大量资源。如果刚好在业务访问的时候缓存失效了，那么也会出现缓存没有发挥作用，访问压力全部集中在存储系统上的情况。</p><p>典型的就是电商的商品分页，假设我们在某个电商平台上选择“手机”这个类别查看，由于数据巨大，不能把所有数据都缓存起来，只能按照分页来进行缓存，由于难以预测用户到底会访问哪些分页，因此业务上最简单的就是每次点击分页的时候按分页计算和生成缓存。通常情况下这样实现是基本满足要求的，但是如果被竞争对手用爬虫来遍历的时候，系统性能就可能出现问题。</p><p>具体的场景有：</p><p>• 分页缓存的有效期设置为 1 天，因为设置太长时间的话，缓存不能反应真实的数据。</p><p>• 通常情况下，用户不会从第 1 页到最后 1 页全部看完，一般用户访问集中在前 10 页，因此第 10 页以后的缓存过期失效的可能性很大。</p><p>• 竞争对手每周来爬取数据，爬虫会将所有分类的所有数据全部遍历，从第 1 页到最后 1 页全部都会读取，此时很多分页缓存可能都失效了。</p><p>• 由于很多分页都没有缓存数据，从数据库中生成缓存数据又非常耗费性能（order by limit 操作），因此爬虫会将整个数据库全部拖慢。</p><p>这种情况并没有太好的解决方案，因为爬虫会遍历所有的数据，而且什么时候来爬取也是不确定的，可能是每天都来，也可能是每周，也可能是一个月来一次，我们也不可能为了应对爬虫而将所有数据永久缓存。通常的应对方案要么就是识别爬虫然后禁止访问，但这可能会影响 SEO 和推广；要么就是做好监控，发现问题后及时处理，因为爬虫不是攻击，不会进行暴力破坏，对系统的影响是逐步的，监控发现问题后有时间进行处理。</p><h1 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h1><p>缓存雪崩是指当缓存失效（过期）后引起系统性能急剧下降的情况。当缓存过期被清除后，业务系统需要重新生成缓存，因此需要再次访问存储系统，再次进行运算，这个处理步骤耗时几十毫秒甚至上百毫秒。而对于一个高并发的业务系统来说，几百毫秒内可能会接到几百上千个请求。由于旧的缓存已经被清除，新的缓存还未生成，并且处理这些请求的线程都不知道另外有一个线程正在生成缓存，因此所有的请求都会去重新生成缓存，都会去访问存储系统，从而对存储系统造成巨大的性能压力。这些压力又会拖慢整个系统，严重的会造成数据库宕机，从而形成一系列连锁反应，造成整个系统崩溃。缓存雪崩的常见解决方法有两种：更新锁机制和后台更新机制。</p><ol><li>更新锁</li></ol><p>对缓存更新操作进行加锁保护，保证只有一个线程能够进行缓存更新，未能获</p><p>取更新锁的线程要么等待锁释放后重新读取缓存，要么就返回空值或者默认值。</p><p>对于采用分布式集群的业务系统，由于存在几十上百台服务器，即使单台服务器只有一个线程更新缓存，但几十上百台服务器一起算下来也会有几十上百个线程同时来更新缓存，同样存在雪崩的问题。因此分布式集群的业务系统要实现更新锁机制，需要用到分布式锁，如 ZooKeeper。</p><ol start="2"><li>后台更新</li></ol><p>由后台线程来更新缓存，而不是由业务线程来更新缓存，缓存本身的有效期设置为永久，后台线程定时更新缓存。</p><p>后台定时机制需要考虑一种特殊的场景，当缓存系统内存不够时，会“踢掉”一些缓存数据，从缓存被“踢掉”到下一次定时更新缓存的这段时间内，业务线程读取缓存返回空值，而业务线程本身又不会去更新缓存，因此业务上看到的现象就是数据丢了。解决的方式有两种：</p><p>• 后台线程除了定时更新缓存，还要频繁地去读取缓存（例如，1 秒或者</p><p>100 毫秒读取一次），如果发现缓存被“踢了”就立刻更新缓存，这种方式实现简单，但读取时间间隔不能设置太长，因为如果缓存被踢了，缓存读取间隔时间又太长，这段时间内业务访问都拿不到真正的数据而是一个空的缓存值，用户体验一般。</p><p>• 业务线程发现缓存失效后，通过消息队列发送一条消息通知后台线程更新缓存。可能会出现多个业务线程都发送了缓存更新消息，但其实对后台线程没有影响，后台线程收到消息后更新缓存前可以判断缓存是否存在，存在就不执行更新操作。这种方式实现依赖消息队列，复杂度会高一些，但缓存更新更及时，用户体验更好。</p><p>后台更新既适应单机多线程的场景，也适合分布式集群的场景，相比更新锁机制要简单一些。</p><p>后台更新机制还适合业务刚上线的时候进行缓存预热。缓存预热指系统上线</p><p>后，将相关的缓存数据直接加载到缓存系统，而不是等待用户访问才来触发缓存加载。</p><h1 id="缓存热点"><a href="#缓存热点" class="headerlink" title="缓存热点"></a>缓存热点</h1><p>虽然缓存系统本身的性能比较高，但对于一些特别热点的数据，如果大部分甚至所有的业务请求都命中同一份缓存数据，则这份数据所在的缓存服务器的压力也很大。例如，某明星微博发布“我们”来宣告恋爱了，短时间内上千万的用户都会来围观。</p><p>缓存热点的解决方案就是复制多份缓存副本，将请求分散到多个缓存服务器</p><p>上，减轻缓存热点导致的单台缓存服务器压力。以微博为例，对于粉丝数超过 100 万的明星，每条微博都可以生成 100 份缓存，缓存的数据是一样的，通过在缓存的 key 里面加上编号进行区分，每次读缓存时都随机读取其中某份缓存。</p><p>缓存副本设计有一个细节需要注意，就是不同的缓存副本不要设置统一的过期时间，否则就会出现所有缓存副本同时生成同时失效的情况，从而引发缓存雪崩效应。正确的做法是设定一个过期时间范围，不同的缓存副本的过期时间是指定范围内的随机值。</p><h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>由于缓存的各种访问策略和存储的访问策略是相关的，因此上面的各种缓存设计方案通常情况下都是集成在存储访问方案中，可以采用“程序代码实现”的中间层方式，也可以采用独立的中间件来实现。</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>今天我为你讲了高性能架构设计中缓存设计需要注意的几个关键点，这些关键点本身在技术上都不复杂，但可能对业务产生很大的影响，轻则系统响应变慢，重则全站宕机，架构师在设计架构的时候要特别注意这些细节，希望这些设计关键点和技术方案对你有所帮助。</p><p>这就是今天的全部内容，留一道思考题给你吧，分享一下你所在的业务发生过哪些因为缓存导致的线上问题？采取了什么样的解决方案？效果如何？</p><p>欢迎你把答案写到留言区，和我一起讨论。相信经过深度思考的回答，也会让</p><p>你对知识的理解更加深刻。（编辑乱入：精彩的留言有机会获得丰厚福利哦！）</p><ul><li><strong>原文作者：</strong> 湖畔学院</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571948438533964292/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571948438533964292/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;虽然我们可以通过各种手段来提升存储系统的性能，但在某些复杂的业务场景下，单纯依靠存储系统的性能提升不够的，典型的场景有：&lt;/p&gt;
+&lt;p&gt;• 需要经过复杂运算后得出的数据，存储系统无能为力&lt;/p&gt;
+&lt;p&gt;例如，一个论坛需要在首页展示当前有多少用户同时在线，如果使用 MySQL
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络爬虫" scheme="http://zhixingmei.ren/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="MySQL" scheme="http://zhixingmei.ren/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>你发邮件的时候，考虑过「用户」的感受么？</title>
+    <link href="http://zhixingmei.ren/2018/06/27/%E4%BD%A0%E5%8F%91%E9%82%AE%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%80%83%E8%99%91%E8%BF%87%E3%80%8C%E7%94%A8%E6%88%B7%E3%80%8D%E7%9A%84%E6%84%9F%E5%8F%97%E4%B9%88%EF%BC%9F%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    <id>http://zhixingmei.ren/2018/06/27/你发邮件的时候，考虑过「用户」的感受么？人人都是产品经理/</id>
+    <published>2018-06-27T02:42:52.000Z</published>
+    <updated>2018-07-05T12:26:33.112Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>站在用户视角看待问题，关键是大家需要养成意识来趋使自己时刻进入用户视角，这是一种思维习惯。</p></blockquote><p><img src="/pro/os/crawler/ZUZE-JAIB-Q7BV.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>一个真实的故事：小光同学按要求每天发日报给老板，为了方便，总是在邮件里面挂个日报附件，正文却什么也不写。过了1个月，月末工作汇报的时候，老板发现他做的数据完全是错的，狠狠骂了他一通。他很委屈，心里在想：明明自己每天都在发日报，每天都在呈现那几个数据，为什么老板最后才说有问题，难道你都不看我的日报的么？！</p><p>然后自己回去一翻才发现，更可怕的问题：因为格式的问题，自己发出去的邮件附件，别人收到打开以后都是乱码。但是一个月下来，从老板到其他同事，都从来没人发现日报是看不了的。也就是说，根本没人看他每天辛辛苦苦发的邮件。</p><p>他更加崩溃了。</p><p>这个时候你如果问：为什么你们都不看？这个问题就犹如你在问“用户”，我每天都在给你推送，你为什么都不点开看我做了那么久的页面？这怪谁呢？当然只能怪你自己啦！怪你真的没有“用户思维”！</p><p>“用户思维”这个词在互联网公司似乎每天都在被提起，但是每天都放在嘴边，却并不代表你时时刻刻都有这个意识——甚至可能你觉得自己是有这个意识的，但事实上，你只是“在你想起来的时候”才会切换到用户视角上，但那通常是无效的。</p><p><strong>真正具有用户意识的人，应该能从生活、工作的任何大小事情开始，无时无刻不站在“用户视角”去看待“用户”</strong>。</p><p>比如，在一个成熟的公司工作，你必然经常要收发邮件，在这种日常的邮件往来中，你有没有塑造自己在这件小事上的 “用户意识”呢？你有没有站在收信人的“用户视角”去审视你发出去的邮件呢？</p><p>本文就以收发邮件这个角度切入，聊一聊我们需要建立的那些“用户视角”。</p><p><img src="/pro/os/crawler/JEFI-EJNV-RZBN.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>我们可以将收邮件的人看作用户；发邮件的人看作为运营者；那么邮件本身，自然就是运营者发布给用户的那个“产品”，这犹如我们在做一个H5活动、APP开屏弹窗之类的运营行为——用户在看我们的页面，我们在把页面呈现给看的人。所以邮件书写、传送过程自然就是一个运营过程；整个过程，我们可以划分为用户入口、用户场景、用户分层、用户转化4个环节来具体分析。</p><h2 id="一、用户入口：一秒准则，在庞杂的信息中为什么选择看你"><a href="#一、用户入口：一秒准则，在庞杂的信息中为什么选择看你" class="headerlink" title="一、用户入口：一秒准则，在庞杂的信息中为什么选择看你"></a>一、用户入口：一秒准则，在庞杂的信息中为什么选择看你</h2><p>相信大家的工作邮箱中，每天都能收到各类邮件：有项目组的进展邮件，有部门组的事件邮件，有行政的通知邮件，有跨部门沟通的邮件，有上下级的汇报邮件。</p><p>发邮件的时候，我们往往是在想我们如何把邮件尽快发出去，但是你是否想过：收件人那里可能有很多很多邮件，你发的邮件，收件人凭什么会认真去打开你的邮件？</p><p>这个时候就形成了一个用户入口——<strong>当大家每天都被海量信息轰炸，注意力就是用户行为的入口。</strong></p><p>最典型的情况就是那些公众号标题、H5链接标题，当他们出现在信息密集的朋友圈、微信群的时候，用户会不会点开，就决定了用户是否“进入你的产品”。</p><p>大家一定见过微商的朋友圈吧？9图里面有2张图是必有的，那就是二维码和自拍（美女、帅哥）照片，这2个其实就是充当了微商产品信息的入口：用户通过对自拍的感兴趣而顺便滑动浏览其他图片（其他商品），到达了入口转化的目的。</p><p><img src="/pro/os/crawler/M636-FUZB-73QA.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>类似的，收发短信也一样：看看密集的短信列表，社交短信和营销短信参杂在一起，到底你凭什么让对方点开你，阅读你？</p><p>所谓1秒准则，就是<strong>你必须要求自己做的“入口”能让用户在1秒钟以内注意到你的存在，并且对你认真地产生了兴趣。</strong></p><p>那么，你写邮件的标题的时候，有没有想过：在不失工作的严肃性下，你有没有做到你的标题能吸引你的用户阅读？能让他在一堆邮件列表里看到你的邮件？有些人可能会用最粗暴的办法，比如在邮件前面打上标签，例如“重要”、“紧急”、“请务必认真阅读”等等，就是一个很直接可以引发注意力的办法。</p><p><img src="/pro/os/crawler/ZNJV-QBBB-AFUV.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>除了粗暴地把重要性提出来，还有很多策略可以使用，比如可以戏谑的口吻“运营小伙伴喊你看一下这次520活动的复盘啦！”、增加提高相关度的字眼“产品组必看”……类似这样的抓住用户心理提高打开率的办法，新媒体界有过很多探讨了，就不展开了。关键还是，你是否意识到：邮件的标题也不是随便一写的。如果你时时刻刻带着用户视角，你就会想到，琢磨一下你的邮件标题，就可能让你的邮件与众不同，带来更多更深入的关注。</p><h2 id="二、用户场景：使用场景，想想用户是在什么情况下看的"><a href="#二、用户场景：使用场景，想想用户是在什么情况下看的" class="headerlink" title="二、用户场景：使用场景，想想用户是在什么情况下看的"></a>二、用户场景：使用场景，想想用户是在什么情况下看的</h2><p>假设你已经能成功吸引用户的注意力，下面你需要思考的是：收件人是在什么情况下阅读你这封邮件的？三国演义中，诸葛亮常常在出征前给将领一个锦囊，并告诉他什么场景下打开。为什么诸葛亮没有让他在当下就打开？这就是用户场景的问题。</p><p>提供互联网学习的公众号，例如“人人都是产品经理”、“互联网er的早读课”这些公众号推送，基本都是在早晨8:00-9:00之间；因为它们知道：在用户起床、上班的路上阅读互联网相关的文章和知识是最贴合用户阅读的场景，工作的时候没时间读，下班的时候太累了根本不想看了，但是早晨脑子里空荡荡，思路正清晰，正是打起精神开始一天工作的准备时间；而通常大城市上班路途遥远，就有阅读工作成长类公众号的场景。所以这一切要素组成了用户阅读的场景。</p><p>那么，你发邮件的时候，有没有想过用户收邮件的场景？</p><blockquote><p>例如，他们收到邮件的时候通常是正在做什么的时候？他们通常会在什么时间点阅读邮件？你希望他们在什么状态下阅读你的邮件？</p></blockquote><p>很多创业公司CEO写全体信，通常选择在晚上甚至深夜，不打扰员工工作，而且在夜深人静的时候抒发情感，灌点鸡汤最合适；行政要发出国团建的邮件，如果在中午快午饭或者下午快下班的时候发，那样可能直接把员工的状态提前带入下班状态中，影响工作效率。</p><p>而更常见的情况是：大家正在认真工作，突然来了一份邮件，收件人会打断目前的工作进行收件阅读；这个时候，我们首先要理解可能收件人处以多任务切换状态，大概率情况是让他切换到阅读邮件状态时，还没有从上一件事务中脱离出来，那么就更需要你能在邮件里清晰地说明邮件的关键内容。</p><p>有很多刚刚开始工作的职场小白，可能发邮件的时候只发一个附件来说明一些数据情况、一些相关材料。</p><p>发的人是很方便，挂一个附件就搞定了。</p><p>但是你切换到阅读者的场景下：她可能正在做别的事情，突然来了一份邮件，只写一个跟附件一样名字的标题“520活动复盘数据”，然后正文都没有内容，只看到一个附件，点开以后预览发现格式完全走样，没法看，于是只能无奈另存到桌面打开。还有可能更坑爹——点开附件发现对方是对方是Microsoft Office软件，而自己用的是Mac系统，根本就打不开。</p><p><img src="/pro/os/crawler/3AZR-2E6J-NM7R.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>（例如图中的周报，明明可以直接贴到正文给用户看，却图方便直接挂一个附件）</p><p>反正经历了一系列操作以后终于可以打开了，结果打开后看到只有一个简单的表格，表格里写了这次活动的几个漏斗转化数据。</p><p>搞半天就让我看这么些东西？</p><p>这个时候，用户的体验是极差的。</p><p>所有的操作都不符合用户实际的场景，方便的只有发件人自己。这样的邮件可能不是万不得已，你下次都懒得再点开看。</p><p>那么这种情况下，考虑到用户视角，正确的发送方式应该是怎么样的呢？</p><ol><li>有明确的标题，可以使用上文提到的一些提升注意力的技巧。</li><li>如果要表达的东西原文在附件里，但是内容完全可以通过截图充分展现在邮件正文，就在正文里面把附件的内容截图全部附上。</li><li>如果非要发附件，考虑一下附件可能在收件人那边产生的格式错乱、打不开等问题，把附件转化成PDF等不易变形的格式再挂到附件中。并且在邮件中说明，在什么阅读情况下才需要打开附件继续阅读。</li></ol><p><img src="/pro/os/crawler/IMN7-RNIZ-UAQB.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>（例如此邮件就是充分考虑到阅读体验，把关键的时间安排环节贴图在正文，而附属的并不需要每个人阅读的名单选择挂在附件）</p><p>我们可以很明显地对比出来，一封好的工作邮件能让“用户”在即便工作忙碌的情况下，也能很高效很轻松地阅读到关键信息，而不合格的邮件却只能丧失邮件本身的意义。</p><p>由于一定因素的受限，我们不能总是在发邮件以后知道到底多少“用户”阅读了你的邮件，也就是你的这次“运营工作”得到了多少UV／PV，但是显然，不好的邮件的实际阅读结果是差的，有的甚至发了等于没发，因为你以为你发出去了就万事大吉了，然而实际上却并没有什么人阅读。这就是开头小光同学经历的悲惨故事了。</p><p>所以我们时刻要思考：我们推出去的东西，接收到的人可能处于什么场景，可能收到的感受如何，这样才能让你事半功倍。</p><h2 id="三、用户分层——分层覆盖，不同的用户要看的重点不同"><a href="#三、用户分层——分层覆盖，不同的用户要看的重点不同" class="headerlink" title="三、用户分层——分层覆盖，不同的用户要看的重点不同"></a>三、用户分层——分层覆盖，不同的用户要看的重点不同</h2><p>我们需要时刻记着，用户是具有丰富性的，你要面对的用户永远不是一个人，也不是同一群人、同一种人。面对同样的产品，用户选择使用的动机是各不相同的。</p><blockquote><p>例如：同样选择来某个影院看8:00场的电影，有的用户是因为电影口碑好，想认真来欣赏一下好电影，有的用户可能是因为电影里面有一个自己的偶像明星参演，有的用户可能只是因为跟女孩约会例行公事要看部电影，还有的用户可能真的是闲的慌没事做随便买个票进来耗耗时间。</p></blockquote><p>这里面的用户需求层次和使用动机都是完全不同的。</p><p>那么你作为提供这个产品服务的人，要想把服务做细做到极致，你就需要分层去理解用户的需求，并给出对应的解决需求的方案。</p><blockquote><p>例如针对追星派可以在门口提供偶像的KT板海报来给用户合影；针对情侣用户可以提供私密且亲密情侣座选择满足特别的观影需求等等。</p></blockquote><p>回到邮件这件事上看，我们有没有思考过：你发出去的邮件，如果收件人是一群人，那么这些人里面有没有不同层次的阅读需求？是不是有的只是“大概知道一下有这回事就好了”？有没有人是需要仔细认真逐字阅读的？还有没有人介于中间，需要知道关键信息，但是不用详细了解的？而其中，有没有你首要需要满足的需求？哪些需求又是相对次要的？</p><p>如果邮件是通知事件的邮件，那么与事件直接相关的并且要产生下一步行为的人肯定是你首要需要覆盖的用户；如果邮件是复盘或者汇报，那么首要满足的应该是上级领导的阅读需求。</p><p>以复盘邮件为例，我们可以分析出来有以下相关人员和对应的需求：</p><p><img src="/pro/os/crawler/VJFR-ARRY-ZBBZ.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>这么多层的需求，我们怎么才能在一封邮件里面都尽可能满足到位呢？</p><p>其实也很简单，既然用户的需求是分层的，我们给到的邮件内容应该也是分层的、有重点的，常见的能让内容分层的要素包括：模块标题、关键数据、关键总结、下一步行为与安排、附件补充。</p><ul><li>如果你的邮件有清晰的模块标题，那么就可以让那些只需要了解框架信息和关键信息的人（例如领导和合作方）可以快速定位到自己需要阅读的部分上；</li><li>如果你能让关键信息和关键结论十分凸显，那么就可以让不需要仔细阅读所有内容的人，快速捕捉到邮件的核心内容和关键结论；</li><li>如果你能明确地说明下一步行为和安排，就能让邮件相关的后续执行方清晰地了解接下来要做什么（例如你的下级）；</li><li>如果你还有内容需要辅助邮件的相关结论或者补充细节，那么挂上一个详细的附件数据表或者分析脑图，可以让需要认真了解细节的人更好地知道所有内容。</li></ul><p><img src="/pro/os/crawler/JAEE-AQE3-6RAU.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>（如上图，同样的内容，可以做出显著的分层标题，有条理地说明关键内容，对关键数据进行不同层级的放大和突出）</p><p>不同层次的信息排布，就是满足不同层次用户的阅读需求，让用户在最高效的方案下进行信息的吸收，是给用户最好的体验。</p><h2 id="四、用户转化——明确引导-用户是否知道你希望他做什么"><a href="#四、用户转化——明确引导-用户是否知道你希望他做什么" class="headerlink" title="四、用户转化——明确引导-用户是否知道你希望他做什么"></a>四、用户转化——明确引导-用户是否知道你希望他做什么</h2><p>有很多时候我们经常做着做着就会迷失了自己，忘记自己做这件事是为了什么。用户转化才是一切工作价值最后的集中点。这是最可怕却又最经常会遇到的问题。</p><p>做每一次运营活动，我们都要问清楚自己：这个活动我们希望用户干嘛？做这个页面我们希望用户下一步做什么事情？</p><p>可能我们花了很多时间美化文案，美化页面，但却最后忘记了这一切努力最终最重要的是要转化用户，有的转化可能是让用户进入下一步，有的转化是让用户关注或者分享，有的转化是让用户下单购买，所以到最后一环节我们尤其不能松懈，一定要自问一句：“我明确地引导用户接下来做什么了么？”</p><p>很多时候我们仅仅是站在自己角度考虑：我邮件已经发了，接下去怎么做你应该知道了。但事实往往与我们想的不一样，很多人看就看了，根本不知道看了以后要做什么，有更多人不知道看了以后有什么用。</p><p>有句话说：能一秒变傻子的产品／运营才是好产品／运营。其实就是说，我们要代入用户视角，看看我们做的页面会不会让用户懵逼。</p><p>所以最基本的办法就是：<strong>最后环节一定要把下一步要做什么说清楚。</strong></p><p>放在邮件上说，我们必须把收件人需要做的事明确地提示清楚。</p><blockquote><p>比如，这封邮件希望人家看过之后给你回复。那么你就必须写明（甚至在标题中就标明）此封邮件：“收到后请务必回复”。</p><p>除了回复，经常邮件后我们有很多落实的工作要做，那么就更需要清楚地写明那些工作需要谁落实，什么时间落实，目标是什么等等。</p></blockquote><p><img src="/pro/os/crawler/VYYR-QVUA-EIAF.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>（明确用户收到邮件后的下一步行为和动作）</p><p>邮件要这样写，我们做任何运营行为都要这样做。</p><blockquote><p>比如罗辑思维的罗振宇老师，每次推荐完一本书后都会“厚着脸皮”让大家去订阅付费栏目或者关注公众号。</p></blockquote><p>其实他知道就算他不说，喜欢的人还是会去订阅，但是每次推荐环节最后，他还是会不厌其烦地重复这个引导——因为这里就是要转化用户的关键环节，再多重复都不嫌多。</p><p>用户在听前面的内容的时候，是陷入在内容本身里的；但其实罗老师更多的是希望这个优质内容能带来付费或者关注的转化，如果不重复提这件事，用户就不会在那一刻意识到要去看更多有价值的付费内容或者关注相关公众号。</p><p>当然，即使是有转化引导，也有优劣之分。</p><p>用户转化和引导要遵守的首要原则就是：明确。</p><p>虽然有时候明确看起来很直白或者不必要，但是请你依旧要遵循这个原则。</p><p>为什么这么说呢？</p><p>举个例子，大家都知道在微信生态下，看到二维码，可以长按识别二维码进入下一步，那么是不是说明我们在出现二维码的地方，就不需要提示用户“长按识别二维码”了呢？</p><p>光羽做过一个A／B测试，在公众号引导关注环节分别放了2个方案进行对比：</p><ul><li>A方案：用户点击公众图文顶部的关注引导，进入一个图片弹屏，出现整张巨大的二维码。</li><li>B方案：用户点击公众图文顶部的关注引导，进入一个图片弹屏，出现一张写着各种引导的二维码图片。</li></ul><p><img src="/pro/os/crawler/EEIE-ZUIE-VARQ.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>经过多次测试，在控制相关变量的基础上获得上千次关注结果后，对比数据发现B方案的关注转化结果高出A方案近1倍。</p><p>虽然B方案的二维码比较小，本来应该转化率更低一些，但是由于有充分的用户引导动作（拇指印+文字提示），转化结果高了很多。</p><p>由此我们也可以论证：用户需要“明确的引导”，即便“长按识别二维码”这样的动作似乎是默认的操作，但是用户进入到A方案（尤其是当进入了沉浸式的页面时），会一脸懵逼，那一刹那，不知道弹出一个巨大的二维码是个什么东西，要我做什么？而方案B就让用户很明确地理解了下一步是要识别这个二维码进行关注，这个时候“傻子”也知道要干嘛了。</p><p>所以，站在用户视角看看你的引导和转化吧，不要前面的环节做的很饱满却在最后的关键转化环节流失了用户。如若这样，之前的做再好都白做了。</p><p>怎么样？通过邮件的收发，你能从用户入口、用户场景、用户分层、用户转化4个方面理解了“用户视角”了么？</p><h2 id="五、案例分析"><a href="#五、案例分析" class="headerlink" title="五、案例分析"></a>五、案例分析</h2><p>最后我们通过一个小案例看看一个真实的运营行为中出现的用户视角的应用。</p><p>发公众号推送跟发邮件在这个角度上其实是一模一样的。</p><p>光羽同学的小伙伴曾经要发一个公众号（服务号）的文字推送给用户，目的是引导用户来听一个免费的讲书课程。</p><p>她第一次拟写的内容如下：</p><p><img src="/pro/os/crawler/A6ZJ-JVEY-RQQJ.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>拿到这个方案的时候，光羽同学很欣慰，因为小伙伴至少知道用来进行信息分层，说明她多少是有这方面的意识的，那么如果是你看到这个推送方案，你会怎么优化？</p><p>首先我们来看用户入口。</p><p>如果用户收到这则信息，其实他在微信的消息列表里看到的入口是这样的；</p><p><img src="/pro/os/crawler/IQMZ-BEQE-JBAZ.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>因为实际推送的是服务号，所以其实文字大概出现到“【免费】今晚大咖讲师给你讲《非暴力沟通》啦”。</p><p>然后我们思考一下用户场景：</p><p>时间上，我们要提供的内容是一个书籍的讲授课程，那么应该选择晚上空余的时间比较合适。</p><p>今晚8点没毛病，但是关于用户分层和关键焦点，虽然小伙伴很有意识，但是似乎很多关键信息还是杂糅在一起，不方便用户快速筛选出关键的内容。</p><p>假设用户对这个课程感兴趣，那么时间是几点？谁讲？</p><p>这些信息虽然有，但是用户要搜寻这些信息还需要再仔细读一遍。</p><p>最大的问题似乎出在用户转化环节上。这个推送看起来没有特别吸引人——没有给我明确的理由我为什么要去听这个课。</p><p>所以光羽同学给了一个初步的优化方案如下：</p><p><img src="/pro/os/crawler/UBIQ-Z3UR-JJEM.jpg" alt="你发邮件的时候，考虑过「用户」的感受么？"></p><p>标题修改后加了“讲解经典好书”，虽然只是加了几个字，但是标题内容性质完全变化了，原来是讲解“非暴力沟通”这个课程，现在明确了是讲解《非暴力沟通》这本书。</p><p>对于用户来说，书本的内容相对课程是更权威的，平时不一定会看，既然有免费的讲解还是很值得了解一下的。</p><p>这种情况很常见——运营者很清楚我们在做的活动是什么，就默认用户也知道。</p><p>在这个案例中，光羽的小伙伴就是默认用户知道这是一个讲书的活动，但是其实用户视角下，很可能压根不知道这是讲书，更多地以为是一个课程的主题而已——尤其是对那些根本没听说过《非暴力沟通》这本书的用户来说。</p><p>后面的内容做了进一步的层级区分，清晰地列出来书本介绍、讲书时间、讲书的人、转化引导（报名入口）、促销氛围（仅限前500位）。</p><p>对书籍的介绍相比之前丰富了很多，因为光羽同学判断决定用户产生下一步行为的关键要素应该是这本书本身的吸引度，因此不吝字数地吹嘘了一下这本书的厉害之处。</p><p>从用户进入入口开始，我们可以真的切换到用户视角想象一下用户整个心理历程：</p><blockquote><p>首先用户是在一个微信消息列表看到这条信息，感觉有兴趣，点击进来以后感受到这本书很厉害，很有阅读价值，开始产生一点想听课的想法；</p><p>随后很清晰地了解到时间和讲书人，也看到了特别空一行显示的下一步的动作引导——点击URL地址；</p><p>可能这时候还有点犹豫，但是看到限额免费，觉得如果现在不点可能等下就要付费了，这个便宜不能让它溜了啊；</p><p>于是点击了蓝色的URL地址。</p><p>至此我们完成一个用户的转化。</p></blockquote><p>总结来看，我们的生活、工作中每一件大事、小事都可以切换成用户思维来考虑。</p><h3 id="专栏作家"><a href="#专栏作家" class="headerlink" title="#专栏作家#"></a><strong>#专栏作家#</strong></h3><p>光羽，微信公众号：yaoyaobiji，人人都是产品经理专栏作家。阿里巴巴资深产品运营。曾全面负责图片社交产品 in APP的社交业务，长期研究社交、视频等方向的产品与运营。多年社交领域创业经验。</p><p>本文原创发布于人人都是产品经理。未经许可，禁止转载</p><p>题图来自 Unsplash，基于 CC0 协议</p><ul><li><strong>原文作者：</strong> 人人都是产品经理</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571589324939198990/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571589324939198990/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;站在用户视角看待问题，关键是大家需要养成意识来趋使自己时刻进入用户视角，这是一种思维习惯。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/ZUZE-JAIB-Q7BV.jpg&quot; alt=&quot;你发邮件的时
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="创业" scheme="http://zhixingmei.ren/tags/%E5%88%9B%E4%B8%9A/"/>
+    
+      <category term="市场营销" scheme="http://zhixingmei.ren/tags/%E5%B8%82%E5%9C%BA%E8%90%A5%E9%94%80/"/>
+    
+      <category term="产品经理" scheme="http://zhixingmei.ren/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    
+      <category term="罗辑思维" scheme="http://zhixingmei.ren/tags/%E7%BD%97%E8%BE%91%E6%80%9D%E7%BB%B4/"/>
+    
+      <category term="美女" scheme="http://zhixingmei.ren/tags/%E7%BE%8E%E5%A5%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么我会站队全栈工程师？</title>
+    <link href="http://zhixingmei.ren/2018/06/27/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BC%9A%E7%AB%99%E9%98%9F%E5%85%A8%E6%A0%88%E5%B7%A5%E7%A8%8B%E5%B8%88%EF%BC%9FCSDN/"/>
+    <id>http://zhixingmei.ren/2018/06/27/为什么我会站队全栈工程师？CSDN/</id>
+    <published>2018-06-27T01:30:46.000Z</published>
+    <updated>2018-07-05T12:26:32.427Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>点击上方“CSDN”，选择“置顶公众号”</p><p>关键时刻，第一时间送达！</p></blockquote><p>随着软件技术的发展以及市场需求的变化，全栈工程师似乎已成为未来发展趋势。</p><p><img src="/pro/os/crawler/RMZR-VAYN-QYBF.jpg" alt="为什么我会站队全栈工程师？"></p><p>很多Flag公司都已经声称只招 full-stack的员工，那么面对这样的市场形势，对于正在求职路上，或者是想要跳槽的程序员来说，我们需要如何准备，如何应战？现在，小编带你了解，为什么这次我选<strong>全栈工程师</strong>！</p><p><img src="/pro/os/crawler/QQI7-RFIU-FNFQ.jpg" alt="为什么我会站队全栈工程师？"></p><p><strong>什么是全栈工程师？</strong></p><p><strong>关键词：</strong>学习能力、思维方式、创造性、积极性。</p><p>首先我们要了解一下，什么是全栈工程师。</p><blockquote><p>全栈工程师，指的是一个程序员对前端知识和后端架构，都有深入的了解，并且有足够的学习能力，去学习新的知识，找到更快、更新并且最优的办法，来解决问题并且在这一个过程中来提升能力、丰富知识、增加经验。</p><p>对于全栈工程师来说，其中最重要的属性，就是不同的思维方式和强大的学习能力。</p><p>全栈工程师将协调前端设计师、后端程序员，实现网站页面或程序的界面美化、交互体验的一个职位。</p><p>换一种方式说，<strong>全栈工程师的思维方式更开阔、更新颖、更综合。</strong> 强大的学习能力体现在方方面面，并且不局限于特定的知识或是技能。</p><p>换句话说，在面对不同事物的时候，全栈工程师会保持积极性，倾向于创造更大的影响力。</p></blockquote><p><img src="/pro/os/crawler/UZBB-YVNE-MUR3.jpg" alt="为什么我会站队全栈工程师？"></p><p>看到这里大家都会问，全栈工程师都需要哪些具体的技能或者知识呢？要回答这个问题，我们不妨了解一下各个公司的招聘要求吧。总结来说：</p><p><strong>关键词：</strong>前端，后端，服务端编程、语言与框架。</p><ul><li><strong>工程师需要掌握如下技能：</strong></li><li>HTML与HTML5；</li><li>CSS、CSS3与SASS；</li><li>JavaScript；</li><li>jQuery、Angular.js、React.js与Node.js；</li><li>Websockets与Ajax requests；</li><li>浏览器开发工具与调试器。</li></ul><p><img src="/pro/os/crawler/YE3Y-BMAR-VZRM.jpg" alt="为什么我会站队全栈工程师？"></p><p><strong>为什么要做Web全栈工程师？</strong></p><p>身处4大风口，未来已来，你来不来？</p><ul><li><strong>风口1 ：直播正盛</strong></li></ul><p>2017年被誉为直播元年，直播作为现象级风口已成为互联网领域新的经济增长点，而直播平台从技术上需要更多懂前后端的Web全栈工程师来实现。</p><ul><li><strong>风口2 ：小程序终于爆发</strong></li></ul><p>微信“小程序”无疑是下一风口，大众对这种轻型“APP”无限期待，前端已火了很多年，小程序的出现将会延续前端火爆热度，如果你恰巧也懂后端，那更会让你更如鱼得水。</p><ul><li><strong>风口3 ：全民创业潮</strong></li></ul><p>“互联网+”风口催生全民创业潮，对于创业公司来说，不可能像大公司一样，招聘过于细分的人才。这些公司更需要独当一面的Web全栈人才。</p><ul><li><strong>风口4 ：大前端时代来临</strong></li></ul><p>2017中国软件开发白皮书中提到，目前web开发群体5成以上为全栈开发者。预示着随着市场需求的不断变化，市场对开发者逐渐有了更高要求，精通前后端的全栈工程师将成为IT界新一代宠儿。</p><p>不仅如此，据资料显示，每年需求全国超过4万个就业机会，需求大，技术人员少，这无疑是全栈工程师的最大的竞争力！</p><p><img src="/pro/os/crawler/IFJA-AI3E-AB7J.jpg" alt="为什么我会站队全栈工程师？"></p><p><img src="/pro/os/crawler/R2MY-32MQ-IAFR.jpg" alt="为什么我会站队全栈工程师？"></p><p><strong>如何成为Web全栈工程师？</strong></p><p><strong>关键词：</strong> 时间积累、坚持不懈、学习提升、最优解。那么如何才能逐步积累以上所说的技能和知识，从而成为一个全栈工程师呢？</p><p>对于一个刚毕业的学生来说，学校所学习的知识远远不够，无法提供快速有效地实现目标的充分必要条件；其次，紧张而焦急的找工作心态反而会适得其反。</p><p>对于正在工作的人来说，在现有工作的压力环境下，完成这个目标则需要大量的时间积累与坚持不懈的学习提升。</p><p>显而易见的是，在当今软件技术发展迅速，市场需求日益增长的情况下，在短时间内达到目标，并且实现能力提升才是最优解。那么如何才能找到最优解呢？</p><p>小编认为<strong>参加系统实训则是可以解决这一现状，</strong>因为实际上学习任何一种编程语言，你都需要专业的导师、系统的课程、实战演练项目和高质量学习辅导，这不仅能帮助你节省大量时间，更能保证不会半途而废。</p><p>在这里推荐<strong>CSDN学院出品的《Web全栈工程师》实训营，目的是通过19周的实训，使学员从零开始成为一名不亚于业界水平的全栈工程师。</strong></p><p><img src="/pro/os/crawler/BBUQ-Z3AV-E6BY.jpg" alt="为什么我会站队全栈工程师？"></p><p><strong>联系CSDN学院职场规划师，获取一对一专属服务</strong></p><p>（包括：IT职场规划服务/专属折扣）</p><p>（扫码加职场规划师微信）</p><p><img src="/pro/os/crawler/ZMJA-VRQZ-RQMU.jpg" alt="为什么我会站队全栈工程师？"></p><p><strong>为什么报名CSDN学院？</strong></p><p>很多学员都曾苦恼，工作中缺乏“好师傅”，很多Bug，也都得绞尽脑汁自己解决。在全栈特训营，这些问题都将不存在。</p><p>课程形式采用线上学习，学习者无需脱产，利用每天空闲时间，按照课程学习计划表进行即可。</p><p>课程采用闯关式学习，每阶段都有作业，也就说，你在第一天学习到的某个知识点，接下来就要通过案例作业去训练消化。</p><p>所有的知识点组成了一个大型项目的解决方案。</p><p><strong>▌我们采取导师+课程助教的服务模式</strong></p><p>金牌导师曾亮，晟暄科技 CEO ，HTML5 &amp; Node.js 技术讲师Javascript前后端全栈开发人员 DDD／CQRS 设计师 对 Node.js 和 HTML5 有多年开发经验。独立研发 Node.js 版的 CQRS framework ，国内为数不多的顶级领域驱动设计专家。</p><p>课程助教将会会带领你一起攻克项目，review你的代码并给出意见。最后，课程助教会带你们一起进行项目最后上线路演，并接受导师的点评。</p><p><strong>▌Web全栈工程师内容优势</strong></p><ul><li><strong>高性能框架使用</strong></li></ul><blockquote><p>曾亮老师自主开发的 Auxo (夏季女神) 框架应用，此框架建立在 Nuxt 基础上，把 UI 层、应用层和领域核心层合体，省去繁琐的配置，通过约定进行高效开发。</p></blockquote><ul><li><strong>绝对技术领域</strong></li></ul><blockquote><p>曾亮老师自主开发的 CQRS 框架应用：CQRS 是 DDD 领域驱动设计的落地实现，是世界上最先进、成熟的设计技术，可以把需求 Case 与代码直接对应，建立用户与开发者之间的共通交流词汇，可省去繁琐的 UML 。</p></blockquote><ul><li><strong>雪藏神秘内功心法</strong></li></ul><blockquote><p>曾老师雪藏多年的《精通 Node.js 开发》神秘著作，一生只此一次学习的机会，内含玄机，将传授绝世内功。</p></blockquote><p>另外，除去优质的内容，好的课程更需要好的服务，CSDN学院将以最优质的服务来保证学员的学习效果：</p><p><img src="/pro/os/crawler/YJFE-EVYA-QNR2.jpg" alt="为什么我会站队全栈工程师？"></p><p>想了解更多关于此次特训的详情，<strong>可加CSDN课程规划师微信进一步了解，更有千元优惠券等你来拿！</strong>名额有限，还等什么，扫码加入吧！</p><p><strong>联系CSDN学院职场规划师，获取一对一专属服务</strong></p><p>（包括：IT职场规划服务/专属折扣）</p><p>（扫码加职场规划师微信）</p><ul><li><strong>原文作者：</strong> CSDN</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571570747070743043/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571570747070743043/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;点击上方“CSDN”，选择“置顶公众号”&lt;/p&gt;
+&lt;p&gt;关键时刻，第一时间送达！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;随着软件技术的发展以及市场需求的变化，全栈工程师似乎已成为未来发展趋势。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="HTML" scheme="http://zhixingmei.ren/tags/HTML/"/>
+    
+      <category term="工程师" scheme="http://zhixingmei.ren/tags/%E5%B7%A5%E7%A8%8B%E5%B8%88/"/>
+    
+      <category term="CSDN" scheme="http://zhixingmei.ren/tags/CSDN/"/>
+    
+      <category term="Node.js" scheme="http://zhixingmei.ren/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于RESTful一些注意事项和自己整理的接口开发规范</title>
+    <link href="http://zhixingmei.ren/2018/06/26/%E5%85%B3%E4%BA%8ERESTful%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E5%92%8C%E8%87%AA%E5%B7%B1%E6%95%B4%E7%90%86%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B0%8F%E6%96%B0%E4%BA%BA%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://zhixingmei.ren/2018/06/26/关于RESTful一些注意事项和自己整理的接口开发规范程序员小新人学习/</id>
+    <published>2018-06-26T08:56:59.000Z</published>
+    <updated>2018-07-05T12:26:29.700Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>最近在研究restful，公司开发要使用，所以自己就去网上找了好些资料，并整理了一套公司开发的接口规范。当然，我也只是刚刚入坑。还不是很全面。但是这就是一个过程。一点点，总会好起来的。以下是就是RESTful接口规范：</strong></p><p><strong>一、 URI</strong></p><p><strong>URI规范</strong></p><p>1.不用大写；</p><p>2.用中杠 <strong>-</strong> 不用下杠 <strong>_</strong> ；</p><p>3.参数列表要encode；</p><p>4.URI中的名词表示资源集合，使用复数形式。</p><p>5.在RESTful架构中，每个网址代表一种资源（resource），所以网址中不能有动词，只能有名词（特殊情况可以使用动词），而且所用的名词往往与数据库的表格名对应。</p><p><strong>资源集合 vs单个资源</strong></p><p>URI表示资源的两种方式：资源集合、单个资源。</p><p>资源集合：</p><p> <strong>/zoos //所有动物园</strong></p><p> <strong>/zoos/1/animals //id为1的动物园中的所有动物</strong></p><p>单个资源：</p><p> <strong>/zoos/1//id为1的动物园</strong></p><p> <strong>/zoos/1;2;3//id为1，2，3的动物园</strong></p><p><strong>避免层级过深的URI</strong></p><p>在url中表达层级，用于 按实体关联关系进行对象导航 ，一般根据id导航。</p><p>过深的导航容易导致url膨胀，不易维护，如 GET /zoos/1/areas/3/animals/4 ，尽量使用查询参数代替路径中的实体导航，如 GET/animals?zoo=1&amp;area=3 ；</p><p><strong>二、 版本</strong></p><p><strong>应该将API的版本号放入到URI中</strong></p><p><a href="https://api.example.com/v1/zoos" target="_blank" rel="noopener">https://api.example.com/v1/zoos</a></p><p><strong>三、 Request</strong></p><p><strong>HTTP方法</strong></p><p>通过标准HTTP方法对资源CRUD：</p><p>GET：查询（从服务器取出资源一项或多项）</p><p>GET /zoos</p><p>GET /zoos/1</p><p>GET/zoos/1/employees</p><p>POST：创建单个新资源。 POST一般向“资源集合”型uri发起</p><p>POST/animals //新增动物</p><p>POST/zoos/1/employees //为id为1的动物园雇佣员工</p><p>PUT：更新单个资源（全量），客户端提供完整的更新后的资源。与之对应的是 PATCH，PATCH负责部分更新，客户端提供要更新的那些字段。 PUT/PATCH一般向“单个资源”型uri发起</p><p>PUT/animals/1</p><p>PUT /zoos/1</p><p>DELETE：删除</p><p>DELETE/zoos/1/employees/2</p><p>DELETE/zoos/1/employees/2;4;5</p><p>DELETE/zoos/1/animals //删除id为1的动物园内的所有动物</p><p>HEAD / OPTION/ PATCH用的不多，就不多解释了。</p><p>HEAD：获取资源的元数据</p><p>OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的</p><p>PATCH：在服务器更新资源（客户端提供改变的属性）</p><p><strong>安全性和幂等性</strong></p><ol><li><p>安全性 ：不会改变资源状态，可以理解为只读的；</p></li><li><p>幂等性 ：执行1次和执行N次，对资源状态改变的效果是等价的。</p></li></ol><p>.</p><p>安全性</p><p>幂等性</p><p>GET</p><p>√</p><p>√</p><p>POST</p><p>×</p><p>×</p><p>PUT</p><p>×</p><p>√</p><p>DELETE</p><p>×</p><p>√</p><p>安全性和幂等性均不保证反复请求能拿到相同的response。以 DELETE为例，第一次DELETE返回200表示删除成功，第二次返回404提示资源不存在，这是允许的。</p><p><strong>复杂查询</strong></p><p>查询可以捎带以下参数：</p><p>.</p><p>示例</p><p>备注</p><p>过滤条件</p><p>?type=1&amp;age=16</p><p>允许一定的uri冗余，如 /zoos/1 与 /zoos?id=1</p><p>排序</p><p>?sort=age&amp;order=asc</p><p>指定返回结果按照哪个属性排序，以及排序顺序</p><p>投影</p><p>?whitelist=id,name,email</p><p>分页</p><p>? page=2&amp;per_page=100</p><p>指定第几页，以及每页的记录数</p><p><strong>Bookmarker</strong></p><p>经常使用的、复杂的查询标签化，降低维护成本。</p><p>如：GET /trades?status=closed&amp;sort=created,desc</p><p>快捷方式：GET /trades#recently-closed或者GET /trades/recently-closed</p><p><strong>状态码</strong></p><p>服务器向用户返回的状态码和提示信息，常见的有以下一些（方括号中是该状态码对应的HTTP动词）。</p><p>§200 OK - [GET]：服务器成功返回用户请求的数据，该操作是幂等的（Idempotent）。</p><p>§201 CREATED - [POST/PUT/PATCH]：用户新建或修改数据成功。</p><p>§202 Accepted - [*]：表示一个请求已经进入后台排队（异步任务）</p><p>§204 NO CONTENT - [DELETE]：用户删除数据成功。</p><p>§400 INVALID REQUEST - [POST/PUT/PATCH]：用户发出的请求有错误，服务器没有进行新建或修改数据的操作，该操作是幂等的。</p><p>§401 Unauthorized - [*]：表示用户没有权限（令牌、用户名、密码错误）。</p><p>§403 Forbidden - [*] 表示用户得到授权（与401错误相对），但是访问是被禁止的。</p><p>§404 NOT FOUND - [*]：用户发出的请求针对的是不存在的记录，服务器没有进行操作，该操作是幂等的。</p><p>§406 Not Acceptable - [GET]：用户请求的格式不可得（比如用户请求JSON格式，但是只有XML格式）。</p><p>§410 Gone -[GET]：用户请求的资源被永久删除，且不会再得到的。</p><p>§422 Unprocesable entity - [POST/PUT/PATCH] 当创建一个对象时，发生一个验证错误。</p><p>§500 INTERNAL SERVER ERROR - [*]：服务器发生错误，用户将无法判断发出的请求是否成功。</p><p>状态码的完全列表参见这里</p><p><strong>URI失效</strong></p><p>随着系统发展，总有一些API失效或者迁移，对失效的API，返回404 not found 或 410 gone；对迁移的API，返回 301重定向。</p><p>四、<strong>Response</strong></p><ol><li>不要包装：</li></ol><p>response的 body 直接就是数据，不要做多余的包装。错误示例：</p><p><strong>{</strong></p><p> <strong>“success”:true,</strong></p><p> <strong>“data”:{“id”:1,”name”:”xiaotuan”},</strong></p><p><strong>}</strong></p><ol start="2"><li>各HTTP方法成功处理后的数据格式：</li></ol><p><strong>·</strong></p><p><strong>response 格式</strong></p><p>GET</p><p>单个对象、集合</p><p>POST</p><p>新增成功的对象</p><p>PUT/PATCH</p><p>更新成功的对象</p><p>DELETE</p><p>空</p><p><strong>五、错误处理</strong></p><ol><li><p>不要发生了错误但给2xx响应，客户端可能会缓存成功的http请求；</p></li><li><p>正确设置http状态码，不要自定义；</p></li><li><p>Response body提供</p></li></ol><p>即:返回的信息中将error作为键名，出错信息作为键值即可</p><p>1)错误的代码（日志/问题追查）；</p><p>2)错误的描述文本（展示给用户）。</p><p>对第三点的实现稍微多说一点：</p><p>Java服务器端一般用异常表示 RESTful API的错误。API 可能抛出两类异常：业务异常和非业务异常。 业务异常 由自己的业务代码抛出，表示一个用例的前置条件不满足、业务规则冲突等，比如参数校验不通过、权限校验失败。 非业务类异常 表示不在预期内的问题，通常由类库、框架抛出，或由于自己的代码逻辑错误导致，比如数据库连接失败、空指针异常、除0错误等等。</p><p>业务类异常必须提供2种信息：</p><ol><li><p>如果抛出该类异常，HTTP响应状态码应该设成什么；</p></li><li><p>异常的文本描述；</p></li></ol><p>在Controller层使用统一的异常拦截器：</p><ol><li><p>设置 HTTP响应状态码：对业务类异常，用它指定的 HTTPcode；对非业务类异常，统一500；</p></li><li><p>Response Body的错误码：异常类名</p></li><li><p>Response Body的错误描述：对业务类异常，用它指定的错误文本；对非业务类异常，线上可以统一文案如“服务器端错误，请稍后再试”，开发或测试环境中用异常的 stacktrace，服务器端提供该行为的开关。</p></li></ol><p>常用的http状态码及使用场景：</p><p>状态码</p><p>使用场景</p><p>400 bad request</p><p>常用在参数校验</p><p>401 unauthorized</p><p>未经验证的用户，常见于未登录。如果经过验证后依然没权限，应该 403（即 authentication和 authorization的区别）。</p><p>403 forbidden</p><p>无权限</p><p>404 not found</p><p>资源不存在</p><p>500 internal server error</p><p>非业务类异常</p><p>503 service unavaliable</p><p>由容器抛出，自己的代码不要抛这个异常</p><p><strong>六、其他</strong></p><p>（1）API的身份认证应该使用OAuth2.0框架</p><p>（2）服务器返回的数据格式，应该尽量使用JSON，避免使用XML</p><p>（3）比较复杂的接口不能确定是使用POST还是PUT时，要看具体的业务层代码，看看接口产生的结果是否幂等，如果幂等用PUT，相反用POST</p><p>如：接口接收到一资源，资源存在更新，不存在插入新数据，这个接口就要用PUT</p><p><img src="/pro/os/crawler/UFNM-ZUNZ-Q3EZ.jpg" alt="关于RESTful一些注意事项和自己整理的接口开发规范"></p><ul><li><strong>原文作者：</strong> 程序员小新人学习</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571314650686685710/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571314650686685710/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;最近在研究restful，公司开发要使用，所以自己就去网上找了好些资料，并整理了一套公司开发的接口规范。当然，我也只是刚刚入坑。还不是很全面。但是这就是一个过程。一点点，总会好起来的。以下是就是RESTful接口规范：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;st
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Java" scheme="http://zhixingmei.ren/tags/Java/"/>
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="JSON" scheme="http://zhixingmei.ren/tags/JSON/"/>
+    
+      <category term="XML" scheme="http://zhixingmei.ren/tags/XML/"/>
+    
+      <category term="动物" scheme="http://zhixingmei.ren/tags/%E5%8A%A8%E7%89%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验</title>
+    <link href="http://zhixingmei.ren/2018/06/26/%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%AD%A3%E5%9C%A8%E5%88%9B%E4%B8%9A%EF%BC%8C%E6%88%96%E8%80%85%E5%87%86%E5%A4%87%E5%88%9B%E4%B8%9A%EF%BC%8C%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E4%BC%9A%E8%AE%A9%E4%BD%A0%E6%94%B6%E8%8E%B7%E5%BE%88%E5%A4%9A%E5%AE%9E%E6%88%98%E7%BB%8F%E9%AA%8C%E5%A7%9C%E5%A4%A7%E9%B9%8F/"/>
+    <id>http://zhixingmei.ren/2018/06/26/如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验姜大鹏/</id>
+    <published>2018-06-26T08:33:23.000Z</published>
+    <updated>2018-07-05T12:26:46.270Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>本文总计865字，阅读需要2分钟。</strong></p><p>各位朋友，大家好~</p><p><img src="/pro/os/crawler/N6Z6-RAUY-BZEY.jpg" alt="如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验"></p><p>今天，谈谈这个字——薄利多销</p><p>今天和大家分享的营销，我想对于很多朋友是有效的。</p><p>薄利多销，这4个字，在很多的人的大脑是认可的。</p><p>很多人认为薄利多销，是可以更好的卖货。这句话，在很多年前，是可以行得通的，现在的商业环境，不好说。</p><p>薄利多销，换一种说法，就是你的价格低一点，其实如果你在做生意的过程中，信奉这个理念，说实话，你是自己把自己逼入价格战，</p><p>薄利多销，在曾经的商业环境里，是非常有效的，但是之前的商业环境是供小于求，以前很多行业做生意的人，不是特别多，而且那个时候，大家的贫富差距没有现在这么大。</p><p><img src="/pro/os/crawler/RUJQ-7RN7-BINE.jpg" alt="如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验"></p><p>做生意，首先要思考的就是你要把你的产品和服务，卖给谁？这些人就是你的目标客户。</p><p>现在的商业的发展，商家开始进行目标客户定位。也就是说，你要想清楚，你的产品或者服务是卖给谁的，如果你定位的是中高端人群，这个时候，你走所谓的薄利多销的路线，是显然不合适的。因为有钱人，在乎的是产品和服务的品质，和你能为他解决什么样的问题，而不是一味地考虑价格。</p><p>想象一下，如果现在的你，月薪是1万元，那我相信，正常情况下，低于500元以下的皮鞋，你是不太看得上眼的。对吧？</p><p><strong>所以，薄利多销的年代过去了，品质取胜的年代到来了。</strong></p><p>薄利多销，这4个字，在现代的商业环境里，可以说是误导了很多人。</p><p><strong>薄利多销，还有两个很多人没有注意的弊端：</strong></p><p>1、因为利润非常低，所以肯定没有好的售后服务，想像一下，我卖东西，一台机器只赚你30元钱，那么如果你在使用过程中，出现了问题，我在打车或者开车去，这其中的费用，只会让我的利润更低，甚至亏本。<strong>（所以说，没有利润，没有后续服务，就算有，也是一万个不愿意，草草对付。）</strong></p><p>2、如果长期没有利润,或者是微利时代，那么这个时候，商家就开始想尽一切办法开始节约成本，开始想怎么偷工减料，以次充好。这在很多行业里随处可以看见，装修行业，餐饮业、这些都属于重灾区。<strong>（所以，如果没有利润，商家一定会在各个环节进行吃、拿、卡、要、给消费者设下N多的圈套。）</strong></p><p>所以，各位朋友，当你开始选择一个生意或者项目的时候，尽可能不要去走所谓薄利多销的路线，时代已经变了，现在的人，追求的是个性化和品质化，尤其你的目标客户群体是85后，90后，95后，你千万不要想着用低价去虏获他们的心。</p><p>希望这篇文章对你有所帮助。<strong>当你有了自己的产品以后，你要先做的第一件事就是目标客户定位，有了这一步，才能谈如何包装？如何定价？而不是一上来，就是所谓的薄利多销。</strong></p><p><img src="/pro/os/crawler/BMEE-YF2U-UZBV.jpg" alt="如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验"></p><p>没有定位目标客户，那其它一切都是穷扯。</p><p>如果你对营销感兴趣，可以去看看我的之前的文章，相信你会有很大的收获。</p><p><strong>学营销，关注头条号：姜大鹏</strong></p><p><img src="/pro/os/crawler/ZEIR-AVQZ-IYYB.jpg" alt="如果你正在创业，或者准备创业，这篇文章会让你收获很多实战经验"></p><p>学营销，关注我；</p><ul><li><strong>原文作者：</strong> 姜大鹏</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570898930735776260/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570898930735776260/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;本文总计865字，阅读需要2分钟。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;各位朋友，大家好~&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/N6Z6-RAUY-BZEY.jpg&quot; alt=&quot;如果你正在创业，或者准备创业，这篇文章会让你收获很多实
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="创业" scheme="http://zhixingmei.ren/tags/%E5%88%9B%E4%B8%9A/"/>
+    
+      <category term="市场营销" scheme="http://zhixingmei.ren/tags/%E5%B8%82%E5%9C%BA%E8%90%A5%E9%94%80/"/>
+    
+      <category term="装修" scheme="http://zhixingmei.ren/tags/%E8%A3%85%E4%BF%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>移动端利用pdf.js实现在线预览pdf文档</title>
+    <link href="http://zhixingmei.ren/2018/06/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%88%A9%E7%94%A8pdf.js%E5%AE%9E%E7%8E%B0%E5%9C%A8%E7%BA%BF%E9%A2%84%E8%A7%88pdf%E6%96%87%E6%A1%A3%E7%81%AB%E5%88%B0%E6%B2%A1%E6%9C%8B%E5%8F%8B%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    <id>http://zhixingmei.ren/2018/06/26/移动端利用pdf.js实现在线预览pdf文档火到没朋友的大数据/</id>
+    <published>2018-06-26T07:38:01.000Z</published>
+    <updated>2018-07-05T12:26:31.584Z</updated>
+    
+    <content type="html"><![CDATA[<p>项目中要求在移动端实现在线预览pdf文件，通过一番折腾，最后选择用pdf.js实现。</p><p>1、下载pdf.js</p><p>官网地址：<a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener">https://mozilla.github.io/pdf.js/</a></p><p>2、各种配置</p><p>下载下来的文件包，就是一个demo，我们仿照这个demo做就可以啦</p><p>（1）页面元素如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button class=&quot;product-term to-clause&quot; id=&quot;noteDetail&quot;&gt;《投保须知》&lt;/button&gt;&lt;button class=&quot;to-clause&quot; id=&quot;clauseDetail&quot;&gt;《保险条款》&lt;/button&gt;</span><br></pre></td></tr></table></figure><p>（2）js代码如下：</p><p>$(‘#clauseDetail’).click(function () {</p><p>window.open(‘../viewer.html?file=xxx-clause.pdf’);</p><p>});</p><p>注意：viewer.html就是下载下来文件包中的那个viewer.html，在此html中需要引入viewer.css、</p><p>locale.properties、pdf.js和viewer.js。修改viewer.js中的以下代码：</p><p>var DEFAULT_URL = ‘compressed.tracemonkey-pldi-09.pdf’;修改为 var DEFAULT_URL = ‘’;</p><p>需要预览的pdf文件，就是<strong>window</strong>.open(<strong>‘../viewer.html?file=xxx-clause.pdf’</strong>);中的xxx-clause.pdf文件。注意：pdf文件需要和</p><p>viewer.html放在同一个目录下，如果不在同一个目录下，需修改路径。</p><p>通过以上的配置，就实现了在线预览pdf文件。</p><p><img src="/pro/os/crawler/MFRV-JMQQ-UFYE.jpg" alt="移动端利用pdf.js实现在线预览pdf文档"></p><ul><li><strong>原文作者：</strong> 火到没朋友的大数据</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6571294299474887176/" target="_blank" rel="noopener">https://www.toutiao.com/item/6571294299474887176/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;项目中要求在移动端实现在线预览pdf文件，通过一番折腾，最后选择用pdf.js实现。&lt;/p&gt;
+&lt;p&gt;1、下载pdf.js&lt;/p&gt;
+&lt;p&gt;官网地址：&lt;a href=&quot;https://mozilla.github.io/pdf.js/&quot; target=&quot;_blank&quot; rel=
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="HTML" scheme="http://zhixingmei.ren/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>作为产品团队的负责人，你的职责是？</title>
+    <link href="http://zhixingmei.ren/2018/06/25/%E4%BD%9C%E4%B8%BA%E4%BA%A7%E5%93%81%E5%9B%A2%E9%98%9F%E7%9A%84%E8%B4%9F%E8%B4%A3%E4%BA%BA%EF%BC%8C%E4%BD%A0%E7%9A%84%E8%81%8C%E8%B4%A3%E6%98%AF%EF%BC%9F%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    <id>http://zhixingmei.ren/2018/06/25/作为产品团队的负责人，你的职责是？人人都是产品经理/</id>
+    <published>2018-06-25T04:42:10.000Z</published>
+    <updated>2018-07-05T12:26:53.469Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>作为产品团队的负责人，你的工作内容和职责是哪些？一起来看看作者如何从“做事”和“做人”这两个角度拆解吧。</p></blockquote><p><img src="/pro/os/crawler/U7ZN-VQVJ-BZY3.jpg" alt="作为产品团队的负责人，你的职责是？"></p><p>基于经历，我的经验相对更适用于一个产品团队从0到1阶段，或者在一个即有成熟业务也有新业务的阶段。</p><p>关于产品团队负责人的职责，从如下两方面聊聊：</p><h2 id="一、做事"><a href="#一、做事" class="headerlink" title="一、做事"></a>一、做事</h2><p>在做事上，产品团队负责人的职责概括来说，可以总结为：作对的事并把事情做好。即保证定好的战略和方向能够正确、快速、有效的执行和达成。</p><h3 id="1-专业技能完善"><a href="#1-专业技能完善" class="headerlink" title="1.专业技能完善"></a>1.专业技能完善</h3><p>专业上的能力，是能够让团队有认同感的重要基础，以及把事情做对和做好的技能基础。</p><p>从产品经理的知识体系角度来看，产品团队负责人的专业技能重心，会更倾向于完善技能时间线早期的技能。</p><p>从常规的工作路径来说，大部分人是被放在一个自己还不完全胜任的岗位上，或者给一些比当前岗位要求更高的事情，看是否能达到岗位要求，一直到判断出这个人的上限为止。</p><p>所以在没有做产品团队负责人之前，不一定有合适的机会去做机会发现、机会验证、产品规划的事情，在成为团队负责人之后，至少应该在专业技能上把这块技能补充扎实。</p><h3 id="2-方向把握"><a href="#2-方向把握" class="headerlink" title="2. 方向把握"></a>2. 方向把握</h3><p>方向的把握更重要是做对的事情，以及根据对业务不同阶段的理解，调整重心。</p><p>公司的大方向大概率来自公司阶段性战略，根据产品团队负责人所处的阶段，在方向把握上职责可能包含下面两个部分或者只包含第二个部分。</p><ul><li>从大方向中选择赛道</li><li>从赛道中选择打法</li></ul><p>如果不是已经有了目标，那么产品团队负责人首先应该为产品找到目标，树立了目标，才能让整艘船朝着目标进发，以及为达到目标创造各种条件和加速器。</p><h3 id="3-确定工作重点"><a href="#3-确定工作重点" class="headerlink" title="3. 确定工作重点"></a>3. 确定工作重点</h3><p>确定重点主要用于把事做好这个目标上的效率，即业务当前产品工作中最重要的事情在哪几个方面。</p><p>基于重点来做人员和资源的调整，以及找到最佳的工作方法来落实重点，比如设立专项设立虚拟小组完成重点项目。</p><p>这个部分场景性和团队KPI相结合，工作重点会不可避免的朝KPI倾斜。</p><h3 id="4-参与执行重点环节，为结果负责"><a href="#4-参与执行重点环节，为结果负责" class="headerlink" title="4. 参与执行重点环节，为结果负责"></a>4. 参与执行重点环节，为结果负责</h3><p>工作重点和工作方法确定后，剩下就是需要保证结果尽可能达到预期或超过预期，团队负责人的角色是要参与重要环节，比如构建合理且高效的工作流程、做出核心取舍判断、参与关键评审、过程跟踪、及时问题发现和纠正问题、及时喊停等。</p><h2 id="二、用人"><a href="#二、用人" class="headerlink" title="二、用人"></a>二、用人</h2><p>用人是为了做事，发挥团队的力量，通过分工和合作，更好的达成产品目标，在这个过程中，保证团队成员随着产品发展而获得个人成长，达成个人和公司的双赢。</p><h3 id="1-人员规划和分工"><a href="#1-人员规划和分工" class="headerlink" title="1. 人员规划和分工"></a>1. 人员规划和分工</h3><p>根据当前目标和工作重心，确定团队的用人需求，即在年度或半年度规划的时候，确定业务重点、预计达成的目标、当前的人力状况来预估需要的人力，从而确定团队的需求。</p><p>同时根据业务计划，确定团队结构和人员分工。</p><h3 id="2-招人"><a href="#2-招人" class="headerlink" title="2. 招人"></a>2. 招人</h3><p>在一个快速发展的团队，招人是产品团队负责人的重要工作之一，一方面来自于业务发展带来的新需求，一方面是正常流动的补员需求。</p><h3 id="3-团队健康"><a href="#3-团队健康" class="headerlink" title="3. 团队健康"></a>3. 团队健康</h3><p>团队健康重点是指团队的梯队是否合理、工作安排是否恰当、团队氛围是否积极向上、个人成长与业务的结合是否合理等等。</p><h3 id="4-成员发展"><a href="#4-成员发展" class="headerlink" title="4. 成员发展"></a>4. 成员发展</h3><p>虽然成员发展可以归类于团队健康，不过我特意把成员发展单独列出来，因为我认为成员的发展是用人非常重要的一个环节。</p><p>一个团队的成员成长的好，一方面能让成员个人有更强的个人竞争力，另一方面在团队中所产出的价值就更高，成长起来的成员也能承担更多的责任。</p><p>在这个上面我认为至少有几点：</p><p><strong>合理的工作安排</strong></p><p>需要了解清楚团队成员的优势和弱项，结合上当前的工作阶段，安排合理的工作，在保障整体业务顺利的基础上，尽可能为成员提供可发挥优势和可完善弱项技能的工作内容，部分内容可稍高于当前所处阶段，从而形成一定的压力促成个人成长。</p><p><strong>明确的发展路径</strong></p><p>针对每个人理清发展路径并达成共识，让成员了解自己当前的优势和需要发展的方向，了解所做的工作中包含了和自己个人成长一致的工作，激发个人动力能更有效的促进个人发展和产生更好的结果。</p><p><strong>技能的专业指导</strong></p><p>通过mentor机制、产品评审会、分享会等等使团队成员获取足够多的成长的方向指导，以及具体的工作指导，从而逐步完善各种相关技能。</p><h3 id="5-人才盘点"><a href="#5-人才盘点" class="headerlink" title="5. 人才盘点"></a>5. 人才盘点</h3><p>隔一段时间盘点一下团队当前的状态，每个人的潜力和绩效、当前工作状态、稳定性、优势和缺点、是否有备份、提升的想法和思路、当前的问题等等，通过盘点让我们了解手头可用的资源、欠缺的资源，重要的问题等等。</p><h3 id="6-日常管理"><a href="#6-日常管理" class="headerlink" title="6. 日常管理"></a>6. 日常管理</h3><p>包含了薪酬福利、日常1on1、团队建设等等，此部分有太多可参考信息，不具体展开。</p><p>差不多就写到这里，有想到的以后再补。</p><p>（完）</p><p>本文由 @penddy 原创发布于人人都是产品经理。未经许可，禁止转载</p><p>题图来自 Unsplash ，基于 CC0 协议</p><ul><li><strong>原文作者：</strong> 人人都是产品经理</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570877899400806920/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570877899400806920/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;作为产品团队的负责人，你的工作内容和职责是哪些？一起来看看作者如何从“做事”和“做人”这两个角度拆解吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/U7ZN-VQVJ-BZY3.jpg&quot; alt=
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="职场" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E5%9C%BA/"/>
+    
+      <category term="产品经理" scheme="http://zhixingmei.ren/tags/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/"/>
+    
+      <category term="KPI" scheme="http://zhixingmei.ren/tags/KPI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>比转行更重要的，是培养你一直被需要的能力</title>
+    <link href="http://zhixingmei.ren/2018/06/25/%E6%AF%94%E8%BD%AC%E8%A1%8C%E6%9B%B4%E9%87%8D%E8%A6%81%E7%9A%84%EF%BC%8C%E6%98%AF%E5%9F%B9%E5%85%BB%E4%BD%A0%E4%B8%80%E7%9B%B4%E8%A2%AB%E9%9C%80%E8%A6%81%E7%9A%84%E8%83%BD%E5%8A%9B%E5%88%98%E4%BB%95%E7%A5%A5%E8%AE%B2%E7%94%9F%E6%B6%AF/"/>
+    <id>http://zhixingmei.ren/2018/06/25/比转行更重要的，是培养你一直被需要的能力刘仕祥讲生涯/</id>
+    <published>2018-06-25T01:32:10.000Z</published>
+    <updated>2018-07-05T12:26:47.340Z</updated>
+    
+    <content type="html"><![CDATA[<p>对大部分人来说，一旦职业发展出了问题，就会想着转行。这种思路是对的，毕竟树挪死，人挪活，不换可能会更差。但是，也有一些人把转行看做自己虚度的借口，反正做不好就转行跳槽。转行跳槽真的可以解决你的问题吗？未必。</p><p>前段时间，任泽平被聘为恒大的首席经济学家，年薪1500万。消息一出，引起各家媒体的疯狂评论。</p><p>我有一个做hr的朋友，看到这个消息，对我说，真后悔当初毕业的时候没有选择金融行业。但他很快又自嘲说，不过就算选择了金融行业，我也未必能够达到他这样的高度，拿到他这么高的水平。</p><p>是啊，对于大部分人来说，选择一份职业的第一标准，就是薪资。可是，并不是所有人都能够如愿地拿到自己想要的薪资。</p><p>毕竟，每个人的兴趣、能力、天赋、机遇都不一样，更重要的是，我们正面对着一个易变、不确定性、复杂和模糊的世界。</p><p>自古长江后浪推前浪，当你无法主动适应潮流，提前预判未来的趋势，你就会被潮流掩盖。</p><p>然而，优秀的人，从不惧怕变化，因为他们对变化了然于胸，有着自己坚定的目标和过强的能力、核心竞争力，不管周围的环境怎么变化，他们都能够镇定自若，从容面对，因为他们一直被需要。</p><p>很多人从事hr多年，突然发现hr不是他自己的兴趣，所以就想转行了。</p><p>其实，在现在这个快速发展的社会，转行未必能够更好地解决你的职业发展问题。</p><p>有一个hr朋友H，他刚毕业的时候，是做员工关系。工作了3年后，他发现自己的专业能力和其他综合能力都没有进步，而且在职位上也没有上升，所以，他决定转行做电销。电销做了1年，业绩一般，他又转行做了保险，现在做保险1年，业绩也没有起色。他感觉自己的职业发展遇到瓶颈了。</p><p>其实，H最大的问题是，他把转行当做了自己的救命稻草，却忽略了自己的能力培养。</p><p>不管是在哪个阶段，如果你的能力没有成长起来，那你可能随时会被职场抛弃，不管换什么行业，你都无法得到应有的尊重和成绩。并且随着年龄的增长，你会越来越被动。</p><p>所以，对于你来说，也许比转行更重要的，是培养你一直被需要的能力。</p><p>近几年，人工智能悄然兴起。</p><p>比如，2011年7月，富士康科技集团CEO郭台铭向外界宣布百万机器人计划，即未来几年年，将启用100万台机器人，用于单调、危险性强的工作，提高公司自动化水平和生产效率。</p><p>在各行各业，人工智能似乎都对某些岗位产生了威胁。</p><p>这些威胁体现在：你要么适应并利用，你要么被替代掉。</p><p>大部分行业都逃不过人工智能这个趋势。</p><p>韦莱滔悦人才与奖酬业务全球投资委员会董事总经理瑞文.杰苏萨森认为，我们应当意识到全职稳定工作既毫无意义又毫无必要。因为现在不再是学习——工作——退休，而是学习——工作——学习成为循环。原来30年一变的工作会变为5或10年一变。</p><p>毫无疑问，人工智能会取代掉很多岗位。但一些需要具备综合性的能力的岗位，它很难被人工智能取代掉。</p><p>比如对人力资源管理来说，同理心、关系管理、创新、沟通等综合能力非常重要。对业务本身也需要更多的理解，还要懂运营，至少从产品生产到运营所有过程中所涉及的工作都要了解些，便于工作效率的提升。</p><p>Hr这些特征，注定让其成为一个人工智能无法完全替代的行业。就像新闻行业，即使机器人进入了新闻业，它也无法将多个不同话题融在一起，写出高质量、引人入胜的故事情节。</p><p>管理是这个世界最复杂的命题。管理是科学，但更多的是艺术。同样的管理科学，放在不同的企业，可能它就无法发挥作用。这就是管理的智慧。而这些智慧，就是你一直被需要的能力，任何人都无可替代。</p><p>未来优秀职场人和普通职场人之间的差距，是如何通过自己的智慧，培养自己持续被需要的能力。只有这样，才能真正立于不败之地。</p><p>如何培养你一直被需要的能力呢？需要做到四点：</p><p>●选定一个适合你自己的领域，坚定地走下去。</p><p>我大学毕业后的第一份职业，是人力资源管理。在十年前，大部分的人对人力资源管理的认识还停留在人事管理阶段。</p><p>记得刚毕业前两年，当亲戚问我是做什么职业的时候，我说是做人力资源管理，他们不知道，但我说是人事的时候，他们上就说：“哦，是做后勤的！这个职业女孩子做更适合啊！比较稳定！”</p><p>因为别人对这个职业的偏见，加上工资低得可怜，我曾经想过转行。但后来想想，其实在欧美发达国家，人力资源部是一家企业最重要的部门之一，我相信以后在中国，人力资源部也会成一个重要的部门。</p><p>感兴趣、符合价值观、擅长这份职业，是我不顾别人说这份职业工资低、适合女孩子做，而坚持下来的根本原因。</p><p>有时人需要一点纯碎的职业信仰，这种职业信仰是相信自己可以通过这份职业获得自己想要的东西，从而让你坚定。</p><p>选定一个适合自己的领域，是你快速成长起来的第一步。</p><p>●要广度，也要深度。未来变化多端，掌握一项技能，可能不会让你具有安全感。对于你而言，如果能在核心技能之外获得更多发展，那你就能够创造更多的价值。我们鼓励你成为专家，但是成为专家固然重要，尤其是在你感兴趣、有激情的领域，但你也不要钻牛角尖，找到你的天赋优势，多学一些能够发挥你的优势的东西，在你力所能及的范围内成为一个全面发展的适应型人才。</p><p>●学会站在更高的层次管理自己。</p><p>大部分人最容易犯的错误，就是只管自己的三分五亩地。作为职场人，要懂得跳出自己的职责范围，考虑全局的业务逻辑关系，知道你自己的工作意味着什么，这样才能真正地实现你和企业共赢的局面。</p><p>●学会把知识变为能力。</p><p>能力和知识是相互促进的作用，但有知识不代表有能力。现在都在说知识变现，大家一拥而上，那些卖知识的人钱包变鼓了，可是你学了那么多知识，能力有变大吗？你确信自己的能力能够解决企业的问题吗？你能为企业带来改变吗？</p><p>未来，能够快速把知识变为能力的人，才是最有核心竞争力的人。</p><p>如今，互联网、人工智能已经进入到你的工作和生活，这些技术，也许会改变你的生活方式，但是你，既要有压力感，但你也有自己的底气，作为职场中聪明的个体，你也可以大声说：只要你一直被需要，那你终将不败。</p><ul><li><strong>原文作者：</strong> 刘仕祥讲生涯</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570828936547140109/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570828936547140109/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对大部分人来说，一旦职业发展出了问题，就会想着转行。这种思路是对的，毕竟树挪死，人挪活，不换可能会更差。但是，也有一些人把转行看做自己虚度的借口，反正做不好就转行跳槽。转行跳槽真的可以解决你的问题吗？未必。&lt;/p&gt;
+&lt;p&gt;前段时间，任泽平被聘为恒大的首席经济学家，年薪150
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="人工智能" scheme="http://zhixingmei.ren/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="大学" scheme="http://zhixingmei.ren/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="机器人" scheme="http://zhixingmei.ren/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    
+      <category term="瑞文" scheme="http://zhixingmei.ren/tags/%E7%91%9E%E6%96%87/"/>
+    
+      <category term="金融" scheme="http://zhixingmei.ren/tags/%E9%87%91%E8%9E%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>把一个人活成一个公司，你就不迷茫了</title>
+    <link href="http://zhixingmei.ren/2018/06/24/%E6%8A%8A%E4%B8%80%E4%B8%AA%E4%BA%BA%E6%B4%BB%E6%88%90%E4%B8%80%E4%B8%AA%E5%85%AC%E5%8F%B8%EF%BC%8C%E4%BD%A0%E5%B0%B1%E4%B8%8D%E8%BF%B7%E8%8C%AB%E4%BA%86%E5%95%86%E7%95%8C%E6%9D%82%E5%BF%97/"/>
+    <id>http://zhixingmei.ren/2018/06/24/把一个人活成一个公司，你就不迷茫了商界杂志/</id>
+    <published>2018-06-24T11:11:52.000Z</published>
+    <updated>2018-07-05T12:26:49.766Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/pro/os/crawler/JZJM-FJN3-QM63.gif" alt="把一个人活成一个公司，你就不迷茫了"></p><p>个人的难题，其实也是公司的难题：需要找到存在价值，找到安身立命之本，需要遵循一定的规则，需要嵌入在社会大环境中……我们可以很客观地看待一个公司的发展，却很难清醒地审视自己。</p><p><img src="/pro/os/crawler/FAMJ-RBIB-IV73.jpg" alt="把一个人活成一个公司，你就不迷茫了"></p><p>文 | 顽童00</p><p>来源 | 中欧商业评论（ceibs-cbr）</p><p>●工作几年了，好像看不到未来的方向，怎么办？</p><p>●准备毕业了，工作还没有着落，怎么办？</p><p>●想跳槽，想转型，不知道从何着手？</p><p>●人为什么要成长？人怎样成长？</p><p>●中年危机，怎么应对？</p><p>……</p><p>这样的问题，看着就生出焦虑。</p><p>个人的难题，其实也是公司的难题。我们可以很客观地看待一个公司的发展，却很难清醒地审视自己。个人成长中的大部分问题，很难通过个人的视角去想清楚。所以，让我们试着强制转换一个视角，重新审视这些烦人的问题。</p><p><strong>公司跟个人其实很像：需要找到存在价值，找到安身立命之本，需要遵循一定的规则，需要嵌入在社会大环境中。</strong>为什么有的公司成功，百年不倒，很多公司则熬不过一年。为什么有的人笃定踏实，有的人风风火火，到头来有的人收获智慧和幸福，有的人终生跟自己和全世界都过不去。</p><p>把一个人比作一个公司，你可能就不会那么迷茫了。</p><p><strong>壹</strong></p><p><strong>做生意和过生活的本质</strong></p><p>这半年的创业经历，让我意识到，做生意和过生活的本质，其实是一样一样的，就是八个字：</p><p><strong>价值生产，资源配置</strong></p><p>公司只要在这八个字上，哪怕出现小到小数点后四位的问题，都会面临危机。作为个人，我们又是如何对待这八个字（可以换成 “意义追逐，精力分配”）的呢？</p><p>大部分人都会把钱作为最重要的资源，因为它直接影响生存和生活质量。我们用工作获得报酬，我们会去理财，学习资产配置。</p><p>等一等，这里好像有一个坑：<strong>钱到底是资源，还是消耗？</strong></p><p>这就是最常见的金钱误区：你是用钱来投资/再生产，以获取更大的回报呢，还是只用它来购买和消费——用完就用完了，无法增值，这跟一次性筷子没有区别啊！如果目的仅仅是挣钱来花，来应付生活开销，那么钱根本不是资源，更别说做好资源配置了。</p><p>真正高价值的资源配置，往往被忽视：</p><p>●时间如何利用</p><p>●注意力放在哪里</p><p>●精力怎么分配</p><p>●最高阶的能量——爱，何处安放？</p><p>我们可能不是资源配置的好手，那么价值生产呢？</p><p>不得不说，<strong>大多数人容易被工作折磨成为一个厌恶价值生产的人，因而也容易忽视自己的价值生产能力。</strong>因为已经形成 “工作 = 疲累” 习得性绝望：因为要花钱，要买房买车娶老婆，不得不任劳任怨忍辱负重地好好工作。这真是一个黑得不见边际的坑啊！</p><p>让我们重新来看看花钱和挣钱这两件事的边界到底在哪里。</p><p>比如，你每个月花四分之一的工资在美妆上面。这件事可以有几种做法：</p><p>●抹完就抹完了，没有任何感受</p><p>●抹完以后整个人都好了，因为自我感觉良好，每天的状态都不错</p><p>●抹完以后换了一个人（脸），找了配一脸的蓝/铝票，从此过上幸糊生活</p><p>●抹完以后写出超专业的产品测评，成为时尚博主，每天无暇回复粉丝提问，干脆自己卖</p><p>●抹完以后不但对所有产品如数家珍，而且非常了解其他消费者的需求和心理，而且跟不少品牌有合作，于是开了一个美妆社区，然后开了一个公司……</p><p>这个例子有点极端，但基本上说清楚了消费和投资的区别。它们的区别，其实比我们想象中要小：任何的消费，都可以转变为生产的行为。买了一个无人机，不用的时候租出去；看了一场剧，写一篇剧评；去一次旅行，写出优质的游记或者组团代购……这些都是把纯消费变为具有生产属性的例子。</p><p>想过好日子，更多精力还是要放在价值生产上面。我们继续以公司视角来琢磨琢磨。</p><p><strong>贰</strong></p><p><strong>价值观驱动价值生产</strong></p><p>怎样能够生产更多？这是每个公司会问的问题。</p><p>有一个技巧回答关于 How 的问题，就是去问问 “Why”。</p><p>一个人怎样可以更有钱？不是直接告诉他怎么挣钱，而是让他对财富，有灼人的欲望。如果马云把公司使命定义为“最好的电商平台”，而不是神马“让天下没有难做的生意”、“创造新的财富文明”，那阿里巴巴一定不会这么有“钱”。</p><p><strong>为什么人会迷茫？为什么公司会发展不起来？首要原因还是发动机软得像棉花糖——价值观不清晰，底层动机缺失。</strong></p><p>如果你是一个把“冒险”看得比“优雅”重要的人，就不会去做一些温吞精致的事情。如果你是一个觉得“乐趣”优于“成就”的人，就不一定会在看似已经有“成就”的平台获得“成就”。</p><p>好了，如果我没有明确的价值观怎么办？</p><p>没关系，大部分人都不明确。<strong>价值观需要长时间的打磨。</strong>好消息是，每一天、每一件事、每一个有意识的想法，其实都在帮助我们塑造价值观，去留意它们，让自己的意识和肉身都参与其中。慢慢地，你会知道哪些信息会天然地吸引你，哪些书看着不累，哪些人很想结交，哪些事情做起来就是开心。</p><p>比如说，我相信规律比规则重要，美比规律重要，好玩比美重要，而好玩造就了多样性。相信这样的价值观，可能会总是抓不住重点，可能没法被主流认可，可能需要面对最终一事无成的尴尬……但没办法，我就是（让自己越来越）信啊。</p><p><strong>叁</strong></p><p><strong>不能把出厂设置当成商业模式</strong></p><p><strong>什么是出厂设置？就是那些下意识的观念和行为，未经检验的想法。</strong>最大的“厂”，是家庭和学校；最经典的出厂设置，就是吃饭睡觉打豆豆、工作结婚养小孩。</p><p><img src="/pro/os/crawler/URAU-UVEA-UZB3.jpg" alt="把一个人活成一个公司，你就不迷茫了"></p><p><strong>什么是商业模式？就是公司和个人在价值观驱动下持续生产价值的运作方式。</strong></p><p>打卡上班是最常见的个人工作模式，它的本质是用时间换取生存和发展的资源。但是，时间难道不是最宝贵的资源？机会成本如何计算？投入产出是不是合算？</p><p>工作本身没有问题，问题出在换取资源后，我们都做了什么？无视它，消费它，还是用在刀刃上？（好讨厌，刀刃到底在哪里）</p><p>个人成长和公司扩张也非常相像。为什么有的人成长快？先想想为什么有的公司成长快：</p><p>●在风口上，顺势而为</p><p>●使命驱动，目标聚焦</p><p>●模式正确，不断加强核心竞争力（正向商业循环，是价值和核心竞争力的双循环）</p><p>●执行力</p><p>那么个人：</p><p>●与时俱进，身处趋势产业和平台焦点</p><p>●清楚自己要什么、什么不重要</p><p>●资源配置合理，正向积累</p><p>●行动力</p><p>说到底，商业比拼，拼的还是商业模式。个体的难题，难在探索个性化的模式。</p><p>这里就不再啰嗦了，填一填商业模式画布吧：</p><p><img src="/pro/os/crawler/Y3QA-RNAQ-BMR2.jpg" alt="把一个人活成一个公司，你就不迷茫了"></p><p><strong>肆</strong></p><p><strong>扮演好生态角色</strong></p><p>在所有信息、物品、人、公司、国家、星球都在密切连接的今天，必需拥有网络和生态的视角。</p><p>●作为一个公司，在产业链扮演什么角色，怎样跟其他公司建立联系，怎样合作。</p><p>●作为个人，在家庭中、在不同的社会群体中扮演什么角色，怎样发挥价值，怎样合作和交换。</p><p>在一切跟一切连接的时代，公司和个人的危机，可能来自所处圈层单一，而且角色边缘化。如果仅仅是角色边缘化其实还好，只要圈层多样，边缘反而可能意味着成为社群之间的桥梁，做到跨界，形成结构洞。</p><p><strong>伍</strong></p><p><strong>先想后做还是先做后想</strong></p><p>总结一下，从公司角度审视个人成长，有几个要点：</p><p>●打磨价值观</p><p>●建立能加强核心竞争力的模式</p><p>●价值生产，资源配置</p><p>●扮演好生态角色</p><p>然后，你开始去打磨价值观，去规划个人的模式，去获取资源，投入生产…… 抱歉，事情不是这样运作的。我们之所以一次又一次发问而达不到解答，一次一次受困于完美规划无法实行，也来自这种错误的“因果顺序迷思”。</p><p><strong>价值观和模式都无法凭空设计。人的起点，只能是也必需是直观的感受和行动：</strong>先去做能做的事情 → 获得肯定和资源 → 调整为做更贴近价值观的事情 → 获取更多反馈和资源 → 投入再生产 —— 没错，就是资本主义的路子。</p><p><img src="/pro/os/crawler/REJI-AVMM-F2EM.jpg" alt="把一个人活成一个公司，你就不迷茫了"></p><p>不是先规划后生产，而是先生产再调整。</p><p>说了差不多 1.5k 字的废话，而关于迷茫的答案只有一个字：</p><p><strong>做！</strong></p><p>版权声明｜图文来源：转载公号｜如转载图文涉及版权等问题，请与《商界》杂志后台联系以奉稿酬。</p><ul><li><strong>原文作者：</strong> 商界杂志</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570607236542890509/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570607236542890509/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/pro/os/crawler/JZJM-FJN3-QM63.gif&quot; alt=&quot;把一个人活成一个公司，你就不迷茫了&quot;&gt;&lt;/p&gt;
+&lt;p&gt;个人的难题，其实也是公司的难题：需要找到存在价值，找到安身立命之本，需要遵循一定的规则，需要嵌入在社会大环境中……我们
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="创业" scheme="http://zhixingmei.ren/tags/%E5%88%9B%E4%B8%9A/"/>
     
       <category term="美文" scheme="http://zhixingmei.ren/tags/%E7%BE%8E%E6%96%87/"/>
     
+      <category term="投资" scheme="http://zhixingmei.ren/tags/%E6%8A%95%E8%B5%84/"/>
+    
+      <category term="旅行" scheme="http://zhixingmei.ren/tags/%E6%97%85%E8%A1%8C/"/>
+    
   </entry>
   
   <entry>
-    <title>微信小程序 开发简易情绪音乐播放器</title>
-    <link href="http://zhixingmei.ren/2016/09/30/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20%E5%BC%80%E5%8F%91%E7%AE%80%E6%98%93%E6%83%85%E7%BB%AA%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8xiaohan1990718/"/>
-    <id>http://zhixingmei.ren/2016/09/30/微信小程序 开发简易情绪音乐播放器xiaohan1990718/</id>
-    <published>2016-09-30T06:53:13.000Z</published>
-    <updated>2018-07-02T07:57:16.442Z</updated>
+    <title>JAVA前后端实现WebSocket消息推送（针对性推送）</title>
+    <link href="http://zhixingmei.ren/2018/06/24/JAVA%E5%89%8D%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0WebSocket%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81%EF%BC%88%E9%92%88%E5%AF%B9%E6%80%A7%E6%8E%A8%E9%80%81%EF%BC%89%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B0%8F%E6%96%B0%E4%BA%BA%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://zhixingmei.ren/2018/06/24/JAVA前后端实现WebSocket消息推送（针对性推送）程序员小新人学习/</id>
+    <published>2018-06-24T03:47:11.000Z</published>
+    <updated>2018-07-05T13:42:49.067Z</updated>
     
-    <content type="html"><![CDATA[<p>时间原因，写简单粗暴点(几年不写<strong>生疏了</strong>)：</p><p>一、微信小程序 - 微信web开发工具 下载</p><p>二、新建项目 具体教程详见： <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/?t=1475052048858" target="_blank" rel="noopener"> 微信小程序API</a></p><p>三、这里直接更改index包下资源 :</p><p>第一步 UI 绘制</p><p>修改index.wxml + index.wxss</p><p>第二部 JS 控制<br>修改 index.js</p><p>使用到的API :</p><p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html?t=1475052055756" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html?t=1475052055756</a></p><p>1、微信小程序API - 框架 - 视图层 - WXML - 数据绑定、条件渲染、事件</p><p>2、WXSS 其中这个版本暂未适配 请依照官方推荐</p><p>3、组件 : view、text、loading、image</p><p>四、界面截图</p><p><img src="/pro/os/crawler/FUFY-QYZF-MQYM.jpg" alt="FUFY-QYZF-MQYM.jpg"></p><p>五、<a href="http://download.csdn.net/detail/xiaohan1990718/9643957" target="_blank" rel="noopener">下载地址</a></p><p>六、v0.0.3 完整版 完成后 将会发布到 github ，<a href="https://github.com/hank583746309/wmusic" target="_blank" rel="noopener">访问地址</a></p>]]></content>
+    <content type="html"><![CDATA[<p>1、需要添加依赖包，在pom.xml文件中添加</p><p><strong>[java]</strong> view plain copy</p><ol><li></li><li><dependency></dependency></li><li><groupid>javax</groupid></li><li><artifactid>javaee-api</artifactid></li><li><span style="white-space:pre;"> </span><version>7.0</version></li><li><span style="white-space:pre;"> </span><scope>provided</scope></li><li></li></ol><p>2、客户端代码在这里我为了做成httpsession登录后是同一个，所以我做成两个页面，一个登录跳转页面，一个用于链接WebSocket接收消息</p><p>a.登录页面</p><p><strong>[html]</strong> view plain copy</p><ol><li>&lt;!DOCTYPE html<strong>&gt;</strong></li><li><strong><html></html></strong></li><li></li><li><strong><head></head></strong></li><li><strong>&lt;meta</strong> charset=”UTF-8”<strong>&gt;</strong></li><li><strong><title></title></strong>WebSocket<strong></strong></li><li><strong>&lt;script</strong> src=”js/jquery-1.8.3.min.js”<strong>&gt;</strong></li><li><strong>&lt;script</strong> type=”text/javascript”<strong>&gt;</strong></li><li>function dl() {</li><li>$.ajax({</li><li>xhrFields: {</li><li>withCredentials: true</li><li>},</li><li>type:”get”,</li><li>url:”<a href="http://localhost:8080/cloudmgr/api/login?user=ppp&quot;" target="_blank" rel="noopener">http://localhost:8080/cloudmgr/api/login?user=ppp&quot;</a>,</li><li>});</li><li>}</li><li><strong></strong></li><li><strong></strong></li><li></li><li><strong><body></body></strong></li><li><strong>&lt;input</strong> type=”button” value=”登录” onclick=”dl()” <strong>/&gt;</strong></li><li><strong>&lt;a</strong> href=”login.html”<strong>&gt;</strong>tiaozhuan<strong></strong></li><li><strong></strong></li><li></li><li><strong></strong></li></ol><p>b.接收消息推送页面</p><p><strong>[html]</strong> view plain copy</p><ol><li>&lt;!DOCTYPE html<strong>&gt;</strong></li><li><strong><html></html></strong></li><li></li><li><strong><head></head></strong></li><li><strong>&lt;meta</strong> charset=”UTF-8”<strong>&gt;</strong></li><li><strong><title></title></strong>WebSocket<strong></strong></li><li><strong>&lt;script</strong> src=”js/jquery-1.8.3.min.js”<strong>&gt;</strong></li><li><strong>&lt;script</strong> type=”text/javascript”<strong>&gt;</strong></li><li>var ws = null;</li><li>//判断当前浏览器是否支持WebSocket</li><li>if(‘WebSocket’ in window) {</li><li>ws = new WebSocket(“ws://localhost:8080/cloudmgr/chat”);</li><li>} else {</li><li>alert(‘当前浏览器 Not support websocket’)</li><li>}</li><li>/*</li><li>*监听三种状态的变化js会回调</li><li>*/</li><li>ws.onopen = function(message) {</li><li>// 连接回调</li><li>};</li><li>ws.onclose = function(message) {</li><li>// 断开连接回调</li><li>};</li><li>ws.onmessage = function(message) {</li><li>// 消息监听</li><li>showMessage(message.data);</li><li>};</li><li>//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。</li><li>window.onbeforeunload = function() {</li><li>ws.close();</li><li>};</li><li>//关闭连接</li><li>function closeWebSocket() {</li><li>ws.close();</li><li>}</li><li>//发送消息</li><li>function send() {</li><li></li><li>var input = document.getElementById(“msg”);</li><li>var text = input.value;</li><li></li><li>// 消息体JSON 对象 对应JAVA 的 Msg对象</li><li>var data = {</li><li>// 定点发送给其他用户的userId</li><li>toUid: “3d535429-5fcb-4490-bcf7-96fd84bb17b6”,</li><li>data: text</li><li>}</li><li></li><li>ws.send(JSON.stringify(data));</li><li>input.value = “”;</li><li>}</li><li></li><li>function showMessage(message) {</li><li>/*var text = document.createTextNode(JSON.parse(message).data);</li><li>var br = document.createElement(“br”)</li><li>var div = document.getElementById(“showChatMessage”);</li><li>div.appendChild(text);</li><li>div.appendChild(br);*/</li><li>var text = document.createTextNode(message);</li><li>document.getElementById(“showText”).appendChild(text);</li><li></li><li>}</li><li><strong></strong></li><li><strong></strong></li><li></li><li><strong><body></body></strong></li><li><strong><div></div></strong></li><li><strong>&lt;style</strong>style=”width: 600px; height: 240px; overflow-y: auto; border: 1px solid #333;” id=”show”<strong>&gt;</strong></li><li><strong>&lt;div</strong> id=”showChatMessage”<strong>&gt;</strong></li><li><strong>&lt;div</strong> id=”showText”<strong>/&gt;</strong></li><li><strong>&lt;input</strong> type=”text” size=”80” id=”msg” name=”msg” placeholder=”输入聊天内容” <strong>/&gt;</strong></li><li><strong>&lt;input</strong> type=”button” value=”发送” id=”sendBn” name=”sendBn” onclick=”send()”<strong>&gt;</strong></li><li><strong></strong></li><li><strong></strong></li><li></li><li><strong></strong></li></ol><p>3、关于后端代码这边事由4个文件</p><p>一个通用msg文件、一个用于获取当前会话的httpsession、一个用监听有没有httpsession（没有则创建）、一个用于WebSocket链接和发送消息</p><p>a.通用msg文件</p><p><strong>[java]</strong> view plain copy</p><ol><li><strong>package</strong> com.boli.srcoin.websocket;</li><li></li><li><strong>import</strong> java.util.Date;</li><li></li><li>/**</li><li>* @author : admin<br></li><li>* @DESC : <p>WebSocket消息模型</p><br></li><li>*/</li><li><strong>public</strong> <strong>class</strong> Msg {</li><li></li><li>// 推送人ID</li><li><strong>private</strong> String fromUid;</li><li></li><li>// 定点推送人ID</li><li><strong>private</strong> String toUid;</li><li></li><li>// 定点推送单位ID</li><li><strong>private</strong> String toOrgId;</li><li></li><li>// 消息体</li><li><strong>private</strong> String data;</li><li></li><li>// 推送时间</li><li><strong>private</strong> Date createDate = <strong>new</strong> Date();</li><li></li><li>// 消息状态</li><li><strong>private</strong> Integer flag;</li><li></li><li><strong>public</strong> Msg() {</li><li></li><li>}</li><li></li><li><strong>public</strong> Msg(String fromUid, String toUid, String toOrgId, String data, Date createDate, Integer flag) {</li><li><strong>this</strong>.fromUid = fromUid;</li><li><strong>this</strong>.toUid = toUid;</li><li><strong>this</strong>.toOrgId = toOrgId;</li><li><strong>this</strong>.data = data;</li><li><strong>this</strong>.createDate = createDate;</li><li><strong>this</strong>.flag = flag;</li><li>}</li><li></li><li><strong>public</strong> String getFromUid() {</li><li><strong>return</strong> fromUid;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setFromUid(String fromUid) {</li><li><strong>this</strong>.fromUid = fromUid;</li><li>}</li><li></li><li><strong>public</strong> String getToUid() {</li><li><strong>return</strong> toUid;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setToUid(String toUid) {</li><li><strong>this</strong>.toUid = toUid;</li><li>}</li><li></li><li><strong>public</strong> String getToOrgId() {</li><li><strong>return</strong> toOrgId;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setToOrgId(String toOrgId) {</li><li><strong>this</strong>.toOrgId = toOrgId;</li><li>}</li><li></li><li><strong>public</strong> String getData() {</li><li><strong>return</strong> data;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setData(String data) {</li><li><strong>this</strong>.data = data;</li><li>}</li><li></li><li><strong>public</strong> Date getCreateDate() {</li><li><strong>return</strong> createDate;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setCreateDate(Date createDate) {</li><li><strong>this</strong>.createDate = createDate;</li><li>}</li><li></li><li><strong>public</strong> Integer getFlag() {</li><li><strong>return</strong> flag;</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> setFlag(Integer flag) {</li><li><strong>this</strong>.flag = flag;</li><li>}</li><li></li><li>@Override</li><li><strong>public</strong> String toString() {</li><li><strong>return</strong> “Msg{“ +</li><li>“fromUid=’” + fromUid + ‘’’ +</li><li>“, toUid=’” + toUid + ‘’’ +</li><li>“, toOrgId=’” + toOrgId + ‘’’ +</li><li>“, data=’” + data + ‘’’ +</li><li>“, createDate=” + createDate +</li><li>“, flag=” + flag +</li><li>‘}‘;</li><li>}</li><li>}</li></ol><p>b.用于在WebSocket或去httpsession</p><p><strong>[java]</strong> view plain copy</p><ol><li><strong>package</strong> com.boli.srcoin.websocket;</li><li></li><li><strong>import</strong> javax.servlet.http.HttpSession;</li><li><strong>import</strong> javax.websocket.HandshakeResponse;</li><li><strong>import</strong> javax.websocket.server.HandshakeRequest;</li><li><strong>import</strong> javax.websocket.server.ServerEndpointConfig;</li><li><strong>import</strong> javax.websocket.server.ServerEndpointConfig.Configurator;</li><li></li><li>/**</li><li>* @author : admin<br></li><li>* @DESC : <p>讲http request的session 存入websocket的session内</p><br></li><li>*/</li><li><strong>public</strong> <strong>class</strong> HttpSessionConfigurator <strong>extends</strong> Configurator {</li><li></li><li>@Override</li><li><strong>public</strong> <strong>void</strong> modifyHandshake(ServerEndpointConfig sec,</li><li>HandshakeRequest request, HandshakeResponse response) {</li><li></li><li>// 获取当前Http连接的session</li><li>HttpSession httpSession = (HttpSession) request.getHttpSession();</li><li>// 将http session信息注入websocket session</li><li>sec.getUserProperties().put(HttpSession.<strong>class</strong>.getName(), httpSession);</li><li>}</li><li>}</li></ol><p>c.用于监听有没有httpsession，没有则创建</p><p><strong>[java]</strong> view plain copy</p><ol><li><strong>package</strong> com.boli.srcoin.websocket;</li><li></li><li><strong>import</strong> javax.servlet.ServletRequestEvent;</li><li><strong>import</strong> javax.servlet.ServletRequestListener;</li><li><strong>import</strong> javax.servlet.annotation.WebListener;</li><li><strong>import</strong> javax.servlet.http.HttpServletRequest;</li><li></li><li>@WebListener</li><li><strong>public</strong> <strong>class</strong> RequestListener <strong>implements</strong> ServletRequestListener {</li><li></li><li><strong>public</strong> <strong>void</strong> requestInitialized(ServletRequestEvent sre) {</li><li>//将所有request请求都携带上httpSession</li><li>((HttpServletRequest) sre.getServletRequest()).getSession();</li><li></li><li>}</li><li><strong>public</strong> RequestListener() {</li><li>// TODO Auto-generated constructor stub</li><li>}</li><li></li><li><strong>public</strong> <strong>void</strong> requestDestroyed(ServletRequestEvent arg0) {</li><li>// TODO Auto-generated method stub</li><li>}</li><li>}</li></ol><p>d.接收WebSocket链接和发送消息<strong>[java]</strong> view plain copy</p><ol><li><strong>package</strong> com.boli.srcoin.websocket;</li><li></li><li><strong>import</strong> com.alibaba.fastjson.JSON;</li><li><strong>import</strong> org.apache.commons.lang.StringUtils;</li><li><strong>import</strong> org.apache.log4j.Logger;</li><li></li><li><strong>import</strong> javax.servlet.http.HttpSession;</li><li><strong>import</strong> javax.websocket.*;</li><li><strong>import</strong> javax.websocket.server.ServerEndpoint;</li><li><strong>import</strong> java.io.IOException;</li><li><strong>import</strong> java.util.concurrent.ConcurrentHashMap;</li><li><strong>import</strong> java.util.concurrent.ConcurrentMap;</li><li></li><li>/**</li><li>* @author : admin<br></li><li>* @DESC : <p>注解{@link ServerEndpoint}声明websocket 服务端</p><br></li><li>*/</li><li>@ServerEndpoint(value = “/chat”, configurator = HttpSessionConfigurator.<strong>class</strong>)</li><li><strong>public</strong> <strong>class</strong> WSServer {</li><li></li><li><strong>static</strong> <strong>private</strong> Logger logger = Logger.getLogger(WSServer.<strong>class</strong>);</li><li></li><li>// 在线人数 线程安全</li><li><strong>private</strong> <strong>static</strong> <strong>int</strong> onlineCount = 0;</li><li></li><li>// 连接集合 userId =&gt; server 键值对 线程安全</li><li><strong>static</strong> <strong>public</strong> <strong>final</strong> ConcurrentMap&lt;String, WSServer&gt; map = <strong>new</strong> ConcurrentHashMap&lt;&gt;();</li><li></li><li>// 与某个客户端的连接会话，需要通过它来给客户端发送数据</li><li><strong>private</strong> Session session;</li><li></li><li>// 当前会话的httpsession</li><li><strong>private</strong> HttpSession httpSession;</li><li></li><li></li><li>/**</li><li>* @param session websocket连接sesson</li><li>* @param config {@link com.github.websocket.configuration.HttpSessionConfigurator}</li><li>* @DESC <p>注解{@link OnOpen} 声明客户端连接进入的方法</p></li><li>*/</li><li>@OnOpen</li><li><strong>public</strong> <strong>void</strong> onOpen(Session session, EndpointConfig config) {</li><li></li><li>// 得到httpSession</li><li><strong>this</strong>.httpSession = (HttpSession) config.getUserProperties().get(HttpSession.<strong>class</strong>.getName());</li><li></li><li>// 获取session对象 SObject(这个就是java web登入后的保存的session对象，此处为用户信息，包含了userId)</li><li>String user = (String) <strong>this</strong>.httpSession.getAttribute(“user”);</li><li></li><li><strong>this</strong>.session = session;</li><li>System.out.println(user+”——-“+<strong>this</strong>.session.getId());</li><li></li><li>//针对一个用户只能有一个链接</li><li><strong>if</strong>(map.get(user)!=<strong>null</strong>){</li><li>// 移除连接</li><li>map.remove(user);</li><li>// 连接数-1</li><li>subOnlineCount();</li><li>}</li><li></li><li>// 将连接session对象存入map</li><li>map.put(user, <strong>this</strong>);</li><li></li><li>// 连接数+1</li><li>addOnlineCount();</li><li></li><li>logger.info(“有新的连接，当前连接数为：” + getOnlineCount());</li><li>}</li><li></li><li></li><li>/**</li><li>* <p>{@link OnClose} 关闭连接</p></li><li>*/</li><li>@OnClose</li><li><strong>public</strong> <strong>void</strong> onClose() {</li><li></li><li>/**</li><li>* 获取当前连接信息 {@code CommonConstant.USER_LOGIN_SESSION} 为Http session 名</li><li>*/</li><li></li><li>String user = (String) <strong>this</strong>.httpSession.getAttribute(“user”);</li><li></li><li>// 移除连接</li><li>map.remove(user);</li><li></li><li>// 连接数-1</li><li>subOnlineCount();</li><li></li><li>logger.info(“有一连接断开，当前连接数为：” + getOnlineCount());</li><li>}</li><li></li><li>/**</li><li>* <p>{@link OnMessage} 消息监听处理方法</p></li><li>*</li><li>* @param message 消息对象{@link com.github.websocket.msg.Msg}的JSON对象</li><li>* @throws IOException 异常</li><li>*/</li><li>@OnMessage</li><li><strong>public</strong> <strong>void</strong> onMessage(String message) <strong>throws</strong> IOException {</li><li></li><li>// 将消息转Msg对象</li><li>Msg msg = JSON.parseObject(message, Msg.<strong>class</strong>);</li><li></li><li>//TODO 可以对msg做些处理…</li><li></li><li>// 根据Msg消息对象获取定点发送人的userId</li><li>WSServer _client = map.get(msg.getToUid());</li><li></li><li>// 定点发送</li><li><strong>if</strong> (StringUtils.isNotEmpty(msg.getToUid())) {</li><li><strong>if</strong> (<strong>null</strong> != _client) {</li><li>// 是否连接判断</li><li><strong>if</strong> (_client.session.isOpen())</li><li>// 消息发送</li><li>_client.session.getBasicRemote().sendText(JSON.toJSONString(msg));</li><li>}</li><li>}</li><li></li><li>// 群发</li><li><strong>if</strong> (StringUtils.isEmpty(msg.getToUid())) {</li><li>// 群发已连接用户</li><li><strong>for</strong> (WSServer client : map.values()) {</li><li>client.session.getBasicRemote().sendText(JSON.toJSONString(msg));</li><li>}</li><li>}</li><li></li><li>}</li><li></li><li>/**</li><li>* <p>{@link OnError} websocket系统异常处理</p></li><li>*</li><li>* @param t 异常</li><li>*/</li><li>@OnError</li><li><strong>public</strong> <strong>void</strong> onError(Throwable t) {</li><li>logger.error(t);</li><li>t.printStackTrace();</li><li>}</li><li></li><li>/**</li><li>* <p>系统主动推送 这是个静态方法在web启动后可在程序的其他合适的地方和时间调用，这就实现了系统的主动推送</p></li><li>*</li><li>* @param msg 消息对象{@link com.github.websocket.msg.Msg}的JSON对象</li><li>*/</li><li><strong>static</strong></li><li><strong>public</strong> <strong>void</strong> pushBySys(Msg msg) {</li><li></li><li>//TODO 也可以实现定点推送</li><li>//msg传输的时候会带上需要发送消息给谁msg.getToUid()</li><li>//通过map去获取那个用户所在的session</li><li>WSServer ws=map.get(msg.getToUid());</li><li><strong>try</strong> {</li><li><strong>if</strong>(ws!=<strong>null</strong>){</li><li>ws.session.getBasicRemote().sendText(“123456”);</li><li>}</li><li>} <strong>catch</strong> (IOException e1) {</li><li>e1.printStackTrace();</li><li>}</li><li></li><li>// 群发</li><li>/*for (WSServer client : map.values()) {</li><li>try {</li><li>client.session.getBasicRemote().sendText(JSON.toJSONString(msg));</li><li>} catch (IOException e) {</li><li>e.printStackTrace();</li><li>}</li><li>}*/</li><li>}</li><li></li><li>// 获取连接数</li><li><strong>private</strong> <strong>static</strong> <strong>synchronized</strong> <strong>int</strong> getOnlineCount() {</li><li><strong>return</strong> WSServer.onlineCount;</li><li>}</li><li></li><li>// 增加连接数</li><li><strong>private</strong> <strong>static</strong> <strong>synchronized</strong> <strong>void</strong> addOnlineCount() {</li><li>WSServer.onlineCount++;</li><li>}</li><li></li><li>// 减少连接数</li><li><strong>private</strong> <strong>static</strong> <strong>synchronized</strong> <strong>void</strong> subOnlineCount() {</li><li>WSServer.onlineCount–;</li><li>}</li><li></li><li>}</li></ol><p>4、在后端的调用，也就是登录和调用发送消息</p><p><strong>[java]</strong> view plain copy</p><ol><li><strong>package</strong> com.boli.srcoin.member.service.impl;</li><li></li><li><strong>import</strong> java.util.HashMap;</li><li><strong>import</strong> java.util.Map;</li><li></li><li><strong>import</strong> org.springframework.stereotype.Service;</li><li><strong>import</strong> org.springframework.transaction.annotation.Transactional;</li><li></li><li><strong>import</strong> com.boli.framework.system.result.StandardResult;</li><li><strong>import</strong> com.boli.framework.utils.WebUtil;</li><li><strong>import</strong> com.boli.srcoin.member.form.MemberLoginForm;</li><li><strong>import</strong> com.boli.srcoin.member.service.LoginMemberService;</li><li><strong>import</strong> com.boli.srcoin.websocket.Msg;</li><li><strong>import</strong> com.boli.srcoin.websocket.WSServer;</li><li></li><li>@Service</li><li><strong>public</strong> <strong>class</strong> LoginMemberServiceImpl <strong>implements</strong> LoginMemberService{</li><li></li><li>@Override</li><li>@Transactional(readOnly = <strong>false</strong>)</li><li><strong>public</strong> StandardResult toLogin(MemberLoginForm loginForm) {</li><li>WebUtil.getSession().setAttribute(“user”, loginForm.getUser());</li><li>Map&lt;String,Object&gt; map=<strong>new</strong> HashMap&lt;&gt;();</li><li>map.put(“sessionId”, WebUtil.getSession().getId());</li><li>map.put(“user”, loginForm.getUser());</li><li>System.out.println(“调用登录方法：”+WebUtil.getSession().getId()+loginForm.getUser());</li><li><strong>return</strong> StandardResult.ok(map);</li><li>}</li><li></li><li>@Override</li><li>@Transactional(readOnly = <strong>false</strong>)</li><li><strong>public</strong> StandardResult tishi() {</li><li>Msg msg=<strong>new</strong> Msg();</li><li>msg.setToUid(“ppp”);</li><li>WSServer.pushBySys(msg);</li><li><strong>return</strong> StandardResult.ok();</li><li>}</li><li></li><li></li><li>}</li></ol><p>5、调用结果如图</p><p><img src="/pro/os/crawler/VZIN-FANJ-MVFF.jpg" alt="JAVA前后端实现WebSocket消息推送（针对性推送）"></p><p><img src="/pro/os/crawler/FIZM-AQFN-J7JF.jpg" alt="JAVA前后端实现WebSocket消息推送（针对性推送）"></p><p><img src="/pro/os/crawler/ZRJR-VRVA-JEQF.jpg" alt="JAVA前后端实现WebSocket消息推送（针对性推送）"></p><p>附带源码链接：<a href="http://download.csdn.net/download/qq\_31151929/10207702" target="_blank" rel="noopener">http://download.csdn.net/download/qq\_31151929/10207702</a></p><ul><li><strong>原文作者：</strong> 程序员小新人学习</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570492644437262861/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570492644437262861/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;时间原因，写简单粗暴点(几年不写&lt;strong&gt;生疏了&lt;/strong&gt;)：&lt;/p&gt;
-&lt;p&gt;一、微信小程序 - 微信web开发工具 下载&lt;/p&gt;
-&lt;p&gt;二、新建项目 具体教程详见： &lt;a href=&quot;https://mp.weixin.qq.com/debug/wxadoc
+        &lt;p&gt;1、需要添加依赖包，在pom.xml文件中添加&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;[java]&lt;/strong&gt; view plain copy&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;dependency&gt;&lt;/dependency&gt;&lt;/li&gt;
+&lt;li&gt;&lt;groupid
       
     
     </summary>
@@ -160,27 +601,34 @@
       <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="微信小程序" scheme="http://zhixingmei.ren/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <category term="Java" scheme="http://zhixingmei.ren/tags/Java/"/>
+    
+      <category term="编程语言" scheme="http://zhixingmei.ren/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="JSON" scheme="http://zhixingmei.ren/tags/JSON/"/>
+    
+      <category term="jQuery" scheme="http://zhixingmei.ren/tags/jQuery/"/>
+    
+      <category term="HTML" scheme="http://zhixingmei.ren/tags/HTML/"/>
     
   </entry>
   
   <entry>
-    <title>爬虫遇到图片禁止访问（如403）</title>
-    <link href="http://zhixingmei.ren/2016/07/08/%E7%88%AC%E8%99%AB%E9%81%87%E5%88%B0%E5%9B%BE%E7%89%87%E7%A6%81%E6%AD%A2%E8%AE%BF%E9%97%AE%EF%BC%88%E5%A6%82403%EF%BC%89lf_breeze/"/>
-    <id>http://zhixingmei.ren/2016/07/08/爬虫遇到图片禁止访问（如403）lf_breeze/</id>
-    <published>2016-07-08T08:35:16.000Z</published>
-    <updated>2018-07-02T07:57:16.321Z</updated>
+    <title>利用nginx做反向代理解决前端的跨域问题</title>
+    <link href="http://zhixingmei.ren/2018/06/23/%E5%88%A9%E7%94%A8nginx%E5%81%9A%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E8%A7%A3%E5%86%B3%E5%89%8D%E7%AB%AF%E7%9A%84%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98Java%E9%AB%98%E7%BA%A7%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF/"/>
+    <id>http://zhixingmei.ren/2018/06/23/利用nginx做反向代理解决前端的跨域问题Java高级架构技术/</id>
+    <published>2018-06-23T12:49:50.000Z</published>
+    <updated>2018-07-05T13:42:50.744Z</updated>
     
-    <content type="html"><![CDATA[<p>今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。</p><p>对于低级的图片防盗链可以通过改变Referer来解决。</p><p>访问图片资源：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = new URL(src);</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                con.setConnectTimeout(5*1000);</span><br><span class="line">                String referer = url.getProtocol()+&quot;://&quot;+url.getHost();</span><br><span class="line">                con.setRequestProperty(&quot;Referer&quot;, referer);</span><br></pre></td></tr></table></figure><p>在jsoup中也可以通过下面方式访问：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jsoup.connect(url).ignoreContentType(true).referrer(referer).get()</span><br></pre></td></tr></table></figure><ul><li><strong>原文作者：</strong> lf_breeze</li><li><strong>原文链接：</strong> <a href="https://blog.csdn.net/lf_breeze/article/details/51862107" target="_blank" rel="noopener">https://blog.csdn.net/lf_breeze/article/details/51862107</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>首先我们要从nginx官网去下载nginx的压缩包，解压之后就可以用了，然后找到nginx目录下的nginx.conf文件，然后进行配置</p><p>配置如下：</p><p><img src="/pro/os/crawler/NRJQ-MVUR-636J.jpg" alt="利用nginx做反向代理解决前端的跨域问题"></p><p><img src="/pro/os/crawler/JJVM-JV6F-IRQR.jpg" alt="利用nginx做反向代理解决前端的跨域问题"></p><p>到这一步我们的nginx就算是配置完成了，然后我们再说一下nginx常用的命令</p><p>启动：start nginx</p><p>停止： nginx -s quit</p><p>重新加载配置文件： nginx -s reload</p><p>查看windows任务管理器下Nginx的进程命令：tasklist /fi “imagename eq nginx.exe”</p><p>接下来我们启动nginx命令</p><p>然后看一下我们前端代码如何写</p><p><img src="/pro/os/crawler/ZAZQ-IMVQ-NI32.jpg" alt="利用nginx做反向代理解决前端的跨域问题"></p><p>到这里我们的nginx就算代理成功，另外在插一句，其实vue的config中的index.js配置的跨域，实现跨域的原理也和nginx</p><p>做反向代理的原理是一样的。。。。</p><ul><li><strong>原文作者：</strong> Java高级架构技术</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570261398507487757/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570261398507487757/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。&lt;/p&gt;
-&lt;p&gt;对于低级的图片防盗链可以通过改变Referer来解决。&lt;/p&gt;
-&lt;p&gt;访问图片资源：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;ta
+        &lt;p&gt;首先我们要从nginx官网去下载nginx的压缩包，解压之后就可以用了，然后找到nginx目录下的nginx.conf文件，然后进行配置&lt;/p&gt;
+&lt;p&gt;配置如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/pro/os/crawler/NRJQ-MVUR-636J.jpg&quot; al
       
     
     </summary>
@@ -188,80 +636,42 @@
       <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="爬虫" scheme="http://zhixingmei.ren/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="Windows" scheme="http://zhixingmei.ren/tags/Windows/"/>
+    
+      <category term="Nginx" scheme="http://zhixingmei.ren/tags/Nginx/"/>
     
   </entry>
   
   <entry>
-    <title>程序员追求的是什么？</title>
-    <link href="http://zhixingmei.ren/2013/04/01/%E7%A8%8B%E5%BA%8F%E5%91%98%E8%BF%BD%E6%B1%82%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9Fxiaohan1990718/"/>
-    <id>http://zhixingmei.ren/2013/04/01/程序员追求的是什么？xiaohan1990718/</id>
-    <published>2013-04-01T14:10:04.000Z</published>
-    <updated>2018-07-02T08:19:50.458Z</updated>
+    <title>七、Spring Boot解决跨域问题</title>
+    <link href="http://zhixingmei.ren/2018/06/23/%E4%B8%83%E3%80%81Spring%20Boot%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E7%A8%8B%E5%BA%8F%E5%91%98Nicky/"/>
+    <id>http://zhixingmei.ren/2018/06/23/七、Spring Boot解决跨域问题程序员Nicky/</id>
+    <published>2018-06-23T12:17:17.000Z</published>
+    <updated>2018-07-05T13:42:47.530Z</updated>
     
-    <content type="html"><![CDATA[<p>上周我收到三位Halmstad大学学生的电子邮件，他们正在做一个为期三月的项目，内容是关于程序员在工作中追求的是什么，以及企业如何吸引有才华的程序员。下面是我对他们问题的答案，按重要程度排序。显然人们会有不同的偏好，所以我很有兴趣听到你们赞同哪些，反对哪些，重要性的评判，以及你们认为遗漏了的要点。</p><ol><li><p>做软件产品。我希望我参与编写的程序成为公司的主要业务。这就排除了IT维护工作，因为这种工作只是间接 地支持了真正的业务（不管它是什么）。我也希望参与系统核心部分的工作，越重要的越好。如果我做的东西出错了，它应该马上成为一个紧急问题。最后，我不愿 意参与仅仅是配置、<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=20" target="_blank" rel="noopener">应用</a>或整合其他公司的软件 — 我希望自己来实现关键性的功能。</p></li><li><p>优秀的同事。和对软件开发充满激情的聪明程序员一起工作是催人奋进的。我一次又一次地看到和同事一起谈论一些问题或设计是如何产生比我们任何一个人自己闷头想出来更好的思路的。这种合作方式不光是产生更好的代码，过程本身就是非常令人享受的。</p><p>你怎么知道某人是不是一个优秀程序员呢？一个特别好的特征就是看他们是否持续学习和提高他们的技能，例如通过读书、看博客、参加培训课程、以及参加 技术大会。这倒也不是一个必要条件，我就曾经和很多不干这些事的很棒的开发者共事。最后，优秀的开发者会吸引其他的优秀开发者，因为以上原因。如果一个企 业有很多优秀的开发者，它就更容易招到更多的优秀开发者。</p></li><li><p>挑战难题。程序员通过代码解决问题。开发的产品起码在某些角度需要聪明的思路，比如低延迟、大量并发请 求、或有限的硬件资源。不过，很多软件产品都是由常规代码组成，没有什么难做的部分。所以你也不能只是盼着做“困难问题”而避开其他的所有需求。而且，组 织好那些看起来很无聊的代码，让它们容易理解和维护，这本身也是一个巨大的挑战。</p></li><li><p>很酷的技术。这主要是关于使用有趣的编程语言（例 如Clojure、 Erlang 或者 Go），但也包括框架和应用（例如Hadoop 或 Cassandra）。这可能是某些公司有问题的地方。如果它们的应用是用某个语言（比如C++）写的，它就不会改了。所以如果你想改用一些新的语言，你 可能需要换个工作。例如，如果你在斯德哥尔摩想用Erlang，你可以给Klarna 或 Campanja公司投个简历试试。</p></li><li><p>用户。编码的乐趣之一是做出一些对别人有用的东西。做了东西却没人用就无聊了。要让用户（越多越好）关注你开发的努力并且给予有价值的反馈。唯一例外的可能是创业的时候，但是之后就要把吸引尽可能多的用户作为最优先的事情。</p></li><li><p>不错的薪水。拥有大量优秀开发者的公司懂得优秀人才的价值。因为优秀和一般程序员之间的差别是巨大的，所 以报酬向优秀开发者倾斜在经济上是有道理的 — 其实在生产效率上的差别远大于薪酬上的差别。反过来说，那些不舍得给程序员较好薪水的公司往往把程序员看作是可以随意更换的“资源”。那么这些公司在其他 方面的表现恐怕也是你看不上的，不仅仅是低薪水。</p></li><li><p>很好的工具。这个因素的重要性几乎是不言自明的。一台快速的计算机和几个显示器可以加快开发过程 — 谁会反对这一点呢？（好吧，那些光看成本不看效率的秃头老板可能会反对）</p></li></ol><p><a href="/pro/os/crawler/FZJU-6RQM-AZUV.jpg"><img src="/pro/os/crawler/FZJU-6RQM-AZUV.jpg" alt="145444mqmhc3h1z1my4611.jpg"></a></p><ol start="8"><li><p>一周工作40小时。如果你总是要加班完成任务，肯定是你工作的单位有一些问题。而且，长时间工作也不等于有效率。</p></li><li><p>最少的官僚主义。对于开发过程来说，或多或少会有敏捷开发方法的影子，看起来大家都采用了这种思路。根据我的体会，在大公司里日常管理的那些琐事基本上都是躲不开的问题。</p></li><li><p>在家工作。 有时候能在家工作是有效的，不过我不常这么做。我喜欢在办公室里，和同事交流。我曾经通过视频会议、聊天工具和电子邮件在一个远程办公室工作，但这样的工作效率还是不如现场合作的高。</p></li><li><p>离家近。显然这不容易强求，但是能不用每天花几个小时在路上多好啊。</p></li></ol><p>评论</p><p> 如果你是咨询顾问（而不是程序员），这个列表上某些项可能会不一样。我总是愿意在产品公司工作，主要因为我喜欢深入了解系统，看着它随时间如何演 变。所以我没有作为咨询顾问的第一手工作经验，不过我觉得是这样的：作为一个咨询顾问，你更容易接触到很酷的新技术，因为你有机会和很多不同的客户一起工 作。但是，即使你有很棒的同事，你可能也不会每天和他们在一起工作，因为你们会被派到不同的客户那里去。</p><p> 这就是我在单位里最看重的几个因素，按重要程度排序。在现实生活中总会打一些折扣，但越是列在前面的因素，我就越不愿意给它们打折扣。你看重的因素有哪些呢？</p><p>英文原文：<a href="http://henrikwarne.com/2013/03/26/what-do-programmers-want/" target="_blank" rel="noopener">Henrik Warne</a>，编译：伯乐在线 - <a href="http://weibo.com/ned11" target="_blank" rel="noopener">@老码农的自留地</a></p><p>译文链接：<a href="http://blog.jobbole.com/37078/" target="_blank" rel="noopener">http://blog.jobbole.com/37078/</a></p><p>-———————————————–</p><p>随心走～ 心系未来，努力在当下。</p><p> 2013-04-01</p>]]></content>
+    <content type="html"><![CDATA[<p>一：问题描述</p><p>跨域问题指的是浏览器的同源策略导致页面访问服务器报错的一系列问题。而同源策略指的是以下方式：</p><p><strong>DOM同源策略</strong>：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的iframe是限制互相访问的。</p><p><strong>XmlHttpRequest同源策略</strong>：禁止使用XHR对象向不同源的服务器地址发起HTTP请求。</p><p>二：解决方案</p><p>1：在服务器响应的时候加上response.setHeader(“Access-Control-Allow-Origin”, “*“);</p><p>2：客户端与服务器端同时加一个callBcak函数，jsonp</p><p>3：利用spring4.2的新特性</p><p>3.1:xml配置</p><!-- 跨域 --><p><a href="mvc:cors" target="_blank" rel="noopener">mvc:cors</a></p><p>&lt;mvc:mapping path=”/**“ /&gt;</p><p>&lt;/mvc:cors&gt;</p><p>3.2：注解</p><p>@CrossOrigin</p><p>4.springBoot结合拦截器配置</p><p>4.1、定义一个Interceptor拦截器</p><p>借用拦截器的preHandle方法，预先处理客户端的各种请求。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class CrossInterceptor implements HandlerInterceptor &#123;  @Override public boolean preHandle(HttpServletRequest httpServletRequest,  HttpServletResponse httpServletResponse, Object o) throws Exception &#123;  // 跨域资源共享（ cors ） String origin = httpServletRequest.getHeader(&quot;Origin&quot;); httpServletResponse.setHeader(&quot;Access-Control-Allow-Origin&quot;, origin); //允许的方法 httpServletResponse.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;); //允许的头部参数 httpServletResponse.setHeader(&quot;Access-Control-Allow-Headers&quot;,  &quot;Origin,Content-Type,Accept,X-os,X-uid,X-token,X-role,X-Requested-With&quot;); //用户代理是否应该在跨域请求的情况下从其他域发送cookies httpServletResponse.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;); return true; &#125; &#125;</span><br></pre></td></tr></table></figure><p>4.2、拦截器注入配置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Configuration @EnableWebMvc @ComponentScan(&quot;com.recruit&quot;) public class WebAppConfig extends WebMvcConfigurerAdapter &#123;  @Bean public AuthenticationInterceptor authenticationInterceptor() &#123; return new AuthenticationInterceptor(); &#125;  @Override public void addInterceptors(InterceptorRegistry registry) &#123; //分页拦截器 registry.addInterceptor(new PaginationInterceptor()).addPathPatterns(&quot;/**&quot;); //跨域拦截器 registry.addInterceptor(new CrossInterceptor()).addPathPatterns(&quot;/**&quot;); //权限拦截器 registry.addInterceptor(authenticationInterceptor()).addPathPatterns(&quot;/**&quot;);  super.addInterceptors(registry); &#125; &#125;</span><br></pre></td></tr></table></figure><p><img src="/pro/os/crawler/FVIA-FIM6-BMBV.jpg" alt="七、Spring Boot解决跨域问题"></p><ul><li><strong>原文作者：</strong> 程序员Nicky</li><li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6570253010855789059/" target="_blank" rel="noopener">https://www.toutiao.com/item/6570253010855789059/</a></li><li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;上周我收到三位Halmstad大学学生的电子邮件，他们正在做一个为期三月的项目，内容是关于程序员在工作中追求的是什么，以及企业如何吸引有才华的程序员。下面是我对他们问题的答案，按重要程度排序。显然人们会有不同的偏好，所以我很有兴趣听到你们赞同哪些，反对哪些，重要性的评判，以
+        &lt;p&gt;一：问题描述&lt;/p&gt;
+&lt;p&gt;跨域问题指的是浏览器的同源策略导致页面访问服务器报错的一系列问题。而同源策略指的是以下方式：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOM同源策略&lt;/strong&gt;：禁止对不同源页面DOM进行操作。这里主要场景是iframe跨域的情况，不同域名的ifra
       
     
     </summary>
     
-      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
+      <category term="开发" scheme="http://zhixingmei.ren/categories/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="职业发展" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
+      <category term="技术" scheme="http://zhixingmei.ren/tags/%E6%8A%80%E6%9C%AF/"/>
     
-  </entry>
-  
-  <entry>
-    <title>用户考虑的是什么？简单，简便，易操作</title>
-    <link href="http://zhixingmei.ren/2013/03/26/%E7%94%A8%E6%88%B7%E8%80%83%E8%99%91%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E7%AE%80%E5%8D%95%EF%BC%8C%E7%AE%80%E4%BE%BF%EF%BC%8C%E6%98%93%E6%93%8D%E4%BD%9Cxiaohan1990718/"/>
-    <id>http://zhixingmei.ren/2013/03/26/用户考虑的是什么？简单，简便，易操作xiaohan1990718/</id>
-    <published>2013-03-26T15:54:09.000Z</published>
-    <updated>2018-07-02T08:24:57.073Z</updated>
+      <category term="XML" scheme="http://zhixingmei.ren/tags/XML/"/>
     
-    <content type="html"><![CDATA[<p><img src="/pro/os/crawler/JEVF-BFJE-3AER.jpg" alt="设计"></p><p>小区里面有一条铺好的路，只是略微拐了一个小弯，但是硬是在旁边的草地上被踩出了一条近路，其实踩这条路，只比那个设计好的路少两步而已……</p><p>所以网站策划设计，也是同样的道理，应该用最简单高效的方式、最短的流程和路径引导用户到达目的地，应该适应用户的习惯和需求。</p><p>一切以用户为中心，以用户的需求为导向，按照用户的习惯和需求去设计、提倡参与式设计，在设计策划的过程中，实现充分的用户参与，则会尽最大可能的降低以 后产品上线不符合用户习惯的情况发生。</p><p>如果两条路是一样的，用户会不假思索的、潜意识的走最近的路，因为用户没有理由要多走两步，但是如果你硬要用户多走两步，也需要策划了，比如在这条近路旁 边放一个小牌子，提醒用户“小草正在休息，请勿打扰~”，或者也许到雨天，用户就不会走这条路了，因为会打湿鞋子、粘上泥巴，所以，用户要走最近的、不需 要思考、不需要理由，完全是潜意识和本能。</p><p>如果你想让用户多走两步，必须给他一个理由，给他一个理由，不让用户思考、不给用户分心的机会、节约用户的脑 力，还有，不要让这条近路形成，因为一旦第一个人丛这里走过，就会出现破窗效应，一旦形成路、就会形成从众的效应，所以，虽然看起来只是两步路，其实背后 还是蛮复杂的~，这是两条路之间的竞争，远路比近路多两步，要赢得用户的脚，必须得有自己的优势，就是让用户觉得这条路虽然远那么一点，但是还有另外的优 势在，比如这条路前面有个花丛、有个鱼池、这条路不会弄脏鞋子、不会践踏小草，所以，这还涉及到差异化。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;/pro/os/crawler/JEVF-BFJE-3AER.jpg&quot; alt=&quot;设计&quot;&gt;&lt;/p&gt;
-&lt;p&gt;小区里面有一条铺好的路，只是略微拐了一个小弯，但是硬是在旁边的草地上被踩出了一条近路，其实踩这条路，只比那个设计好的路少两步而已……&lt;/p&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="生活感悟" scheme="http://zhixingmei.ren/categories/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/"/>
-    
-    
-      <category term="职业发展" scheme="http://zhixingmei.ren/tags/%E8%81%8C%E4%B8%9A%E5%8F%91%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://zhixingmei.ren/2011/11/09/hello-world/"/>
-    <id>http://zhixingmei.ren/2011/11/09/hello-world/</id>
-    <published>2011-11-09T10:28:20.000Z</published>
-    <updated>2018-06-29T08:25:40.254Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
+      <category term="Origin" scheme="http://zhixingmei.ren/tags/Origin/"/>
     
   </entry>
   
