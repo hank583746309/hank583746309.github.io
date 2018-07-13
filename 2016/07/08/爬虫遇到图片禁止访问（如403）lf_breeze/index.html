@@ -175,8 +175,9 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <p>今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。</p>
+     
+          
+          <p>今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。</p>
 <p>对于低级的图片防盗链可以通过改变Referer来解决。</p>
 <p>访问图片资源：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = new URL(src);</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                con.setConnectTimeout(5*1000);</span><br><span class="line">                String referer = url.getProtocol()+&quot;://&quot;+url.getHost();</span><br><span class="line">                con.setRequestProperty(&quot;Referer&quot;, referer);</span><br></pre></td></tr></table></figure>
@@ -188,8 +189,27 @@
 <li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
 </ul>
 
+        
       
+ <!--
+      
+        
+        
+          <p>今年一直在做爬虫，有时候碰到图片禁止访问的情况，以前一直以为不能解决。前两天在网上看了下资料。</p>
+<p>对于低级的图片防盗链可以通过改变Referer来解决。</p>
+<p>访问图片资源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = new URL(src);</span><br><span class="line">                URLConnection con = url.openConnection();</span><br><span class="line">                con.setConnectTimeout(5*1000);</span><br><span class="line">                String referer = url.getProtocol()+&quot;://&quot;+url.getHost();</span><br><span class="line">                con.setRequestProperty(&quot;Referer&quot;, referer);</span><br></pre></td></tr></table></figure>
+<p>在jsoup中也可以通过下面方式访问：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jsoup.connect(url).ignoreContentType(true).referrer(referer).get()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原文作者：</strong> lf_breeze</li>
+<li><strong>原文链接：</strong> <a href="https://blog.csdn.net/lf_breeze/article/details/51862107" target="_blank" rel="noopener">https://blog.csdn.net/lf_breeze/article/details/51862107</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
 
+        
+      
+-->
       
         <div class="page-reward">
           <a href="javascript:;" class="page-reward-btn tooltip-top">
