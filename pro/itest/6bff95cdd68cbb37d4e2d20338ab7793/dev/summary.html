@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>自动化测试报告</title>
+    <meta name="generator" content="HTMLTestReportCN 0.8.3"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <style type="text/css" media="screen">
+        body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 0 20px 0 0; font-size: 100%; }
+        table       { font-size: 100%; }
+        /* -- heading ---------------------------------------------------------------------- */
+        .heading {
+            margin-top: 0ex;
+            margin-bottom: 1ex;
+        }
+        .heading .description {
+            margin-top: 4ex;
+            margin-bottom: 6ex;
+        }
+        /* -- report ------------------------------------------------------------------------ */
+        #total_row  { font-weight: bold; }
+        .passCase   { color: #5cb85c; }
+        .failCase   { color: #d9534f; font-weight: bold; }
+        .errorCase  { color: #f0ad4e; font-weight: bold; }
+        .hiddenRow  { display: none; }
+        .testcase   { margin-left: 2em; }
+        .attribute{
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+<body >
+
+<div id="app">
+    <div class='heading'>
+        <h1 style="font-family: Microsoft YaHei; margin-bottom: 20px;" >《{{proName}}》自动化测试报告</h1>
+        <p class='attribute'><strong>测试人员 : </strong> {{userName}}</p>
+        <p class='attribute'><strong>开始时间 : </strong> {{startTime}}</p>
+        <p class='attribute'><strong>合计耗时 : </strong> {{consume}}毫秒</p>
+        <p class='attribute'><strong>测试结果 : </strong> 共 {{total}}，通过 {{success}}，失败 {{fail}}，错误 {{exception}}，通过率= {{passRate}}%</p>
+        <!--<p class='attribute'><strong>CPU监测 : </strong> 运行前 6，运行后 4，最高 50.00%</p>-->
+        <p class='attribute'><strong>测试说明 : </strong> {{proDetail}}</p>
+
+        <p class='description'></p>
+    </div>
+
+
+
+    <p id='show_detail_line'>
+        <a class="btn btn-primary" href='javascript:showCase(4)'>概要{ {{passRate}}% }</a>
+        <a class="btn btn-success" href='javascript:showCase(0)'>通过{ {{success}} }</a>
+        <a class="btn btn-danger" href='javascript:showCase(1)'>失败{ {{fail}} }</a>
+        <a class="btn btn-warning" href='javascript:showCase(2)'>错误{ {{exception}} }</a>
+        <a class="btn btn-info" href='javascript:showCase(3)'>所有{ {{total}} }</a>
+    </p>
+    <table id='result_table' class="table table-condensed table-bordered table-hover">
+        <colgroup>
+            <col align='left' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+            <col align='right' />
+        </colgroup>
+        <tr id='header_row' class="text-center active" style="font-weight: bold;font-size: 14px;">
+            <td>测试流程(模块)</td>
+            <td>总计</td>
+            <td>通过</td>
+            <td>失败</td>
+            <td>错误</td>
+            <td>通过率</td>
+        </tr>
+
+        <tr v-for="(item, index) in flows" :class='item.fail > 0 ? "danger":(item.exception > 0 ? "warning" : "success")'>
+            <td>{{item.name}}</td>
+            <td class="text-center">{{item.total}}</td>
+            <td class="text-center">{{item.success}}</td>
+            <td class="text-center">{{item.fail}}</td>
+            <td class="text-center">{{item.exception}}</td>
+            <td class="text-center">{{parseFloat(100 * item.success / (item.total||1)).toFixed(2)}}%</td>
+        </tr>
+
+        <tr id='total_row' class="text-center info">
+            <td>总计</td>
+            <td>{{total}}</td>
+            <td>{{success}}</td>
+            <td>{{fail}}</td>
+            <td>{{exception}}</td>
+            <td>{{passRate}}%</td>
+        </tr>
+    </table>
+
+    <div id='ending'>&nbsp;</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script language="javascript" type="text/javascript">
+    var summary = JSON.parse('{"flows":[{"exception":0,"fail":3,"total":3,"inters":[{"path":"inter/6.html","flag":"fail","name":"Map参数测试"},{"path":"inter/15.html","flag":"fail","name":"List集合参数测试"},{"path":"inter/16.html","flag":"fail","name":"简单模型类参数"}],"success":0,"name":"测试参数支持(作废"},{"exception":1,"fail":0,"total":10,"inters":[{"path":"inter/19.html","flag":"success","name":"登陆"},{"path":"inter/27.html","flag":"success","name":"无返回值请求"},{"path":"inter/28.html","flag":"success","name":"无返回值请求"},{"path":"inter/29.html","flag":"success","name":"Array单一参数"},{"path":"inter/30.html","flag":"success","name":"List单一参数"},{"path":"inter/34.html","flag":"success","name":"Map单一参数"},{"path":"inter/46.html","flag":"success","name":"多数组"},{"path":"inter/49.html","flag":"success","name":"数组混合其他参数"},{"path":"inter/52.html","flag":"exception","name":404.0},{"path":"inter/53.html","flag":"success","name":"其他平台"}],"success":9,"name":"新整理的测试接口"},{"exception":0,"fail":0,"total":2,"inters":[{"path":"inter/54.html","flag":"success","name":"上海天气"},{"path":"inter/55.html","flag":"success","name":"北京天气"}],"success":2,"name":"第三步流程"},{"exception":0,"fail":0,"total":1,"inters":[{"path":"inter/56.html","flag":"success","name":"天气预报"}],"success":1,"name":"第四步流程"}],"startTime":"2018-06-29 09:56:23.759","consume":4481,"proName":"自动化测试框架","userName":"admin"}');
+    var flows = summary.flows || [],total = 0,success = 0,fail = 0,exception = 0,passRate;
+    flows.map(function (item, index) {
+        total+= item.total;
+        fail += item.fail;
+        exception += item.exception;
+        success += item.success;
+    })
+    summary.total = total;
+    summary.fail = fail;
+    summary.exception = exception;
+    summary.success = success;
+    summary.passRate = parseFloat(success * 100 / (total || 1)).toFixed(2);
+    summary.proDetail = '暂时木有'
+    var app = new Vue({
+        el: '#app',
+        data: summary/*{
+            proName: '项目名称',
+            proDetail:'该测试报告测试覆盖普通车商整个管理流程API（按正常操作划分流程）',
+            userName: '韩大傻',
+            startTime: '2018-06-20 11:47:00',
+            consume: '1234.4994',
+            total: 30,
+            success: 22,
+            fail: 3,
+            exception: 5,
+            passRate: parseFloat(100 * 20/30).toFixed(2),
+            flows: [{
+                name:'注册登陆流程',total:10,success:6,fail:2,exception:2
+            },{
+                name:'系统设置流程',total:20,success:16,fail:1,exception:3
+            }]
+        }*/
+    })
+</script>
+</body>
+</html>
