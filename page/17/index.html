@@ -154,123 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java自动定时发送文件到服务器程序猿老王" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/Java自动定时发送文件到服务器程序猿老王/">Java自动定时发送文件到服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/18/Java自动定时发送文件到服务器程序猿老王/" class="archive-article-date">
-  	<time datetime="2018-03-18T03:31:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p>//客户端代码</p>
-<p><img src="/pro/os/crawler/AEUM-VAMI-AQIN.jpg" alt="Java自动定时发送文件到服务器"></p>
-<p>文件类名称: FileUploadController.java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*** 把文件压缩成zip文件上传到服务器* @param oldFiles* @param zippath* @throws HttpException* @throws IOException*/public static void loadfile(String oldFiles, String zippath) throws IOException &#123;HttpClient client = new HttpClient();File zipfile = new File(zippath);String URL = &quot;http://127.0.0.1:8080/db/file&quot;;//上传地址PostMethod filePost = new PostMethod(URL);System.out.println(&quot;---准备压缩，文件名:&quot; + zipfile.getName());client.getHttpConnectionManager().getParams().setConnectionTimeout(1000 * 30);// 设置超时30秒// 把文件夹压缩成压缩文件，如果压缩文件存在，会替换原文件FileUploadController.ZipMultiFile(oldFiles, zippath);FilePart filepart = new FilePart(&quot;upfile&quot;, new File(zippath));//下面是添加参数Part[] parts = &#123;new StringPart(&quot;corp_code&quot;, &quot;C11111&quot;), new StringPart(&quot;fileName&quot;, &quot;demo.zip&quot;), filepart&#125;;MultipartRequestEntity mre = new MultipartRequestEntity(parts, filePost.getParams());filePost.setRequestEntity(mre);long s = System.currentTimeMillis();int status = client.executeMethod(filePost);long e = System.currentTimeMillis();System.out.println(&quot;----上传状态:&quot; + status + &quot;,耗时:&quot; + (e - s) / 1000 + &quot;秒&quot;);&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*** 前面是文件夹，如:D:/JAVA/,后面是压缩后的文件路径和名称,如:D:11.zip 一次性压缩多个文件，文件存放至一个文件夹中** @param filepath* @param zippath*/public static void ZipMultiFile(String filepath, String zippath) &#123;long s = System.currentTimeMillis();try &#123;File file = new File(filepath);// 要被压缩的文件夹File zipFile = new File(zippath);InputStream input = null;ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(zipFile));if (file.isDirectory()) &#123;File[] files = file.listFiles();for (int i = 0; i &lt; files.length; ++i) &#123;input = new FileInputStream(files[i]);zipOut.putNextEntry(new ZipEntry(file.getName() + File.separator + files[i].getName()));int temp = 0;while ((temp = input.read()) != -1) &#123;zipOut.write(temp);&#125;input.close();&#125;&#125;zipOut.close();&#125; catch (Exception e) &#123;e.printStackTrace();&#125;long e = System.currentTimeMillis();System.out.println(&quot;---压缩完成:&quot; + zippath + &quot;,耗时:&quot; + (e - s) / 1000 + &quot;秒&quot;);&#125;</span><br></pre></td></tr></table></figure>
-<p>//下面���服务端接收文件的代码和定时任务的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*** 服务器接收数据的方法* @param request* @return* @throws IOException*/@RequestMapping(value = &quot;/db/file&quot;)@ResponseBodypublic String reciveFile(HttpServletRequest request) throws IOException, ServletException &#123;String corp_code = request.getParameter(&quot;corp_code&quot;);//接收参数String fileName = request.getParameter(&quot;fileName&quot;);//获取文件名log.info(&quot;-----传递过来公司编号:&quot; + corp_code + &quot;---文件名:&quot; + fileName);long s = System.currentTimeMillis();byte[] buffer = new byte[1024 * 1024];InputStream in = request.getPart(&quot;upfile&quot;).getInputStream();FileOutputStream out = new FileOutputStream(&quot;C:/&quot; + fileName);int length = 0;while ((length = in.read(buffer)) &gt; 0) &#123;out.write(buffer, 0, length);&#125;if (out != null) &#123;out.close();&#125;File file = new File(&quot;C:/&quot; + fileName);long e = System.currentTimeMillis();log.info(&quot;-----写入完成:&quot; + file.length() / 1024 / 1024 + &quot;MB,耗时:&quot; + (e - s) / 1000 + &quot;秒&quot;);return &quot;File&quot;;&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/** * 定时任务 实现方式1* @author server*/@Configuration@EnableScheduling // 标注启动定时任务 这里是：关闭状态，拿下注释就开启了public class SchudelTime &#123;@Scheduled(fixedRate = 1000 * 60 * 3, initialDelay = 1000*5) // 每隔3分钟执行一次，延迟5秒执行public void updatePayRecords() &#123;System.out.println(&quot;每隔1分钟执行一次，延迟10秒执行: The time is now &quot; + new Date().toLocaleString());try &#123; //参数：������压缩上传的文件夹 压缩后的压缩包FileUploadController.loadfile(&quot;E:/JAVA/&quot;,&quot;E:vsalw.zip&quot;);&#125; catch (HttpException e) &#123;// TODO Auto-generated catch blocke.printStackTrace();&#125; catch (IOException e) &#123;// TODO Auto-generated catch blocke.printStackTrace();&#125;&#125;定时任务实现方法有很多种。这里仅仅是一种。【喜欢这类文章可以关注我，我会继续发类似技术文章，谢谢】</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>原文作者：</strong> 程序猿老王</li>
-<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6533043600572285443/" target="_blank" rel="noopener">https://www.toutiao.com/item/6533043600572285443/</a></li>
-<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <p>//客户端代码</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/18/Java自动定时发送文件到服务器程序猿老王/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-教你如何从java程序员变成为一名区块链开发者迅解区块链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1608,6 +1491,158 @@
 
 
   
+    <article id="post-构建个人知识体系，系统化学习 VS 碎片化学习江焕勇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/07/构建个人知识体系，系统化学习 VS 碎片化学习江焕勇/">构建个人知识体系，系统化学习 VS 碎片化学习</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/07/构建个人知识体系，系统化学习 VS 碎片化学习江焕勇/" class="archive-article-date">
+  	<time datetime="2018-02-07T12:20:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>系统性学习是相对碎片化学习而言的。</p>
+<p>包含两个意思：学习内容的系统化和学习方式的系统化。</p>
+<p><strong>1、知识的内容系统化。</strong></p>
+<p>指学习内容要包含一个完整拼图的知识主题。一般来说，一个完整的学习内容应该包含信息、概念、原理和技能方法。知道一些信息，便于建构一些抽象的概念，有一些概念可以帮助理解一个规律，举一反三，而掌握原理，就可以学习一些方法技能，能够展开行动。</p>
+<p>比如学习攀爬技能。</p>
+<p><img src="/pro/os/crawler/QIFR-U3FI-JYNN.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<p>（1）信息。人类的学习都是从接触一些具体信息开始的，学习攀爬技能也不例外，这些信息可能有室内攀岩的图片、装备，室外攀岩的图片、装备，或者有一些攀岩的高手视频等。这些都是信息。是建构更高认知的基础。</p>
+<p>（2）概念。概念是建立区别性特征的工具。攀爬和散步，休闲式攀爬和极限攀爬，这就是学习攀爬时需要理解的部分概念。</p>
+<p>（3）原理和原则。成功完成一次攀爬的关键原理可能是重心最低、三点稳定等，涉及到一些达成目标的一些规律。</p>
+<p>（4）方法。是指完成攀爬的过程、工具、流程等。是行动的技能。</p>
+<p><img src="/pro/os/crawler/MUZE-JMUY-IIUA.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<p><strong>2、短的学习内容 = 碎片化学习？</strong></p>
+<p>碎片化学习在学习内容上，与系统化学习刚好相反，指的是提供的内容拼图不完整，通常只是包含一些信息，比如高晓松讲故事。或者只是包含一些概念，比如罗胖讲的罗辑思维语音。</p>
+<p>那么，知识付费产品比如【得到】专栏是不是碎片化学习？依我看，得到专栏的大部分内容，特别是第二季的内容，不能这么说。比如一篇知识付费的图文，一个小的学习主题《开始时机》，主要讲一个概念，但围绕这个概念包含了选择的原理和规律（这是万维钢的强项）和一般性应用方法。从这个角度说，它的学习内容是完整的，不是碎片的。</p>
+<p><img src="/pro/os/crawler/RVBU-A3UE-BYJQ.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<p><strong>3、系统化学习是学科学习？</strong></p>
+<p>学校教育肯定是系统化学习，主要特点就是知识体系的完备性。但这并不是说，系统化学习只有学科学习这样一种形式。</p>
+<p>企业培训就是一个典型的例子。大部分企业培训的课程，学习时间一般是7小时，也就是一样，比如一天学习《经理人的财务分析》，这样的学习主题，在大学通常要学习一个学期。</p>
+<p>那么，《经理人的财务分析》是怎么做到1天学习一个学期的内容？</p>
+<p>其实也很简单，大幅度压缩财务信息类、适度压缩概念类、原理类知识，提高方法类知识占比，通过应用场景这把剪刀，将用不上的知识剪掉。</p>
+<p>这样《经理人的财务分析》还是一门很系统的学习内容，但学习者学习效率可以大幅度提升。</p>
+<p><img src="/pro/os/crawler/6NAQ-AVFQ-3QYN.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<p><strong>4、学习方式的系统化。</strong></p>
+<p>系统化学习的另外一个关键是学习方式的系统化。</p>
+<p>吴军在《大学之路》中曾经给出过美国大学与中国大学的不同，其中有一个方面就是考试方法的不同，中国大学主要形式是考试，美国大学评价方式多样化，除了考试之外，还有作业、实验、实践项目、论文、笔记等。</p>
+<p>不同的评价方法对应不同的学习方式。考试对应的学习方法基本是老师讲课。实践项目对应的学习方式比如有学习小组协作、项目研究等类似PBL的学习方式。</p>
+<p>单一的学习方式，对应的就是破碎的学习，混合的学习方式、结构化的学习方式，对应的就是系统化的学习。这方面，比较典型的学习方式是美国M. David Merrill的第一性教学原理，他认为一个合格的学习过程应该包含一个整体性的任务、学习方式要包含激活旧知、示证新知、应用和迁移四步。</p>
+<p><img src="/pro/os/crawler/JEMY-MQ2U-BBJ2.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<h1 id="综述："><a href="#综述：" class="headerlink" title="综述："></a><strong>综述：</strong></h1><p>系统化学习首先是学习内容的系统化和结构化，不仅包含是什么、为什么，还包含如何做。其次，系统化学习应该是学习方式的系统化和结构化，而非单一维度的方法。</p>
+<p><strong>系统化学习是个人真正习得技能的唯一途径，这一点在碎片化知识和学习随处可见的时代，需要特别注意。</strong></p>
+<hr>
+<blockquote>
+<p>我是江焕勇，懂教育，会产品。邀请你关注我，带给你有价值的分享。也欢迎关注我的头条号。</p>
+</blockquote>
+<p><img src="/pro/os/crawler/IAJJ-QBAR-NREN.jpg" alt="构建个人知识体系，系统化学习 VS 碎片化学习"></p>
+<ul>
+<li><strong>原文作者：</strong> 江焕勇</li>
+<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6519739960050844163/" target="_blank" rel="noopener">https://www.toutiao.com/item/6519739960050844163/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
+
+        
+      <!--
+        
+          
+          
+          
+            <p>系统性学习是相对碎片化学习而言的。</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">大学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教育</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">美国</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">高晓松</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">攀岩</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/07/构建个人知识体系，系统化学习 VS 碎片化学习江焕勇/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/16/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/18/">Next &raquo;</a>
@@ -1824,30 +1859,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -1865,6 +1876,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1900,14 +1919,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -1924,6 +1935,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -1932,23 +1967,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2032,6 +2059,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2076,15 +2107,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2280,11 +2311,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2336,6 +2367,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2345,10 +2380,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2520,15 +2551,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2572,10 +2607,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2596,7 +2627,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2616,15 +2663,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2649,18 +2696,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2712,6 +2747,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2724,11 +2767,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2740,7 +2779,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2752,10 +2791,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2764,23 +2799,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2789,6 +2816,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2816,6 +2851,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2824,15 +2863,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2868,6 +2903,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -2888,10 +2931,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -2900,11 +2939,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3032,11 +3067,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

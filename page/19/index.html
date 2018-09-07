@@ -154,210 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-一起来看看 redis 集群搭建：redis-clusterJAVA小生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/29/一起来看看 redis 集群搭建：redis-clusterJAVA小生/">一起来看看 redis 集群搭建 redis-cluster</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/29/一起来看看 redis 集群搭建：redis-clusterJAVA小生/" class="archive-article-date">
-  	<time datetime="2018-01-29T13:33:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p>redis数据存储在内存中, 就会受到内存的限制, 大家都知道, 一台电脑, 硬盘可以有1T, 但是内存, 没有听说有1T的内存吧.</p>
-<p>那如果数据非常多, 超过一台电脑的内存空间, 怎么办呢?</p>
-<p>正常思维, 都是, 一台电脑不够, 那我再加一台电脑嘛, 不就够了.</p>
-<p>redis集群架构图</p>
-<p><img src="/pro/os/crawler/NQ3I-EBAU-MRRM.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>每个服务器的redis必须保持通信，也就是说，server1上没有想要的值，就会跳转到找到其他服务器查找。</p>
-<p>注意：</p>
-<p>如果有一个服务器失去响应，如server4，redis是如何处理的？</p>
-<p>Redis的集群里，有投票机制，当server4挂了之后, 会由server1, server2, server3 共同投票因为他们都与服务器4有通信关系，我们都觉得服务器4真的挂了，结果大家的投票是，我们可以休息，下班了。</p>
-<p>很显然，这是不合理的，如何解决呢？</p>
-<p>在集群中，为了确保一台机器关闭，系统仍然工作，常见的方法是添加备用机器（备胎）</p>
-<p>Redis也是如此，如果对每一台机器添加备用机，那么我们投票服务器4失去响应后，备胎会将确保系统可以正常运行后。</p>
-<p>搭建集群</p>
-<p>根据上面的架构图, 以及投票机制和备胎机制, 一个��格的redis集群, 应该是要6台电脑. 作为我个人来讲, 我去哪里弄6台电脑啊, 装6台虚拟机还差不多. 但是同时跑6台虚拟机, 你累不累啊?</p>
-<p>既然没有那么多电脑, 也不想装那么多虚拟机, 那么久来个伪集群吧. 到生产环境中, 需要多台电脑来搭建集群的时候, 步骤是一样的. 结果其实也是一样的, 没差, 甚至更简单点.</p>
-<p><strong>一. 搭建多个redis</strong></p>
-<p>接着前面的篇幅中的redis文件.</p>
-<p><strong>1.</strong> 拷贝创建redis-cluster文件夹</p>
-<p><img src="/pro/os/crawler/RUIJ-QFYR-IVFM.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>2.</strong> 进入redis-cluster, 将bin文件重命名</p>
-<p><img src="/pro/os/crawler/MBB2-UZBZ-NVMM.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>3.</strong> 对redis1下的redis.conf文件进行端口和集群配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ./redis1/redis.conf</span><br></pre></td></tr></table></figure>
-<p><strong>3.1</strong> 端口修改</p>
-<p><img src="/pro/os/crawler/UNZ7-JYZJ-2MUQ.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>3.2</strong> 允许集成开关</p>
-<p><img src="/pro/os/crawler/RAMQ-NQYM-FEVE.jpg" alt="一起来看看 redis 集��搭建：redis-cluster"></p>
-<p>这里默认是被注释掉的. 只要打开注释就可以了</p>
-<p><strong>4.</strong> 将redis1复制5份出来, 分别命名为redis2,redis3, redis4, redis5, redis6</p>
-<p><img src="/pro/os/crawler/NRJV-AY3E-QQ7N.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>5.</strong> 修改redis2~redis6的端口号, 分别为7002~7006. 修改方式与3.1一样的.</p>
-<p><strong>6.</strong> 创建一把启动脚本. vim start-all.sh　</p>
-<p><img src="/pro/os/crawler/EVVY-EM6N-ZYFA.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>7.</strong> 修改start-all.sh的权限</p>
-<p>如果不改权限, 直接运行, 是跑不起来的</p>
-<p><img src="/pro/os/crawler/MINV-2QBN-3IQU.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>修改完之后, 就可以牵出来溜一下, 看看是否都能跑起来</p>
-<p><img src="/pro/os/crawler/67RE-ZMAN-YYMM.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>通过ps看一下</p>
-<p><img src="/pro/os/crawler/MBZQ-MAR3-6ZIJ.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>8.</strong> 创建一把结束脚本 vim shutdown-all.sh</p>
-<p>有始有终, 一把��始, 当然也需要一把结束, 总不能一个一个去结束吧, 太麻烦了</p>
-<p><img src="/pro/os/crawler/JBBV-YZAY-2MYY.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>同样的, 这个脚本也需要修改访问权限, 与上面是一样的.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x shutdown-all.sh</span><br></pre></td></tr></table></figure>
-<p>跑一下这个脚本看看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-cluster]# ./shutdown-all.sh</span><br></pre></td></tr></table></figure>
-<p>这时候, 再通过ps看看</p>
-<p><img src="/pro/os/crawler/UBZM-IR3M-ZBNZ.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>都关掉了.</p>
-<p><strong>二. 集群</strong></p>
-<p><strong>注:</strong></p>
-<p>在开始搭建之前, 有一些概念, 要搞清楚.</p>
-<p><strong>　　</strong>在redis-cluster中, 吧所有的物理节点都映射到[0-16383]个slot(槽)上, 由cluster负责维护.</p>
-<p>那具体是怎么分配这些槽的呢?</p>
-<p>当有一个数据进来需要进行缓存时, redis会先对key使用crc16算法, 计算出一个结果, 然后对16384进行取余, 这样, 每个key都会得到一个在0-16383之间的数, 这个数, 就是他的槽值. 根据这个数, 将数据存入槽所在的电脑里面.</p>
-<p>也就是说, 如果有3台电脑A,B,C, A-&gt;[0, 5000], B-&gt;[5001, 10000], C-&gt;[10001, 16383]. 进来一个值, key计算最后结果是5005, 则会将这个值存入B电脑里面. 再进来一个值, key计算是10010, 则会存入C电脑中.</p>
-<p>这个槽点, 并不是key的个数, 这里需要注意以下. 理论来说, 可以进行16284台电脑的集群, 每台电脑分一个槽. 但是每个电脑, 肯定会存一堆值.</p>
-<p><strong>1.</strong> 拷贝redis-trib.rb文件到redis-cluster中</p>
-<p><img src="/pro/os/crawler/FJQB-J3IZ-FAIQ.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><img src="/pro/os/crawler/BRNE-UQM2-QQYA.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>2.</strong> 安装ruby</p>
-<p>上面拷贝的文件, 是rb后缀的, 从这个后缀, 应该能看出为啥要安装ruby吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install rubyyum install rubygems</span><br></pre></td></tr></table></figure>
-<p>　　安装完成之后, 还需要安装一个 gem</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install redis --version 3.0.0</span><br></pre></td></tr></table></figure>
-<p><strong>3.</strong> 使用ruby脚本搭建集群</p>
-<p><img src="/pro/os/crawler/BIJM-YIA3-UZYQ.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>在搭建集群的时候, 有可能会报一个错误</p>
-<p><img src="/pro/os/crawler/NQZ7-FUZZ-ZFQ2.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>这个是为啥呢?</p>
-<p>在集群的时候, 需要保证各redis都是空的, 里面不存数据的. 所以, 这里就需要我们手动来清一下数据.</p>
-<p>在将 各 redis 启动之后, 执行flushdb命令</p>
-<p><img src="/pro/os/crawler/J3EZ-UUFM-BYBY.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>如果清除之后还不行, 则删除</p>
-<p>目录中的dum.rdb, nodes.conf, appendonly.aof 文件, 每一个redis都要删.</p>
-<p>做完了这些, 一件很重要的事情别忘了: <strong>重启以下redis</strong> , 否则, 在集群的时候, 还是会报错的</p>
-<p><img src="/pro/os/crawler/EQR3-I2I2-QIJR.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p><strong>4.</strong> 使用</p>
-<p>通过以上的步骤, 就将redis集群搭建好了, 接下来, 就是来验证一番.</p>
-<p>连接集群的时候和连接单机的时候, 稍有不同, 需要在连接指令后面加上 -c</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost redis-cluster]# ./redis1/redis-cli -p 7001 -c</span><br></pre></td></tr></table></figure>
-<p><img src="/pro/os/crawler/MQ6Z-AQNQ-NQQB.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>在存储的时候, 会根据key计算, 找到存放的电脑, 跳转过去存放</p>
-<p>那现在我存放了三个值, 分别在7002, 7003里面, 7001里面没有存值, 还是看的出来的. 现在我通过7001来取一下, 看看可能取出来</p>
-<p><img src="/pro/os/crawler/2YER-IQNF-UU2I.jpg" alt="一起来看看 redis 集群搭建：redis-cluster"></p>
-<p>在我取的时候, 也是会跳转到相应的存储服务器取数据.</p>
-<ul>
-<li><strong>原文作者：</strong> JAVA小生</li>
-<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6516465210679624199/" target="_blank" rel="noopener">https://www.toutiao.com/item/6516465210679624199/</a></li>
-<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <p>redis数据存储在内存中, 就会受到内存的限制, 大家都知道, 一台电脑, 硬盘可以有1T, 但是内存, 没有听说有1T的内存吧.</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">脚本语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">文本编辑器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/29/一起来看看 redis 集群搭建：redis-clusterJAVA小生/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-如何打通成本、合同、HR、OA之间的联系史常青" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -872,11 +668,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1863,6 +1659,123 @@
 
 
   
+    <article id="post-自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法星海起航" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/20/自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法星海起航/">自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/20/自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法星海起航/" class="archive-article-date">
+  	<time datetime="2018-01-20T14:32:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p><img src="/pro/os/crawler/AFRB-YNNJ-EYFI.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>团队管理运作是个技术活，搞好了1+1都会变成100，搞不好只会变成0。</p>
+<p>对于团队管理，管理的手段和执行的方法直接决定了整个团队如何能够有效的运作下去。清晰明了，直接了当的命令，便于各个成员有效的落实执行。对于一个团队的领导来说，能否将各项指标清晰量化到每个人，并制定具体的执行策略，是至关重要的。</p>
+<p>我身边就有一个例子，我朋友所在的团队，管理混乱，各项指令难以落到实处，幸亏换了一个优秀的领导，自从他上任后，每个人的任务都清楚明了，再也没有被遗漏的问题，这个方法就是思维导图管理法。</p>
+<p><img src="/pro/os/crawler/I67V-ARB6-3Y7V.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>1把一个总目标分割成若干了小的子集，完成也就是完成大目标之前先要完成的小目标，把他们逐一分解 开。</p>
+<p><img src="/pro/os/crawler/UFFR-AMQU-A7JQ.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>2将每一个子集细化，制定出每项任务的重点，日程规划和节点表，以及出现意外情况时的应急解决方案和 相关变更。</p>
+<p><img src="/pro/os/crawler/VREA-7ZEZ-ZZ73.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>3按照整体规划为每个目标配备人员，设定时间节点并制定相关的监督和反馈机制。</p>
+<p><img src="/pro/os/crawler/QVMY-6BVE-2IBN.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>4每天工作之前，统一汇总下团队中，每个人的完成情况和今天的工作计划。</p>
+<p><img src="/pro/os/crawler/2QZ3-MBJZ-NEVF.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>5分析出现的重难点，集中力量进行攻克。</p>
+<p><img src="/pro/os/crawler/R6FJ-MVMM-YZFN.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+<p>思维导图可以同时提供宏观和围观视野，因此是管理人员的完美工具，防止出现漏网之鱼。同时也是职场普 通员工查漏补缺的好伙伴。</p>
+<ul>
+<li><strong>原文作者：</strong> 星海起航</li>
+<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6513140622122025480/" target="_blank" rel="noopener">https://www.toutiao.com/item/6513140622122025480/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
+
+        
+      <!--
+        
+          
+          
+          
+            <p><img src="/pro/os/crawler/AFRB-YNNJ-EYFI.jpg" alt="自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法"></p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">职场</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/20/自从换领导后，团队从混乱不堪到井然有序，因为他使用了这个方法星海起航/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/18/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/20/">Next &raquo;</a>
@@ -2079,30 +1992,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -2120,6 +2009,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2155,14 +2052,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -2179,6 +2068,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -2187,23 +2100,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2287,6 +2192,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2331,15 +2240,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2535,11 +2444,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2591,6 +2500,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2600,10 +2513,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2775,15 +2684,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2827,10 +2740,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2851,7 +2760,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2871,15 +2796,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2904,18 +2829,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2967,6 +2880,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2979,11 +2900,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2995,7 +2912,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3007,10 +2924,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -3019,23 +2932,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3044,6 +2949,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3071,6 +2984,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -3079,15 +2996,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3123,6 +3036,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -3143,10 +3064,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -3155,11 +3072,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3287,11 +3200,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

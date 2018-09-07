@@ -154,109 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java中如何遍历Map呢？xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/">Java中如何遍历Map呢？</a>
-    </h1>
-  
-
-        
-        <a href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/" class="archive-article-date">
-  	<time datetime="2012-11-09T13:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-11-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p>在Javascript中 遍历 key:value关系的对象时，有这样的方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">      id:&apos;123456789&apos;,</span><br><span class="line">     name:&apos;hank&apos;,</span><br><span class="line">     age:22</span><br><span class="line">&#125;;</span><br><span class="line">for(var i=0,len = obj.length;i&lt;len;i++)&#123;</span><br><span class="line">     console.log(obj[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者遍历其属性和值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i in obj)&#123;</span><br><span class="line">    console.log(&quot;key=&quot;+i+&quot;    value是&quot;+obj[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但在Java中遍历像Map这样的key:value关系的时候又怎么做呢？ 一下是4种遍历方法，并添加两种map&lt;String,ArrayList<string>&gt;的方法</string></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">package mapPractice;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Map.Entry;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Detail : 循环遍历Map的方法</span><br><span class="line"> * @Author: 韩庆</span><br><span class="line"> * @E-mail: IsaidIwillgoon@gmail.com</span><br><span class="line"> * @Date: 2012-11-9</span><br><span class="line"> * @Time: 下午8:48:01</span><br><span class="line"> * </span><br><span class="line"> */</span><br><span class="line">public class MapToTraverse &#123;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 用于得到键值-可以对键值做相应的处理</span><br><span class="line">	 * </span><br><span class="line">	 * @return 处理键值关系后的字符</span><br><span class="line">	 */</span><br><span class="line">	public String getKeyAndValue(Map&lt;String, String&gt; map) &#123;</span><br><span class="line"></span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// 利用hashmap中的entrySet()方法实现遍历</span><br><span class="line">		Iterator&lt;Entry&lt;String, String&gt;&gt; it = map.entrySet().iterator();</span><br><span class="line">		// 内部处理键值关系--以出键值关系为例</span><br><span class="line">		while (it.hasNext()) &#123;</span><br><span class="line">			Map.Entry&lt;String, String&gt; entry = (Entry&lt;String, String&gt;) it.next();</span><br><span class="line">			Object key = entry.getKey();</span><br><span class="line">			Object value = entry.getValue();</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);// 因为Object隐式的调用toString()</span><br><span class="line">																	// 我就不写了</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);// 截取最后一个&quot;,&quot;并拼接“&#125;”</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue2(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// for循环遍历 这是JDK1.5中的for-each</span><br><span class="line">		for (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">			String key = entry.getKey();</span><br><span class="line">			String value = entry.getValue();</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue3(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// 利用 hashmap的keySet()方法</span><br><span class="line">		for (Iterator&lt;String&gt; it = map.keySet().iterator(); it.hasNext();) &#123;</span><br><span class="line">			Object key = it.next();</span><br><span class="line">			String value = map.get(key);// key隐式转换为Stirng</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue4(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">        //这种方法老像 javascript中的for in 了  </span><br><span class="line">		for (Object key : map.keySet()) &#123;</span><br><span class="line">			String value = map.get(key);</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/********************************************************</span><br><span class="line">	 * Java中又是如何遍历Map&lt;String,ArrayList&gt; map = new HashMap&lt;String,ArrayList&lt;String&gt;&gt;()的呢？</span><br><span class="line">	 *******************************************************/</span><br><span class="line">	public String getMapForStringAndArrayList(Map&lt;String,ArrayList&lt;String&gt;&gt; map)&#123;</span><br><span class="line">		</span><br><span class="line">		//一下两个方法均在上述几个方法基础上 再次循环遍历其元素</span><br><span class="line">		Set&lt;String&gt; keys = map.keySet();</span><br><span class="line">		Iterator&lt;String&gt; it = keys.iterator();</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			String key = it.next();</span><br><span class="line">			ArrayList&lt;String&gt; arrayList = map.get(key);</span><br><span class="line">			for(Object value : arrayList)&#123;</span><br><span class="line">				System.out.println(value);</span><br><span class="line">			&#125;</span><br><span class="line">			//这里可以处理键值关系</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		for(Map.Entry&lt;String, ArrayList&lt;String&gt;&gt; entry : map.entrySet())&#123;</span><br><span class="line">			String key = entry.getKey();</span><br><span class="line">			List&lt;String&gt; lists = entry.getValue();</span><br><span class="line">			for(String value : lists)&#123;</span><br><span class="line">                System.out.println(key+&quot;:&quot;+value);				</span><br><span class="line">			&#125;</span><br><span class="line">			//这里可以处理键值关系</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</span><br><span class="line">		map.put(&quot;id&quot;, &quot;123456789&quot;);</span><br><span class="line">		map.put(&quot;name&quot;, &quot;hank&quot;);</span><br><span class="line">		map.put(&quot;sex&quot;, &quot;male&quot;);</span><br><span class="line">		MapToTraverse mtt = new MapToTraverse();</span><br><span class="line">		System.out.println(mtt.getKeyAndValue2(map));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码的方法参考了网上的一些源代码。贴在这里以供自己以后查看。 并上传java文件于资源中供下载。//以上纯手敲，错误难免 <img src="/pro/os/crawler/QJVY-NZEN-YNZ2.gif" alt="微笑">。今天心情不是很好，不写了。</p>
-
-        
-      <!--
-        
-          
-          
-          
-            <p>在Javascript中 遍历 key:value关系的对象时，有这样的方法：</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-系统学习Java的步骤（网摘）xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1477,6 +1374,119 @@ x();
 
 
   
+    <article id="post-今日毕业以及学习和工作的感想xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/10/26/今日毕业以及学习和工作的感想xiaohan1990718/">今日毕业以及学习和工作的感想</a>
+    </h1>
+  
+
+        
+        <a href="/2012/10/26/今日毕业以及学习和工作的感想xiaohan1990718/" class="archive-article-date">
+  	<time datetime="2012-10-26T13:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-10-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>毕业证已领取。2012年10月26日。</p>
+<p>学习还是要继续的~</p>
+<p>今日两点：关于教育，赞同“克里斯托夫·金”的观点：中国教育已经烂到根。肯定韩·令·国以及邹·恒·甫针对北大的指证.</p>
+<p> 关于工作以及学习，贴一篇博文：</p>
+<p>看了大前研一的【低智商社会】后深有感触，日本如此发达的社会，大前研一却对于日本年轻人沉溺于动漫、网络游戏、网络社交，出现集体智商衰退的现象忧国忧民。日本人真的是一代不如一代？按照大前研一的说法，就是现在日本已经进入到了“低智商社会”。本书从日本的政治、经济、网络社会、教育等各个范畴去分析，点出了各种现实存在的低智商现象，给想在21世纪生存下去的日本人最后的当头棒喝，也给其他国家的人们一个强烈的警示，从而使我们反思面对的问题。<br>其实在中国更严重，在IT团队跟更更严重！<br>我经常对我的同事们讲的一个观点:在IT界成功真是太容易了。<br>1.最容易成功和获得一份不错薪资的行业就是IT，只要你有学习能力，因为你所有要学的东西，都在网上，通过Google可以获得你想要提高的所有东西。<br>2.只要你坚持不断的写程序，少说多写，你就很容易脱颖而出，因为你周围大部分人都在玩，有的在看垃圾小说，有的在聊天和微博，有的在低头玩弄智能手机。很少有人能够驱动自己从头到尾，从前端到后端，从页面到数据库，独立写一个完整的软件，并为之不/Users/hank/WORKPLACE/blog/hexo/source/_posts/凌晨一点写东东xiaohan1990718.md断的改进。<br>网络是个让人又爱又恨的地方，我们写软件无法摆脱网络，但是网络让我们效率是如此的低下。</p>
+<p>十一国庆，我在家，老婆孩子回娘家了，没有一个人打扰我，我发誓要在8天之内，用C#重写原来的通信服务器软件。<br>可是这8天内我做了什么呢？<br>1.因为在家，很松弛，我发现我非常不愿意动手写代码，我愿意查资料，我也不愿意写代码，结果第一天我查了和下载了一通资料和代码；<br>2.第二天，好声音决赛，我在优酷上把好声音看了够；<br>3.第三天我的负罪感加深了，我决定建立个工程，开始写代码，我有了初步的进展，有一个工程了，并把以前的C++的代码翻看了一遍，思考要改进的地方，写下了自己的设计思路，画了2张草图，并写了Socket的公用库。这距离我的目标还很遥远，中间我又花时间升级了我的android手机还看了个电视剧，白天想着晚上有时间，到晚上吃完饭犯困，9点多就睡了。<br>4.第四天我觉得写底层代码，推进太慢，从界面驱动入手，要让自己的工程可以运行和测试，从而不断的推进自己的工作。在写完界面后，我有点得意，放下工作，又犯了浏览网络博客的老毛病，看了很多精彩的博客文章，并放入自己的Evernote中。<br>5.后面的几天，老婆孩子回来了，工作效率更低了，基本上写了界面和底层的协议库，软件从整体上没有运行起来。<br>6.上班后，坐在办公室的感觉真好，由花了一个星期的时间，重要运行起来了。这个工作总共花费了15天，实际上我估算，如果集中精神，每天工作满8个小时，7天就完事了。<br>在现实中，我们的注意力都无法保持一个稳定的状态，网上的东西太多了，如果没有外界的压力，我们的工作效率就更低了，如果我们能超越这一点，我们就能做到和周边的人不一样，这样我们就能很容易脱颖而出得到上司的注意。因为别人都手慢，而你手快，你执行力强，你能够很快的写出一个可以运行的东西。<br>现在几乎所有的项目经理在制定计划时，都会迁就我们低效的工作状态，美名其曰，留出冗余。其实我们很多的功能，如果两天能完事，必定要三天、四天的拖着。很多人都像有毒瘾一样，从上学开始，大学中，考试前几天，才开始看书，项目中总是在Milestone的最后时刻，才开始稍微动作起来。<br>大部分人几乎整年的不看书不买书，经常在网上浏览文章，会造成知识的碎片化，一本好书是从头到尾的让你系统化。无论是技术还是项目管理的书都是这样。我们不能满足于一点点的技巧性的文章。你有没有发现让你解释个东西的时候，你会结结巴巴的，无法从头到尾系统的阐述某个东西。<br>大部分人的能力和知识面都很局限，看看下面，自己能不能做到：</p>
+<p>1.有没有自己一个人写过一个完整的可以运行的软件，B/S或C/S都行;<br>2.有没有完整的看过非小说的书，如测试驱动、配置管理、项目管理等等；<br>3.知不知道时间管理，想不想对改进自己的时间管理的能力，有没有使用过GTD或番茄时间管理法之类的工具，把自己的事情系统的整理一下；<br>4.有没有持续集中自己的注意力，不浏览网络，写一个小时代码的经历。</p>
+<p>我只是想深刻的反省自己，并提高自己，和大家做个分享，如果我们8个小时能够做到高效率，我们的生活不会那么苦，反而会获得升迁和提拔。</p>
+<p>-—————–该博文摘自：<a href="http://www.blogjava.net/oneeyewolf" target="_blank" rel="noopener">http://www.blogjava.net/oneeyewolf</a> ———————–</p>
+<p>话说到心坎里了，网络是帮手也在很大程度上影响了工作效率，关键其实还是在于自己！！</p>
+<p><strong>潜下心将Javascript、Java、SQL几本经典书籍基础部分学习！多研读大牛博文。专心工作、专心学习，好好玩。</strong></p>
+<p><strong><img src="/pro/os/crawler/MVVU-QIRB-2ANA.jpg" alt="MVVU-QIRB-2ANA.jpg"></strong></p>
+<p>痛改前非！既然说了，就会做到的！~~我是小韩。2012年10月26日于郑州。</p>
+
+        
+      <!--
+        
+          
+          
+          
+            <p>毕业证已领取。2012年10月26日。</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">职场</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/生活感悟//" class="article-tag-list-link color5">生活感悟</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/10/26/今日毕业以及学习和工作的感想xiaohan1990718/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/37/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="page-number" href="/page/37/">37</a><span class="page-number current">38</span><a class="page-number" href="/page/39/">39</a><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/39/">Next &raquo;</a>
@@ -1693,30 +1703,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -1734,6 +1720,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1769,14 +1763,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -1793,6 +1779,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -1801,23 +1811,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1901,6 +1903,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1945,15 +1951,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2149,11 +2155,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2205,6 +2211,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2214,10 +2224,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2389,15 +2395,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2441,10 +2451,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2465,7 +2471,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2485,15 +2507,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2518,18 +2540,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2581,6 +2591,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2593,11 +2611,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2609,7 +2623,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2621,10 +2635,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2633,23 +2643,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2658,6 +2660,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2685,6 +2695,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2693,15 +2707,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2737,6 +2747,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -2757,10 +2775,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -2769,11 +2783,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2901,11 +2911,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

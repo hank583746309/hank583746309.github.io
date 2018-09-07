@@ -154,213 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-百度开源移动端深度学习框架mobile-deep-learning（MDL）InfoQ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/25/百度开源移动端深度学习框架mobile-deep-learning（MDL）InfoQ/">百度开源移动端深度学习框架mobile-deep-learning（MDL）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/25/百度开源移动端深度学习框架mobile-deep-learning（MDL）InfoQ/" class="archive-article-date">
-  	<time datetime="2017-09-25T01:11:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p><img src="/pro/os/crawler/BZRQ-MFU2-Y6FV.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>作者｜李永会</p>
-<p>编辑｜Natalie</p>
-<p>2017 年 9 月 25 日，百度在 GitHub 开源了移动端深度学习框架 mobile-deep-learning（MDL）的全部代码以及脚本，希望这个项目在社区的带动下能够更好地发展。</p>
-<p>写在前面</p>
-<p>深度学习技术已经在互联网的诸多方向产生影响，每天科技新闻中关于深度学习和神经网络的讨论越来越多。深度学习技术在近两年飞速发展，各种互联网产品都争相应用深度学习技术，产品对深度学习的引入也将进一步影响人们的生活。随着移动设备的广泛使用，在移动互联网产品应用深度学习和神经网络技术已经成为必然趋势。</p>
-<p>与深度学习紧密联系在一起的图像技术同样在业界广泛应用。传统计算机视觉和深度学习的结合使图像技术得以快速发展。</p>
-<p>GitHub 地址：</p>
-<p><a href="https://github.com/baidu/mobile-deep-learning" target="_blank" rel="noopener">https://github.com/baidu/mobile-deep-learning</a></p>
-<p>移动端深度学习技术应用</p>
-<p>百度应用案例</p>
-<p>在移动端应用深度学习技术比较典型的就是 CNN（Convolutional Neural Network）技术，即常被人提起的卷积神经网络。mobile-deep-learning（MDL）是一个基于卷积神经网络实现的移动端框架。</p>
-<p>MDL 在移动端主要有哪些应用场景呢？比较常见的如分辨出一张图片中的物体是什么，也就是 <strong>分类</strong>；或者识别出一张图片中的物体在哪、有多大，也就是<strong>主体识别</strong>。</p>
-<p>下面这个 App 叫拾相，可以在 Android 平台的应用宝中找到。它可以自动为用户将照片分类，对于拥有大量照片的用户来讲，这个功能很有吸引力。</p>
-<p><img src="/pro/os/crawler/Y6BA-YJZY-JMNJ.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>另外，在手机百度搜索框右侧可以打开图像搜索，打开图像搜索后的界面效果如下图。当用户在通用垂直类别下开启自动拍开关（图中下方标注）时，手停稳它就会自动找到物体进行框选，并无需拍照直接发起图像搜索。整个过程可以给用户带来流畅的体验，无需用户手动拍照。图片中的框体应用的就是典型的深度学习主体识别技术，使用的就是 mobile-deep-learning（MDL）框架。MDL 目前在手机百度中稳定运行了多个版本，经过数次迭代后可靠性大幅提升。</p>
-<p><img src="/pro/os/crawler/UBRU-BUAR-AUYF.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"><img src="/pro/os/crawler/IMJZ-YRUE-YJVJ.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>业界其他案例</p>
-<p>互联网行业在移动端应用神经网络的案例已经越来越多。</p>
-<p>目前的流派主要有两种，其一是完全在客户端运行神经网络，这种方式的优点显而易见，那就是不需要经过网络，如果能保证运行速度，用户体验会非常流畅。如果能保证移动端高效运行神经网络，可以使用户感觉不到加载过程。使用完全脱离互联网网络在移动端运算神经网络的 App 已经举例，如前述拾相和手机百度中的图像搜索。</p>
-<p>其二是另一种，运算神经网络过程依赖互联网网络，客户端只负责 UI 展示。在客户端神经网络落地之前，绝大部分 App 都使用了这种运算在服务端、展示在客户端的方式。这种方式的优点是实现相对容易，开发成本更低。</p>
-<p>为了更好理解上述两种神经网络的实现方法，下面展示两个识别植物花卉的例子，分别用到了识花和形色两个 App。这两款 App 都使用了典型分类方法，都可以在 iOS 平台的 App Store 中找到。下图是一张莲花图片，这张图片使用识花和形色两个 App 分类都能得到较好的分类结果。你可以尝试安装这两款 App 并根据使用效果来判断它们分别使用了上述哪一种方法。</p>
-<p><img src="/pro/os/crawler/EBM6-BM3Q-JAVM.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>识花</p>
-<p>近一年来涌现出很多花卉识别的 App。微软「识花」是微软亚洲研究院推出的一款用于识别花卉的 App，用户可以在拍摄后选择花卉，App 会给出该类花卉的相关信息。精准的花卉分类是其对外宣传的一大亮点。</p>
-<p><img src="/pro/os/crawler/EIBI-FVIB-FRVQ.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>形色</p>
-<p>这款「形色」App，只需要对准植物 (花、草、树) 拍照，就能快速给出植物的名字，还有不少有趣的植物知识，如这个植物还有什么别名、植物的花语、相关古诗词、植物文化、趣味故事以及养护方法，看完收获不少。</p>
-<p><img src="/pro/os/crawler/UF6V-VNQB-VURF.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>移动端应用深度学习的难点</p>
-<p>一直以来由于技术门槛和硬件条件的限制，在移动端应用深度学习的成功案例不多。传统移动端 UI 工程师在编写神经网络代码时，可以查阅到的移动端深度学习资料也很少。另一方面，时下的互联网竞争又颇为激烈，先入咸阳者王，可以率先将深度学习技术在移动端应用起来，就可以更早地把握时代先机。</p>
-<p>移动端设备的运算能力相对 PC 端非常弱小。由于移动端的 CPU 要将功耗指标维持在很低的水平，制约了性能指标的提升。在 App 中做神经网络运算会使 CPU 运算量猛增。如何协调好用户功耗指标和性能指标就显得至关重要。</p>
-<p>百度图像搜索客户端团队在 2015 年底就开始针对移动端深度学习技术应用进行攻关。最终，挑战性问题被逐一解决，现今相关代码已经在很多 App 上运行，这些 App 有日 PV 亿级的产品，也有创业期的产品。</p>
-<p>在移动端应用深度学习技术本已困难重重，而在手机百度这种量级的产品上应用，更是要面对各种机型和硬件、手机百度的指标要求。如何使神经网络技术稳定高效运转是最大的考验。拆解问题就是移动端团队面对的首要问题。我们简单总结后发现移动端与服务器端进行对比更容易呈现问题和难点，继而在服务器端和客户端做了以下深度学习技术应用对比。</p>
-<table><br> <thead><br>  <tr><br>   <th>难点</th><br>   <th>与服务器端对比</th><br>  </tr><br> </thead><br> <tbody><br>  <tr><br>   <td>内存</td><br>   <td>内存：服务器端弱限制 - 移动端内存有限</td><br>  </tr><br>  <tr><br>   <td>耗电量</td><br>   <td>耗电量：服务器端不限制 - 移动端严格限制</td><br>  </tr><br>  <tr><br>   <td>依赖库体积</td><br>   <td>依赖库体积：服务器端不限制 - 移动端强限制</td><br>  </tr><br>  <tr><br>   <td>模型体积</td><br>   <td>模型大小：服务器端常规模型体积 200M 起 - 移动端不宜超过 10M</td><br>  </tr><br>  <tr><br>   <td>性能</td><br>   <td>性能：服务器端强大 GPU BOX - 移动端 CPU 和 GPU</td><br>  </tr><br> </tbody><br></table>
-
-<p>在开发过程中，团队逐步解决掉以上困难，形成了现在的 MDL 深度学习框架。为了让更多移动端工程师能够快速用轮子、专注业务，百度开源了全部相关代码，社区也欢迎任何人加入到造轮子的开发过程中来。</p>
-<p>MDL 框架设计</p>
-<p>设计思路</p>
-<p>作为一款移动端深度学习框架，我们充分考虑到移动应用自身及运行环境的特点，在速度、体积、资源占用率等方面提出了严格的要求，因为其中任何一项指标对用户体验都有重大影响。</p>
-<p>同时，可扩展性、鲁棒性、兼容性也是我们设计之初就考虑到了的。为了保证框架的可扩展性，我们对 layer 层进行了抽象，方便框架使用者根据模型的需要，自定义实现特定类型的层，我们期望 MDL 通过添加不同类型的层实现对更多网络模型的支持，而不需要改动其他位置的代码；为了保证框架的鲁棒性，MDL 通过反射机制，将 C++ 底层异常抛到应用层，应用层通过捕获异常对异常进行相应处理，如通过日志收集异常信息、保证软件可持续优化等；目前行业内各种深度学习训练框架种类繁多，而 MDL 不支持模型训练能力，为了保证框架的兼容性，我们提供 Caffe 模型转 MDL 的工具脚本，使用者通过一行命令就可以完成模型的转换及量化过程，后续我们会陆续支持 PaddlePaddle、TensorFlow 等模型转 MDL，兼容更多种类的模型。</p>
-<p>总体架构</p>
-<p>MDL 框架的总体架构设计图如下：</p>
-<p><img src="/pro/os/crawler/MIAV-Q3ZZ-AZVB.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>MDL 框架主要包括模型转换模块（MDL Converter）、模型加载模块（Loader）、网络管理模块（Net）、矩阵运算模块（Gemmers）及供 Android 端调用的 JNI 接口层（JNI Interfaces）。其中，模型转换模块主要负责将 Caffe 模型转为 MDL 模型，同时支持将 32bit 浮点型参数量化为 8bit 参数，从而极大地压缩模型体积；模型加载模块主要完成模型的反量化及加载校验、网络注册等过程，网络管理模块主要负责网络中各层 Layer 的初始化及管理工作；MDL 提供了供 Android 端调用的 JNI 接口层，开发者可以通过调用 JNI 接口轻松完成加载及预测过程。</p>
-<p>MDL 定位简单可用</p>
-<p>MDL 开源项目在实施之初就已经有了清晰定位。在设备繁杂且性能较低的移动端平台技术研发过程中，能够为新颖的深度学习技术找到合适场景并应用到自己的产品中是非常吸引人的。但如果让每个移动端工程师在应用深度学习过程中都要重新写一次全部神经网络的实现，会增加较大成本。MDL 的定位是简单地使用和部署神经网络，如果使用基本功能则不需要进行过多配置和修改，甚至连机器学习库的编译过程都不需要，只需要关注具体业务实现、如何使用即可。</p>
-<p>与此同时 MDL 简单清晰的代码结构也可以作为学习材料，为刚刚接触深度学习的研发工程师提供参考。因为我们在支持手机平台交叉编译同时，也支持 Linux 和 Mac 的 x86 平台编译，在调整深度学习代码的同时可以直接在工作电脑上编译运行，而不需要部署到 arm 平台。所需要的只是简单的几行代码，具体可以查阅 MDL 的 GitHub Readme。</p>
-<pre><code># https://github.com/baidu/mobile-deep-learning # mac or linux: ./build.sh mac cd build/release/x86/build ./mdlTest
-</code></pre><p>复杂的编译过程往往比开发的时间更长，在 MDL 中只要一行./build.sh android 就能把 so、测试 test 都搞定，部署非常简便。</p>
-<pre><code>./build.sh android
-</code></pre><p>MDL 的性能及兼容性</p>
-<ul>
-<li>体积 armv7 300k+</li>
-<li>速度 iOS GPU mobilenet 可以达到 40ms、squeezenet 可以达到 30ms</li>
-</ul>
-<p>MDL 从立项到开源，已经迭代了一年多。移动端比较关注的多个指标都表现良好，如体积、功耗、速度。百度内部产品线在应用前也进行过多次对比，和已开源的相关项目对比，MDL 能够在保证速度和能耗的同时支持多种深度学习模型，如 mobilenet、googlenet v1、squeezenet 等，且具有 iOS GPU 版本，squeezenet 一次运行最快可以达到 3-40ms。</p>
-<p>同类框架对比</p>
-<table><br> <thead><br>  <tr><br>   <th>框架</th><br>   <th>Caffe2</th><br>   <th>TensorFlow</th><br>   <th>ncnn</th><br>   <th>MDL(CPU)</th><br>   <th>MDL(GPU)</th><br>  </tr><br> </thead><br> <tbody><br>  <tr><br>   <td>硬件</td><br>   <td>CPU</td><br>   <td>CPU</td><br>   <td>CPU</td><br>   <td>CPU</td><br>   <td>GPU</td><br>  </tr><br>  <tr><br>   <td>速度</td><br>   <td>慢</td><br>   <td>慢</td><br>   <td>快</td><br>   <td>快</td><br>   <td>极快</td><br>  </tr><br>  <tr><br>   <td>体积</td><br>   <td>大</td><br>   <td>大</td><br>   <td>小</td><br>   <td>小</td><br>   <td>小</td><br>  </tr><br>  <tr><br>   <td>兼容</td><br>   <td>Android&amp;amp;iOS</td><br>   <td>Android&amp;amp;iOS</td><br>   <td>Android&amp;amp;iOS</td><br>   <td>Android&amp;amp;iOS</td><br>   <td>iOS</td><br>  </tr><br> </tbody><br></table>
-
-<p>与支持 CNN 的移动端框架对比，MDL 速度快、性能稳定、兼容性好、demo 完备。</p>
-<p>兼容性</p>
-<p>MDL 在 iOS 和 Android 平台均可以稳定运行，其中 iOS10 及以上平台有基于 GPU 运算的 API，性能表现非常出色，在 Android 平台则是纯 CPU 运行。高中低端机型运行状态和手机百度及其他 App 上的覆盖都有绝对优势。</p>
-<p>MDL 同时也支持 Caffe 模型直接转换为 MDL 模型。</p>
-<p>MDL 特性一览</p>
-<p>在移动 AI 相关研发启动之初，百度图像搜索团队对比了大部分已经开源的同类 CNN 框架，百家争鸣的同时也暴露了该方向的问题。一些框架实验数据表现优秀，实际产品中或是表现较差且性能极不稳定，或是机型无法全覆盖，或是体积达不到上线标准。为了避免这些问题，MDL 加入了以下 Features：</p>
-<ul>
-<li>一键部署，脚本参数就可以切换 iOS 或者 Android</li>
-<li>支持 Caffe 模型全自动转换为 MDL 模型</li>
-<li>支持 GPU 运行</li>
-<li>已经测试过可以稳定运行 MobileNet、GoogLeNet v1、squeezenet 模型</li>
-<li>体积极小，无任何第三方依赖，纯手工打造</li>
-<li>提供量化脚本，直接支持 32 位 float 转 8 位 uint，模型体积量化后在 4M 上下</li>
-<li>与 ARM 相关算法团队线上线下多次沟通，针对 ARM 平台会持续优化</li>
-<li>NEON 使用涵盖了卷积、归一化、池化等运算过程</li>
-<li>loop unrolling 循环展开，为提升性能减少不必要的 CPU 消耗，全部展开判断操作</li>
-<li>将大量繁重的计算任务前置到 overhead 过程</li>
-</ul>
-<p>后续规划</p>
-<ul>
-<li>为了让 MDL 体积进一步缩小，MDL 并未使用 protobuf 做为模型配置存储，而是使用了 Json 格式。目前 MDL 支持 Caffe 模型转换到 MDL 模型，未来会支持全部主流模型转换为 MDL 模型。</li>
-<li>随着移动端设备运算性能的提升，GPU 在未来移动端运算领域将会承担非常重要的角色，MDL 对于 GPU 的实现极为看重。目前 MDL 已经支持 iOS GPU 运行，iOS10 以上版本机型均可以使用。根据目前得到的统计数据显示，iOS10 已经涵盖绝大部分 iOS 系统，在 iOS10 以下可以使用 CPU 运算。除此之外，虽然 Android 平台目前的 GPU 运算能力与 CPU 相比整体偏弱，但日益涌现的新机型 GPU 已经越来越强大。MDL 后面也将加入 GPU 的 Feature 实现，基于 OpenCL 的 Android 平台 GPU 运算会让高端机型的运算性能再提升一个台阶。</li>
-</ul>
-<p>欢迎开发者贡献代码</p>
-<p>移动端神经网络的稳定高效运行，离不开诸多开发者的编码。MDL 长期本着靠谱运行、实用而不虚美的宗旨，希望能为移动端深度学习技术添砖加瓦。强烈欢迎有识之士济济加入，将深度学习技术在移动端广泛应用、播扬海内。</p>
-<p>最后再次奉上 MDL 的 GitHub 目录：</p>
-<p><a href="https://github.com/baidu/mobile-deep-learning" target="_blank" rel="noopener">https://github.com/baidu/mobile-deep-learning</a></p>
-<h5 id="今日荐文"><a href="#今日荐文" class="headerlink" title="今日荐文"></a>今日荐文</h5><p>点击下方图片即可阅读</p>
-<p><img src="/pro/os/crawler/YQZN-UFQ3-IZVN.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-<p>百度正式开源其 RPC 框架 brpc</p>
-<ul>
-<li><strong>原文作者：</strong> InfoQ</li>
-<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6469517449988407821/" target="_blank" rel="noopener">https://www.toutiao.com/item/6469517449988407821/</a></li>
-<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <p><img src="/pro/os/crawler/BZRQ-MFU2-Y6FV.jpg" alt="百度开源移动端深度学习框架mobile-deep-learning（MDL）"></p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">软件</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动互联网</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/25/百度开源移动端深度学习框架mobile-deep-learning（MDL）InfoQ/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Android 程序员变量命名神器——CodeLf程序爱好猿" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2068,6 +1861,190 @@
 
 
   
+    <article id="post-程序员赚钱思路以及技术发家套路炎梦清" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/程序员赚钱思路以及技术发家套路炎梦清/">程序员赚钱思路以及技术发家套路</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/07/程序员赚钱思路以及技术发家套路炎梦清/" class="archive-article-date">
+  	<time datetime="2017-09-07T14:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>互联网时代，想在网上赚钱只有两条路，一者营销，二则技术。其他不如搬砖。</p>
+<p>而靠技术赚钱也有两条路，  </p>
+<p>A.IT民工，天天写代码，坐在电脑前的搬砖工，吃的是青春饭，好在收入稳定。</p>
+<p>B.自己开发产品，懂点营销和市场，网络的普及使得赚钱如流水。</p>
+<p>本文只讨论编程技术带来的暴利思路，广义上的技术包括ps，剪辑等。</p>
+<p><strong>想要暴利的程序员只需要知道一点：能帮别人赚钱的程序就能给自己赚很多钱。</strong></p>
+<p><strong>下面是几个程序员暴利变现的例子，</strong></p>
+<p><strong>9个月盈利400万，</strong></p>
+<p>淘宝客帮商家推广产品，赚佣金，</p>
+<p>程序员给淘客提供技术程序，就能坐着收钱。</p>
+<p>再想下这句话，能帮别人赚钱的程序，就能给自己赚很多钱。</p>
+<p><img src="/pro/os/crawler/QNF6-Z2NA-QMBB.jpg" alt="程序员赚钱思路以及技术发家套路"></p>
+<p>牛贝大概是全网第一个能微信公众号操作淘宝客功能的程序。</p>
+<p>还有一个做的早且比较有名的淘宝客程序叫“飞天侠”，同理应该也很赚钱，可是收入惨淡，为什么？</p>
+<p>两点</p>
+<p>1.产品细节处理很差；</p>
+<p>2.客服反应不及时；</p>
+<p>我给过他几个建议：</p>
+<p>优化移动端界面，因为移动端占了近一半的流量，客服回应自己的程序挺好的，可以自己根据需求修改前端页面显示。</p>
+<p>增加对接微信公众号的功能，客服又说他们程序没有这个功能。</p>
+<p>增加分销功能，客服说自己是导购程序，不是返利程序。</p>
+<p>基本上给的建议都没接受吧。。。</p>
+<p>原本的他有的先天优势，而且在这个行业积累好多年了，但是就这样错过了红利期。。</p>
+<p><strong>很多程序猿盗版了飞天侠程序，像华美飞天侠，卖的反而比正版更好，基本每月更新一次程序，月收入稳定几万块。</strong></p>
+<p>其实每次更新的代码量很小，最多就几天时间，等于坐着等钱。</p>
+<p><strong>维护好产品的好处：收入稳定上增、边际成本递减；</strong></p>
+<p>赚钱的程序员一直在赚钱。  </p>
+<p>去年我买过一个微信群机器人的源码，卖家承诺永久更新。  </p>
+<p>使用中遇到BUG，跟他说过几次，每次修复都很墨迹，因为开发者跑去开发别的程序。</p>
+<p>整天抱怨没机会，机会来了却被他拒绝了。</p>
+<p>至今他还在忙忙碌碌的开发，却始终赚不到钱。</p>
+<p>与此同时“可道微信机器人”的销量却一直在上升，很多淘宝店都代理了这款产品，开发者月赚几万应该没问题。</p>
+<p><strong>这套程序赚了1000万</strong></p>
+<p>微信商城火起来的时候，很多开发者都在涌入，人人商城是用户体验做的最好的程序，没有之一。  </p>
+<p>尤其是营销功能，碾压同类产品，这1000万该是人家赚的。</p>
+<p><strong>呼死你年入百万</strong></p>
+<p>这个程序的原理是交叉呼叫，大量用户用手机安装呼死你软件，你帮我呼叫、我帮你呼叫，由服务器进行调配。</p>
+<p>除去一点服务器成本，没有任何成本。</p>
+<p>一个代理收1000块，代理招收下级代理还要收300块，根据软件版本不同，卖几块到几十块不等。</p>
+<p>知道市场需求有多大吗？</p>
+<p><img src="/pro/os/crawler/AVQ3-YINF-NNVI.jpg" alt="程序员赚钱思路以及技术发家套路"></p>
+<p>上图是关键词搜索量，全网每天上万个人在搜这个，这就是市场需求。</p>
+<p>利润有多少，都看的见。</p>
+<p>全网最多两三家在搞这个，我之前用过最大的一个呼死你平台，因为太赚钱了，被同行花大价钱攻击了，现在处于瘫痪状态。</p>
+<p>有需求，就有利润，有利润就有竞争。</p>
+<p>谁现在做这么一套程序，年入百万很轻松，只是现在这么干已经违法了。</p>
+<p><strong>程序猿赚钱策略，盗版&amp;正版</strong></p>
+<p>消费者不管正版还是盗版，只要好用、便宜，就会花钱买。</p>
+<p>小猪cms卖微信第三方平台源码，早期靠海量的广告几乎垄断了整个市场。</p>
+<p>程序卖的也是全网最贵，产品比较差劲。</p>
+<p>网上有很多盗版的小猪CMS，其中一个程序猿在盗版程序的基础上，坚持自己更新维护，每年收1000元。</p>
+<p>客户群里有300多人，年赚30万+；</p>
+<p>微信商城做的最好的是“人人商城”，PC端最好的商城程序是“小京东”，这两个程序官网售价都很高，也都有破解版。</p>
+<p>一些人在盗版的基础上进行开发，坚持维护老客户，照样赚了不少。</p>
+<p><strong>微信投票程序，赚68万</strong></p>
+<p>还记得前一阵的公众号投票吸粉吧，到处都在让人投票，与之对应的程序需求必定很大</p>
+<p><img src="/pro/os/crawler/YVYN-NA6N-3E6B.jpg" alt="程序员赚钱思路以及技术发家套路"></p>
+<p>为什么卖的好，程序做的好。</p>
+<p>它大概是第一个支持拖拽设计的投票程序，用户能自由设计投票界面。</p>
+<p>而且各种功能，付费报名功能；图片投票；视频投票；声音投票；礼物功能；防刷票；…</p>
+<p>都是我买过的程序  </p>
+<p>以上例子只有一个目的，程序员真的很赚钱，年赚百万千万的数不胜数。</p>
+<p><strong>怎么赚？</strong></p>
+<p><strong>1.有市场需求；</strong></p>
+<p><strong>2.产品超越同类；</strong></p>
+<p>市场需求不是瞎想的，有一定的挖掘技巧。</p>
+<p>细心去观察各类和网赚、创业相关的自媒体，解决需求。</p>
+<ul>
+<li><strong>原文作者：</strong> 炎梦清</li>
+<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6463042173217538574/" target="_blank" rel="noopener">https://www.toutiao.com/item/6463042173217538574/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
+
+        
+      <!--
+        
+          
+          
+          
+            <p>互联网时代，想在网上赚钱只有两条路，一者营销，二则技术。其他不如搬砖。</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">软件</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">移动互联网</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">市场营销</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">机器人</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/07/程序员赚钱思路以及技术发家套路炎梦清/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/26/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><a class="page-number" href="/page/29/">29</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/28/">Next &raquo;</a>
@@ -2284,30 +2261,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -2325,6 +2278,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2360,14 +2321,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -2384,6 +2337,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -2392,23 +2369,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2492,6 +2461,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2536,15 +2509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2740,11 +2713,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2796,6 +2769,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2805,10 +2782,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2980,15 +2953,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3032,10 +3009,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -3056,7 +3029,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3076,15 +3065,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3109,18 +3098,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3172,6 +3149,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -3184,11 +3169,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3200,7 +3181,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3212,10 +3193,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -3224,23 +3201,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3249,6 +3218,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3276,6 +3253,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -3284,15 +3265,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3328,6 +3305,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -3348,10 +3333,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -3360,11 +3341,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3492,11 +3469,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

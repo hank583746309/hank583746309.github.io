@@ -154,171 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-基于协同过滤的推荐系统机器学习之路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/基于协同过滤的推荐系统机器学习之路/">基于协同过滤的推荐系统</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/07/基于协同过滤的推荐系统机器学习之路/" class="archive-article-date">
-  	<time datetime="2018-05-07T13:38:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p>这篇文章主要介绍一种协同过滤的推荐的算法，主要的内容包括：</p>
-<p><strong>1、相似度的计算</strong></p>
-<p><strong>2、基于用户的协同过滤</strong></p>
-<p><strong>3、基于项目的协同过滤</strong></p>
-<p><strong>4、基于内容的过滤算法</strong></p>
-<p><strong>5、混合推荐系统</strong></p>
-<p>推荐系统在现在的生活中随处可见，淘宝天猫的商品推荐，音乐软件的每日歌曲推荐等，协同过滤就是一种很受欢迎的推荐算法。</p>
-<p><strong>协同过滤(collaborative filtering)</strong>：利用某兴趣相投、拥有共同经验之群体的喜好来推荐用户感兴趣的信息。比如说，你和另外一个人都喜欢看电影，而你们所喜欢的电影类型都差不多，那个人对于某一部电影的评价很高，而这部电影你没有看过。那么，我是不是就能将这部电影推荐给你呢？基于协同过滤的推荐，有基于用户和基于物品。</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15257001612026aa18851b7" alt="基于协同过滤的推荐系统"></p>
-<h1 id="一、相似度的计算"><a href="#一、相似度的计算" class="headerlink" title="一、相似度的计算"></a>一、相似度的计算</h1><p>如何来衡量两个用户是否有相同的兴趣爱好呢？通过计算两个用户的相似度来衡量。相似度的计算有很多的算法，常用的相似度计算有基于欧式距离的相似度计算、基于皮尔逊相关系数的相似度计算、基于余弦相似度的相似度计算。</p>
-<p>下面使用一个用户对于电影的评价数据，基于不同的相似度计算，来计算用户的相似度。三个不同的用户对5部电影的评分，最高分是5分。</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15256995990402a7c2a58a7" alt="基于协同过滤的推荐系统"></p>
-<p><strong>1、欧式距离相似度计算</strong></p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15256995988452d3d9eb133" alt="基于协同过滤的推荐系统"></p>
-<p>下标表示电影的序号，上标表示的是用户序号，需要让欧氏距离相似度在0到1范围内，通过下面的公式来使得欧式距离的相似度在0到1之间</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1525699598846f351fa48d8" alt="基于协同过滤的推荐系统"></p>
-<p>当欧式距离为0的时候，相似度为1，当欧氏距离趋于无穷大的时候，相似度趋于0。</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/15256998436571f3487b18c" alt="基于协同过滤的推荐系统"></p>
-<p>在使用欧氏距离计算相似度的时候，当用户都评分都为0的时候，相似度为1。为避免这个问题的发生，可以通过只有当用户对相同的产品进行过评分的时候，才计算相似度。</p>
-<p><strong>2、皮尔逊相关系数相似度</strong></p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/152569959876713d6b1c574" alt="基于协同过滤的推荐系统"></p>
-<p>皮尔逊相似度相对于欧式距离来说，它对于用户的量级不敏感。比如两个用户，一个用户通常都喜欢评价5星，而另一个用户喜欢评价1星，皮尔逊相关系数会认为这两个向量是相等的。皮尔逊相关系数的取值范围为-1到1，可以通过numpy的corrcoef函数来获取皮尔逊相关系数，通过0.5+0.5*corrcoef()将相似度的范围变换到0到1之间。corrcoef获取的是一个2*2的矩阵，包括自己和自己的相关系数和自己与另一个数组的相关系数。</p>
-<p><img src="http://p9.pstatp.com/large/pgc-image/1525699881085b7a4c3820e" alt="基于协同过滤的推荐系统"></p>
-<p><strong>3、余弦相似度</strong></p>
-<p>余弦相似度是计算两个向量之间的夹角，如果夹角为90度，则相似度为0.如果夹角为0度，也就是两个向量的方向相同，则相似度为1。余弦相似度的取值范围也在-1到1之间，可以通过上面的方式，将范围变换到0到1之间。</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/1525699599145d2c2d84dae" alt="基于协同过滤的推荐系统"></p>
-<p>下面利用sklearn来计算余弦相似度</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/152569996426301840fdd12" alt="基于协同过滤的推荐系统"></p>
-<p>通过表格中的数据可以发现，虽然U1和U3对相同产品的评价不同，却会有很高的相似度。因为，我们对于用户没有进行评分的产品使用了0进行填充，而0在余弦相似度中表现了一致性，所以导致了这个问题的发生。下面，我们使用用户评分减去用户评分的平均分(平均分的计算以评分的平均分，不包括0)，使得用户评分的平均分为0，再来计算余弦相似度。</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/1525699987828d7926fd7b9" alt="基于协同过滤的推荐系统"></p>
-<p>通过将评分中心化之后，发现U1与U2的相似度有所增加，而U1与U3的相似度有所下降，这也正是我们所希望的。</p>
-<h1 id="二、基于用户的协同过滤"><a href="#二、基于用户的协同过滤" class="headerlink" title="二、基于用户的协同过滤"></a>二、基于用户的协同过滤</h1><p>假设有三个用户X、Y、Z它们对一些产品进行过评分，如下</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1525699598788cd5bda0adc" alt="基于协同过滤的推荐系统"></p>
-<p>通过X与Y和Z之间的相似度，以及Y和Z对于P7的评分来计算X对于P7的评分，相似度的计算采用中心化的余弦相似度。通过计算每位用户与X之间的相似度，对每位用户的评分进行加权，然后除以中的相似度。</p>
-<p><img src="http://p1.pstatp.com/large/pgc-image/152570003985562587d369d" alt="基于协同过滤的推荐系统"></p>
-<h1 id="三、基于项目的协同过滤"><a href="#三、基于项目的协同过滤" class="headerlink" title="三、基于项目的协同过滤"></a>三、基于项目的协同过滤</h1><p><img src="http://p1.pstatp.com/large/pgc-image/15256995990115cbfab123f" alt="基于协同过滤的推荐系统"></p>
-<p>上面是5个用户对于5首音乐的评价，每一行表示不同用户对于同一首音乐的评分。通过用户对歌曲的评分来寻找类似的歌曲，而不是寻找类似的用户。计算U3对于M5的评分，相似度计算采用中心的余弦相似度，先计算M5与其他音乐之间的相似度，然后设置k=2，即选择与M5相似度最高的两首音乐来计算U3对M5的评分</p>
-<p><img src="http://p3.pstatp.com/large/pgc-image/1525700060218ca1871f983" alt="基于协同过滤的推荐系统"></p>
-<h1 id="四、基于内容的过滤"><a href="#四、基于内容的过滤" class="headerlink" title="四、基于内容的过滤"></a>四、基于内容的过滤</h1><p>基于内容的过滤的推荐算法并不属于协同过滤，基于内容过滤的推荐算法也被经常使用在推荐系统中。比如说，在一个音乐软件的推荐系统中，需要先统计每一首音乐的特征(歌手、节奏、年代、时长、语言等)，然后通过这些音乐的特征基于用户以前喜欢的音乐进行推荐。</p>
-<p>基于内容过滤推荐的优点是，它不需要大量的用户，可以用户解决协同过滤推荐系统的冷启动问题。协同过滤推荐算法，需要大量的用户，当用户数量不足的时候，可以使用基于内容的推荐。基于内容推荐的缺点就是，它不会令用户有一种惊奇的感觉，缺乏意外的惊喜。因为，它推荐的东西基本上都与用户喜欢的产品相类似。</p>
-<h1 id="五、混合推荐系统"><a href="#五、混合推荐系统" class="headerlink" title="五、混合推荐系统"></a>五、混合推荐系统</h1><p>在实际的生产开发中，通常都是几种，甚至更多的推荐算法一起使用，这就是混合推荐系统。使用混合推荐系统的原因是，它可以消除某一种单一推荐算法的缺点。通过多种推荐算法构成的系统，推荐系统会更加强大。</p>
-<p><strong>协同过滤</strong></p>
-<p><strong>优点：不需要手动创建特征。</strong></p>
-<p><strong>缺点：需要大量的用户或项目，否则不能正常工作。当数据过大的时候，会产生的稀疏矩阵(矩阵中的很多项为0)。</strong></p>
-<p><strong>内容的推荐</strong></p>
-<p><strong>优点：不需要大量用户。</strong></p>
-<p><strong>缺点：需要创建特征，特征的定义是一个问题，缺乏惊喜。</strong></p>
-<p>下篇文章介绍，如何通过SVD来提高推荐效果。</p>
-<ul>
-<li><strong>原文作者：</strong> 机器学习之路</li>
-<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6552832825907741198/" target="_blank" rel="noopener">https://www.toutiao.com/item/6552832825907741198/</a></li>
-<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <p>这篇文章主要介绍一种协同过滤的推荐的算法，主要的内容包括：</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">软件</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">科技</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">推荐技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">华为手机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">音乐</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/07/基于协同过滤的推荐系统机器学习之路/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-当今软件行业下的另类程序员，全栈软件工程师乾途技术分享" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1165,11 +1000,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -1760,6 +1595,152 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 
   
+    <article id="post-「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了鹅卵石爱编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/28/「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了鹅卵石爱编程/">「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了</a>
+    </h1>
+  
+
+        
+        <a href="/2018/04/28/「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了鹅卵石爱编程/" class="archive-article-date">
+  	<time datetime="2018-04-27T23:01:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <blockquote>
+<p><strong>阅读本文大概需要6分钟。</strong></p>
+</blockquote>
+<p><img src="/pro/os/crawler/ZYYA-RBEJ-UBIA.jpg" alt="「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了"></p>
+<p>今天突然收到一份工作邀请邮件，感到很欣慰，特此写篇文章记录下，和大家分享下写作的重要性。</p>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>可能有点人会说了，收到一份工作邀请邮件不是很正常么，平时找工作的时候会收到好几十分这样的邮件，这能让人欣慰什么。如果是简单通过网上投递收到邮件的，确实不值一提，但是我的有点特殊，邮件中也写的很明确，是看了我的github作品以及个人blog后发出的邀请！</p>
+<p><img src="/pro/os/crawler/JAQM-ZVRZ-RJJV.jpg" alt="「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了"></p>
+<p>邮件详情</p>
+<p>这是第一次收到这样的邮件，感到很意外，看来自己曾经开始在github上分享，开源代码以及个人blog上写的一些技术分享还是很有必要的嘛！</p>
+<p>虽然自己当初目的很明确，旨在记录自己学习过程顺便进行技术分享。现在看来，这很有必要的。</p>
+<p>下午翻看了gmail邮箱，居然前几个月也收到了类似的邀请，只怪自己最近一段时间忙，没有看gmail。</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/15248308161604ff71c0fab" alt="「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了"></p>
+<p>gmail收到的邀请</p>
+<h1 id="为什么要写作"><a href="#为什么要写作" class="headerlink" title="为什么要写作"></a>为什么要写作</h1><p>今天简单说下，为什么要写作。记得自己当时开始写博客也就在2014年，那会基本刚开始编程，总感觉好多东西学的快，同时忘的也快，所以就想着找个平台来记录下来，最初选择在了CSDN进行记录，随着自己能力的不断提高，博客关注的人也越来越多，向我请教问题的人也逐渐多了起来，更加增加了我的动力，学习嘛，需要有个氛围，有个伴，这样学习起来效果会更好，容易走的时间长，就这样一直坚持到了现在。</p>
+<p>在过去几年中，当然也是中断过一段时间。当你爱上写作或者叫做技术分享后，这样感觉越是不能放下，好长时间不写总感觉缺点什么，对，就是这样的感觉。、</p>
+<p>我从没有想到通过记录技术学习过程能给我带来什么，只是单纯的记录而已，这样很方便自己学习记忆和复习，同时又能帮助到别人，确实是一件好事，幸好自己坚持了下来。</p>
+<p><strong>写作能让自己思路更加清晰，对知识的理解更加透彻！</strong></p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524831660532c0cbe6d266" alt="「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了"></p>
+<h1 id="写作能带来什么"><a href="#写作能带来什么" class="headerlink" title="写作能带来什么"></a>写作能带来什么</h1><p>开头我就说过，自己写作之初目的很简单，单纯的记录学习心得而已！</p>
+<p>所以不要为了写作而写作！</p>
+<p>写作能带来什么？我想因为是自己能力的一个提高，对于树立个人品牌能起到关键作用！</p>
+<p>什么叫个人品牌？<strong>简单来说就是在某个圈子里的影响力！</strong></p>
+<p>这个有什么好处？最直接的就是别人要做个类似的东西，第一时间就能想到你，进而和你合作！对，就是这么简单！</p>
+<p><img src="http://p3.pstatp.com/large/pgc-image/1524831590260d06924578c" alt="「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了"></p>
+<p>树立个人品牌的</p>
+<h1 id="鹅卵石的些建议"><a href="#鹅卵石的些建议" class="headerlink" title="鹅卵石的些建议"></a>鹅卵石的些建议</h1><p>今天就到这里，最后来说说自己的一些建议，希望对大家有用。</p>
+<p>不管是做技术但还是其他岗位，我觉得有两个习惯是最重要的：<strong>阅读+写作</strong></p>
+<p>阅读可以让我们不断的获取新的知识，通过写作能将获取到的知识巩固！</p>
+<p>写作和阅读不要看段时间内的收获，把时间拉长，5年，10年，20年来看，你和别人的差距一眼就能看出来！</p>
+<ul>
+<li><strong>原文作者：</strong> 鹅卵石爱编程</li>
+<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6549103361214382606/" target="_blank" rel="noopener">https://www.toutiao.com/item/6549103361214382606/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
+
+        
+      <!--
+        
+          
+          
+          
+            <blockquote>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">程序员</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">GitHub</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Gmail</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CSDN</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/28/「分享篇」程序员为什么要坚持写作，进行技术分享，今天我体会到了鹅卵石爱编程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
@@ -1976,30 +1957,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -2017,6 +1974,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2052,14 +2017,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -2076,6 +2033,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -2084,23 +2065,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2184,6 +2157,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2228,15 +2205,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2432,11 +2409,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2488,6 +2465,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2497,10 +2478,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2672,15 +2649,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2724,10 +2705,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2748,7 +2725,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2768,15 +2761,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2801,18 +2794,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2864,6 +2845,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2876,11 +2865,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2892,7 +2877,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2904,10 +2889,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2916,23 +2897,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2941,6 +2914,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2968,6 +2949,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2976,15 +2961,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3020,6 +3001,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -3040,10 +3029,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -3052,11 +3037,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3184,11 +3165,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

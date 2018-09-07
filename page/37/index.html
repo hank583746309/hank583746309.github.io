@@ -154,237 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/">为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本</a>
-    </h1>
-  
-
-        
-        <a href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/" class="archive-article-date">
-  	<time datetime="2012-12-25T10:15:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-12-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p>I was among many developers that recently rediscovered JavaScript. Indeed as a very capable language. But after using <em>the new</em> JavaScript for a solid year, I came to the conclusion that JavaScript <em>still</em> sucks. And no, I’m not talking about its wacky comparison operators. There is a deeper problem, and a solveable one at that. Let me explain.</p>
-<p><img src="http://boronine.com/img/monkeys.jpg" alt="monkeys.jpg"></p>
-<h2 id="No-Nonsense"><a href="#No-Nonsense" class="headerlink" title="No Nonsense"></a>No Nonsense</h2><p>I must’ve been 13 when my dad gave me <a href="http://www.amazon.com/JavaScript-Programming-Absolute-Beginner-Harris/dp/0761534105" target="_blank" rel="noopener">my first programming book</a>. I was overjoyed to find that under the hood, computers were not a tangled mess of wires and clockwork, no, the code was clear as day. I felt like I knew it all along, and in a big way I did. After all, what is code but a formalization of rational human thought?</p>
-<p>Now, in all honesty I was expecting a Java book. I googled something along the lines of “is JavaScript and Java the same language”. Turned out they’re not, and so, Java ended up being my second. I didn’t even get through the introduction before the first problem appeared: <strong>my mom and stepdad didn’t want me installing software on the family computer—I was left without a Java compiler</strong>. I remember double checking my code before uploading it to <a href="http://www.innovation.ch/java/java_compile.html" target="_blank" rel="noopener">an online compiler</a>, then waiting, downloading the jar… rinse, repeat. Boy was it tedious.</p>
-<p>From my perspective back then, JavaScript was truly a no-nonsense language. You whip up an HTML file in Notepad, open it in Internet Explorer and you’re set. There were no classes, no private and public methods, no final variables. I didn’t know the word “overengineered” back then, but it would have described exactly my impression of Java. So:</p>
-<ol>
-<li>No compilation</li>
-<li>Ubiquitous platform</li>
-<li>No advanced language features</li>
-<li>Oh, almost forgot: <strong>View Source</strong>!</li>
-</ol>
-<p>Why would a great language like that be so hated?</p>
-<h2 id="Ad-hoc-Hell"><a href="#Ad-hoc-Hell" class="headerlink" title="Ad-hoc Hell"></a>Ad-hoc Hell</h2><p>Here’s the problem: JavaScript programs inherited from their language a complete lack of design guidance. <strong>Everything was ad-hoc:</strong></p>
-<ol>
-<li><strong>No OOP</strong>. I am not familiar with any other way to structure <em>imperative</em> programs. Yes, JavaScript has a rudimentary object model, but literally no one knew how it actually worked.</li>
-<li><strong>No standard library</strong>. Copying functions from forums and pasting them into your code. Not fun.</li>
-<li><strong>No module system</strong>. Constant scouting for download links and ridiculously long source files.</li>
-<li><strong>No language resources</strong>. No high-quality resources (and hardly a single decent book) meant your best reference was misguided blog posts and newbie forum questions.</li>
-</ol>
-<p>So, what happened to make JavaScript popular again?</p>
-<h2 id="Back-in-Vogue"><a href="#Back-in-Vogue" class="headerlink" title="Back in Vogue"></a>Back in Vogue</h2><p>I think what jump-started JavaScript’s reemergence was Google’s work on the V8 engine. Suddenly, JavaScript was fast. <em>Real fast</em>. Fast enough that people decided to bite the bullet and use it to write <em>web applications</em>.</p>
-<p>Then <a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a> came out with some wanky benchmarks and, more importantly, a promise for code reuse on the client and server, a promise not really capitalized on until recently, with the likes of <a href="http://meteor.com/" target="_blank" rel="noopener">Meteor</a> and<a href="http://derbyjs.com/" target="_blank" rel="noopener">Derby</a>. Things started to change for the better:</p>
-<ol>
-<li><strong>Download buttons got BIGGER</strong></li>
-<li>Node.js kind of sort of standardized an import system</li>
-<li>People started writing pretty good libraries</li>
-<li><a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener">Good resources</a> started popping up</li>
-</ol>
-<p>However:</p>
-<ol>
-<li><strong>Still no OOP</strong></li>
-<li>Client and server JavaScript still completely disconnected</li>
-<li>Documentation, even for high profile projects, is lousy at best</li>
-</ol>
-<h2 id="Why-why"><a href="#Why-why" class="headerlink" title="Why, why?"></a>Why, why?</h2><p>I think the root of the problem with modern JavaScript and the main reason that the language still sucks lies in a certain sentiment of the JavaScript community, the sentiment that <strong>JavaScript was a good language all along, it was just a misunderstood language</strong>. Um, no. JavaScript was a premature bastard baby, raised by frickin’ wolves. Stop defending JavaScript as a language and start embracing JavaScript as a <em>platform</em>, and as a <em>compilation target</em>.</p>
-<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p>People can laugh at Java all they want but when I look at Java documentation I see <em>exactly</em> which objects I can make, <em>exactly</em> which parameters each method takes, <em>exactly</em> which errors they throw. The best I could hope for with a JavaScript library is a fancy piece of example code. This makes it nearly impossible to write <em>correct</em> software, unless you read the source code of the library you are using. Even such integral JavaScript projects as <a href="http://expressjs.com/api.html" target="_blank" rel="noopener">Express</a> have lousy API documentation. (<a href="http://emberjs.com/api/" target="_blank" rel="noopener">Ember’s</a> excellent API documentation might be a counter-example.)</p>
-<h3 id="Syntax-Sugar"><a href="#Syntax-Sugar" class="headerlink" title="Syntax Sugar"></a>Syntax Sugar</h3><p>The JavaScript community is too quick to dismiss syntax sugar. I think <strong>syntax sugar creates expressiveness</strong>. The same way you abstract repeating logic in your code, your language ought to abstract common idioms.</p>
-<ol>
-<li>It makes the code more concise.</li>
-<li><strong>It helps communicate the <em>meaning</em> behind your code rather than the algorithm.</strong> I already know the array iteration algorithm, thank you very much. Stop repeating it and just tell me what you are trying to do.</li>
-</ol>
-<p>As a coder, your main audience isn’t your computer, it is other programmers, including your future self. Yes, we can all feel cool writing tedious for loops, but who would honestly prefer reading <code>for (var i=0; i&lt;arr.length; i++)</code> rather than <code>for e in arr</code>? As a side note, the JavaScript version of this loop is actually slower than its CoffeeScript counterpart, do you know why?</p>
-<h3 id="JSLint"><a href="#JSLint" class="headerlink" title="JSLint"></a>JSLint</h3><p>As if being a JavaScript developer wasn’t painful in itself, <a href="http://www.jslint.com/" target="_blank" rel="noopener">JSLint</a> comes and adds insult to injury. I imagine linting JavaScript as an embarrassing punishment in some kind of coding boot camp, akin to cleaning the toilet with a tooth brush. In fact, I think I would literally shave a yak instead.</p>
-<p>On a more serious note, as programmers we should be looking for automation. Don’t you wish you could automate JSLint? Oh wait, you can! CoffeeScript generates perfectly linted code, which I find quite hilarious. Props to <a href="https://github.com/jashkenas" target="_blank" rel="noopener">Jeremy</a> for that one.</p>
-<p><img src="http://boronine.com/img/yak.jpg" alt="yak.jpg"></p>
-<h3 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h3><p>JavaScript’s object model is not enough. Prototypal inheritance is a low level feature that <em>can be used</em> to create a meaningful object model, but in no way constitutes one by itself.</p>
-<p>This is part of the reason that JavaScript’s API documentation sucks so badly, how are you supposed to document your object-oriented code when your language doesn’t even have classes? How are JavaScript libraries, and, most importantly, JavaScript developers supposed to interoperate when <a href="http://stackoverflow.com/questions/383402/is-javascript-s-new-keyword-considered-harmful" target="_blank" rel="noopener">we don’t even agree on how to instantiate objects</a>?</p>
-<h2 id="What-Are-the-Options"><a href="#What-Are-the-Options" class="headerlink" title="What Are the Options?"></a>What Are the Options?</h2><p>Years have passed, laptops were replaced numerously, regimes crumbled, subatomic particles were discovered. JavaScript is still the same. How many years are you willing to wait for basic features? Following the pessimistic tone of this article, let’s first list the things that <em>aren’t</em> going to be an option:</p>
-<ol>
-<li>Mozilla’s own JavaScript <a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.7" target="_blank" rel="noopener">1.7</a> or <a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.8" target="_blank" rel="noopener">1.8</a>. The former was released 6 and half years ago, but being backwards-incompatible, literally no one used it and no one ever will, same goes for the latter.<strong>Both dead on arrival.</strong></li>
-<li>ECMAScript Harmony. The most recent <a href="http://en.wikipedia.org/wiki/Design_by_committee" target="_blank" rel="noopener">Design by Committee</a> sloth, an evolution of the above. Transitioning to this new ECMAScript is going to be an excruciatingly slow and painful process, especially since some of its features are <a href="http://stackoverflow.com/a/6510903/212584" target="_blank" rel="noopener">incompatible with JavaScript</a>. <strong>Not a solution unless you’re willing to wait for a decade.</strong></li>
-</ol>
-<p>And, finally, the viable options:</p>
-<ol>
-<li><strong><a href="http://coffeescript.org/" target="_blank" rel="noopener">CoffeeScript</a></strong>. The syntax is very nice and it supports classes. I think CoffeeScript is not the end, but it is a spectacular start.</li>
-<li><strong><a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a></strong>. Builds on JavaScript to add optional static typing, which I, personally, am a big fan of.Not enough to replace JavaScript, but a good start as well. As pointed out by <a href="https://twitter.com/mohamedmansour" target="_blank" rel="noopener">Mohamed Mansour</a>and Dave Hodder in the comments, TypeScript goes further by implementing some ECMAScript proposals and perhaps ECMAScript will eventually borrow the optional static typing from TypeScript. Very interesting.</li>
-<li><strong><a href="http://www.dartlang.org/" target="_blank" rel="noopener">Google Dart</a></strong>. A wholly new language that ships with a to-JavaScript compiler and <a href="http://www.dartlang.org/articles/js-dart-interop/" target="_blank" rel="noopener">some JavaScript interop</a> but overall is not meant to integrate into the JavaScript ecosystem. I fail to see a compelling reason for this other than some Google engineers ignoring reality in favor of making a cool new language from scratch. As a coder I can understand that, but I think it will prove to be the language’s downfall.</li>
-<li><strong><a href="http://haxe.org/" target="_blank" rel="noopener">HaXe</a></strong>. Thanks to Laurence Taylor for pointing it out in the comments. This is a high-level language that compiles to JavaScript, Flash, NekoVM, PHP, C++, C# and Java (soon). I’ve never used it myself, but it looks really impressive.</li>
-</ol>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>One thing I am ready to bet on: the winner will be a <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS" target="_blank" rel="noopener">compile-to-JS</a> language. We aren’t ready for a transition yet, but we are making progress and even though many efforts diverge, they all pave the way for the future of the web. Regardless of which language wins in the end, I want to emphasize my main point: <strong>JavaScript as it stands today is painfully inadequate, we need to embrace the need for a new language and push forward!</strong></p>
-<p>Props to all the people making this happen and here’s to hoping that <a href="http://procbits.com/2012/05/18/why-do-all-the-great-node-js-developers-hate-coffeescript" target="_blank" rel="noopener">more Node developers divorce their JavaScript purism</a> and join the ranks.</p>
-<p>-——————————————————————–</p>
-<p>from:<a href="http://boronine.com/2012/12/14/Why-JavaScript-Still-Sucks/" target="_blank" rel="noopener">http://boronine.com/2012/12/14/Why-JavaScript-Still-Sucks/</a></p>
-<p>最近，我和许多程序员一样，对JavaScript进行重新探讨。事实上，JavaScript是一个非常有能力的语言，但使用新JavaScript一年后，我得出的结论却是JavaScript仍然很烂。我并不是在讨论其古怪的比较运算。而是从更深的层次去思考。与此同时，还会提供一些解决方案供你选择。</p>
-<p><a href="http://www.html5cn.org/data/attachment/portal/201212/25/115029kwcdc44s4d4t222u.jpg" target="_blank" rel="noopener"><img src="http://www.html5cn.org/data/attachment/portal/201212/25/115029kwcdc44s4d4t222u.jpg" alt="115029kwcdc44s4d4t222u.jpg"></a></p>
-<p>直奔主题</p>
-<p> 13岁时，父亲送给我第一本编程书籍——JavaScript初学者编程。让我兴奋的是，我发现电脑并不单单是由电线和发条所组成，里面的代码清晰明了。我觉得我基本上理解它了，实际上也差不多。终究，代码除了人类理性思想的形式化还能是什么？</p>
-<p> 说实话，我当时希望遇到的是Java，我甚至在谷歌上搜索：“JavaScript和Java是同一种语言吗？”当然不是。��以Java成为了我<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=13" target="_blank" rel="noopener">学习</a>的第二门语言，不过我母亲和继父不希望在家庭电脑里安装软件，所以我无法安装Java编译器。我清晰地记得，在把代码上传到一个<a href="http://www.innovation.ch/java/java_compile.html" target="_blank" rel="noopener">在线编译器</a>之前，得反复检查代码，然后等待、下载jar包……</p>
-<p> 我当时认为，JavaScript是一个非常严肃的语言。在Notepad里新建一个HTML文件，然后在IE里打开，就这样开始了。没有类、没有私有和公有方法，没有final变量。当时，我甚至不知道什么叫“过度设计”，但它准确地描述了我印象中的Java：</p>
-<ul>
-<li>无需编译</li>
-<li>无处不在的开发平台</li>
-<li>没有高级语言特性</li>
-<li>查看源文件</li>
-</ul>
-<p>为什么这么伟大的语言还会讨人厌？</p>
-<p>Ad-hoc地狱</p>
-<p> 下面是一些问题：设计之匆忙、初衷仅仅实现简单的网页互动、JavaScript继承完全缺乏设计指导，一切都是ad-hoc：</p>
-<ol>
-<li>没有OOP：JavaScript确实存在基本的对象模型，但几乎无人知道它是如何工作的。</li>
-<li>没有标准库：从<a href="http://www.html5cn.org/forum.php" target="_blank" rel="noopener">论坛</a>上复制粘贴代码不好玩。</li>
-<li>没有模块系统：不断查找下载链接和很长的源文件。</li>
-<li>缺乏语言资源：没有高品质的资源（几乎没有一本像样的书籍）意味着你只能从论坛或博客上获得一些非官方的参考。</li>
-</ol>
-<p>既然JavaScript有这么多缺陷，到底是什么让它如此流行？</p>
-<p>复兴</p>
-<p> JavaScript崛起的背后可能与谷歌V8引擎��息相关。JavaScript突然变得很快，真正地快速。所以人们开始硬着头皮使用它来编写Web<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=20" target="_blank" rel="noopener">应用</a>程序。</p>
-<p> 然而，<a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a>推出了一些更吸引人的基准，允许代码在客户端和服务器端重用，很像<a href="http://meteor.com/" target="_blank" rel="noopener">Meteor</a>和<a href="http://derbyjs.com/" target="_blank" rel="noopener">Derby</a>。因此，情况开始好转：</p>
-<ol>
-<li>下载按钮变得更大</li>
-<li>Node.js kind of sort of standardized an import system</li>
-<li>人们可以编写更好的库</li>
-<li><a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener">优秀的资源</a>开始出现</li>
-</ol>
-<p>然而：</p>
-<ol>
-<li>仍然没有采用OOP</li>
-<li>客户端和服务端的JavaScript仍然没有关联</li>
-<li>文档甚至是高知名度项目文档也很糟糕</li>
-</ol>
-<p>为什么？</p>
-<p> 我认为现代JavaScript仍然较烂的根源是其处在一个特定的社区氛围中，该氛围一直强调：JavaScript是一门非常好的语言，但却一直被人误解。不，JavaScript只是一个提早诞生且没有先例可循的语言。停止包庇并且开始把JavaScript作为一个平台去拥抱，作为一个编译目���。</p>
-<p>文档</p>
-<p> 人们可以尽情嘲笑Java，但当我看Java文档时，我可以非常明确地知道哪个对象可以创建、每个方法里的参数、需要抛出的异常等。最好的事情莫过于使用JavaScript库作为精选示例代码。这几乎是不可能写出正确的软件，除非你阅读库源码。甚至连如此完整的JavaScript项目<a href="http://expressjs.com/api.html" target="_blank" rel="noopener">Express</a>也存在令人生厌的API文档（<a href="http://emberjs.com/api/" target="_blank" rel="noopener">Ember</a>他们那些非常优秀的API文档可能是反例）。</p>
-<p>语法���</p>
-<p> JavaScript社区很快就抛弃了语法糖。语法糖是极富创造力的。将重复逻辑代码抽象出来，可以通用，帮助程序员以更好的方式编写代码。</p>
-<ul>
-<li>让代码更加简洁</li>
-<li>有助于表达代码背后的意思，而不是算法。我已经知道了数组迭代算法，好吧，谢谢你，但是请你不要告诉我这些，我只想知道你要做的东西。</li>
-</ul>
-<p> 作为一名编码人员，你的主要观众不是电脑，而是其他程序员，也包括将来的自己。书写冗长的for循环很爽，但说实话，for (var i=0; i&lt;arr.length; i++)与for=”” e=”” in=”” arr=”” 比起来，人们更愿意读后者。顺便说一下，这里的javascript版的循环比coffeescript速率要慢，你知道为什么吗？&lt;=”” font=”” style=”word-wrap: break-word;”&gt;</p>
-<p>JSLint</p>
-<p> 如果程序员使用JavaScript尚未感到痛苦，那<a href="http://www.jslint.com/" target="_blank" rel="noopener">JSLint</a>成功做到了这点，而且非常“成功”！ 想象一下，在某个编码的新兵训练营里，���要对JavaScript进行尴尬的惩罚，然后在其身上进行拔毛，这好比是拿着牙刷在刷厕所。事实上，我宁愿从牦牛身上拔毛。这是原文中的例子，小编的理解是JSLint的出现是给JavaScript挑刺的，而这样还不如直接在JavaScript身上拔毛。</p>
-<p><a href="http://www.html5cn.org/data/attachment/portal/201212/25/115033goo9w0gx7bxr9ooa.jpg" target="_blank" rel="noopener"><img src="http://www.html5cn.org/data/attachment/portal/201212/25/115033goo9w0gx7bxr9ooa.jpg" alt="115033goo9w0gx7bxr9ooa.jpg"></a></p>
-<p> 更值得注意地是，作为程序员，我们应该寻找自动化，难道你不希望自己可以自动化JSLint吗？当然，���可以。CoffeeScript可以完美的生成linted代码，正如<a href="https://github.com/jashkenas" target="_blank" rel="noopener">Jeremy</a>。</p>
-<p>OOP</p>
-<p> JavaScript对象模型还是不够成熟，原型（Prototype）继承是一个低级别的功能，可以创建一些非常有意义的对象模型，但却无法基于本身进行构建。</p>
-<p> 这也可能是JavaScript API为什么会那么糟糕的原因，当你所使用的语言甚至没有类时，该如何记录面向对象代码呢？ 最重要的是，当<a href="http://stackoverflow.com/questions/383402/is-javascript-s-new-keyword-considered-harmful" target="_blank" rel="noopener">我们甚至不知道实例化对象</a>时，JavaScript开发人员该如何实行互操作？</p>
-<p>有什么可选项吗？</p>
-<p> 年复一年，笔记本逐步成为主流、政坛也发生了不少的变化，而JavaScript仍然保持不变。你愿意等一些基本特性多少年？在这篇悲观论调的文章里，让我们先看看下面这个列表：</p>
-<ol>
-<li>Mozilla发布了自己JavaScript<a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.7" target="_blank" rel="noopener">1.7</a>或<a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.8" target="_blank" rel="noopener">1.8</a>，前者是在6年半之前发布的，且不向后兼容，但并无人使用且永远不会有，同样也适用于后者。</li>
-<li>ECMAScript Harmony。最近，由于<a href="http://en.wikipedia.org/wiki/Design_by_committee" target="_blank" rel="noopener">设计委员会</a>的原因，发布新版ECMAScript将会有一个极其缓慢和痛苦的过渡过程，特别是它有一些特效是与<a href="http://stackoverflow.com/a/6510903/212584" target="_blank" rel="noopener">JavaScript不兼容</a>的。没有解决方案，除非你愿意再等数十年。</li>
-</ol>
-<p>下面列出一些可选项</p>
-<ol>
-<li><a href="http://coffeescript.org/" target="_blank" rel="noopener">CoffeeScript</a>语法非常漂亮且支持类。我认为CoffeeScript并未结束，只不过是刚刚华丽���开启。</li>
-<li><a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a>一种编译到JavaScript的语言，可以在JavaScript中构建并且添加了静态类型。个人而言，我是它的大粉丝。正如<a href="https://twitter.com/mohamedmansour" target="_blank" rel="noopener">Mohamed Mansour</a>和Dave Hodder在评论中指出的那样，TypeScript正在进一步实施ECMAScript的一些建议，也许ECMAScript最终会从TypeScript中借鉴可选的静态类型。</li>
-<li><a href="http://www.dartlang.org/" target="_blank" rel="noopener">Google Dart</a>一个全新的语言，附带JavaScript编译器和一些<a href="http://www.dartlang.org/articles/js-dart-interop/" target="_blank" rel="noopener">JavaScript互操作</a>，但整体���并未整合到JavaScript生态系统中。</li>
-<li><a href="http://haxe.org/" target="_blank" rel="noopener">HaXe</a>这是一个高级语言，可以编译JavaScript、Flash、NekoVM、PHP、C++、C#和Java（不久后），虽然我从未使用过，但它真的令人印象深刻。</li>
-</ol>
-<p>总结</p>
-<p> 最后，我敢押注，最终的获胜者肯定是编译为JavaScript的语言。虽然我们还没真正准备好这样的过渡，但是所取得的进展仍是有目共睹的。尽管也存在些偏离，但他们正在替未来的Web发展铺平道路。���管最终哪门语言会胜出，我都想强调一下我的主要观点：JavaScript目前仍然存在许多不足，我们需要拥抱一个新语言并且推进它。</p>
-<p>-———————————————————-</p>
-<p>from:<a href="http://www.html5cn.org/article-4332-1.html" target="_blank" rel="noopener">http://www.html5cn.org/article-4332-1.html</a></p>
-
-        
-      <!--
-        
-          
-          
-          
-            <p>I was among many developers that recently rediscovered JavaScript. Indeed as a very capable language. But after using <em>the new</em> JavaScript for a solid year, I came to the conclusion that JavaScript <em>still</em> sucks. And no, I’m not talking about its wacky comparison operators. There is a deeper problem, and a solveable one at that. Let me explain.</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-Javascript中按值和按引用的比较xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1554,6 +1323,109 @@
 
 
   
+    <article id="post-Java中如何遍历Map呢？xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/">Java中如何遍历Map呢？</a>
+    </h1>
+  
+
+        
+        <a href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/" class="archive-article-date">
+  	<time datetime="2012-11-09T13:43:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>在Javascript中 遍历 key:value关系的对象时，有这样的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">      id:&apos;123456789&apos;,</span><br><span class="line">     name:&apos;hank&apos;,</span><br><span class="line">     age:22</span><br><span class="line">&#125;;</span><br><span class="line">for(var i=0,len = obj.length;i&lt;len;i++)&#123;</span><br><span class="line">     console.log(obj[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者遍历其属性和值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var i in obj)&#123;</span><br><span class="line">    console.log(&quot;key=&quot;+i+&quot;    value是&quot;+obj[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但在Java中遍历像Map这样的key:value关系的时候又怎么做呢？ 一下是4种遍历方法，并添加两种map&lt;String,ArrayList<string>&gt;的方法</string></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">package mapPractice;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Iterator;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Map;</span><br><span class="line">import java.util.Map.Entry;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @Detail : 循环遍历Map的方法</span><br><span class="line"> * @Author: 韩庆</span><br><span class="line"> * @E-mail: IsaidIwillgoon@gmail.com</span><br><span class="line"> * @Date: 2012-11-9</span><br><span class="line"> * @Time: 下午8:48:01</span><br><span class="line"> * </span><br><span class="line"> */</span><br><span class="line">public class MapToTraverse &#123;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 用于得到键值-可以对键值做相应的处理</span><br><span class="line">	 * </span><br><span class="line">	 * @return 处理键值关系后的字符</span><br><span class="line">	 */</span><br><span class="line">	public String getKeyAndValue(Map&lt;String, String&gt; map) &#123;</span><br><span class="line"></span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// 利用hashmap中的entrySet()方法实现遍历</span><br><span class="line">		Iterator&lt;Entry&lt;String, String&gt;&gt; it = map.entrySet().iterator();</span><br><span class="line">		// 内部处理键值关系--以出键值关系为例</span><br><span class="line">		while (it.hasNext()) &#123;</span><br><span class="line">			Map.Entry&lt;String, String&gt; entry = (Entry&lt;String, String&gt;) it.next();</span><br><span class="line">			Object key = entry.getKey();</span><br><span class="line">			Object value = entry.getValue();</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);// 因为Object隐式的调用toString()</span><br><span class="line">																	// 我就不写了</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);// 截取最后一个&quot;,&quot;并拼接“&#125;”</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue2(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// for循环遍历 这是JDK1.5中的for-each</span><br><span class="line">		for (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">			String key = entry.getKey();</span><br><span class="line">			String value = entry.getValue();</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue3(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">		// 利用 hashmap的keySet()方法</span><br><span class="line">		for (Iterator&lt;String&gt; it = map.keySet().iterator(); it.hasNext();) &#123;</span><br><span class="line">			Object key = it.next();</span><br><span class="line">			String value = map.get(key);// key隐式转换为Stirng</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getKeyAndValue4(Map&lt;String, String&gt; map) &#123;</span><br><span class="line">		StringBuilder sb = new StringBuilder(&quot;结果是：&#123;&quot;);</span><br><span class="line">        //这种方法老像 javascript中的for in 了  </span><br><span class="line">		for (Object key : map.keySet()) &#123;</span><br><span class="line">			String value = map.get(key);</span><br><span class="line">			sb.append(key).append(&quot;:&quot;).append(value).append(&quot;,&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return sb.substring(0, sb.length() - 1).concat(&quot;&#125;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/********************************************************</span><br><span class="line">	 * Java中又是如何遍历Map&lt;String,ArrayList&gt; map = new HashMap&lt;String,ArrayList&lt;String&gt;&gt;()的呢？</span><br><span class="line">	 *******************************************************/</span><br><span class="line">	public String getMapForStringAndArrayList(Map&lt;String,ArrayList&lt;String&gt;&gt; map)&#123;</span><br><span class="line">		</span><br><span class="line">		//一下两个方法均在上述几个方法基础上 再次循环遍历其元素</span><br><span class="line">		Set&lt;String&gt; keys = map.keySet();</span><br><span class="line">		Iterator&lt;String&gt; it = keys.iterator();</span><br><span class="line">		while(it.hasNext())&#123;</span><br><span class="line">			String key = it.next();</span><br><span class="line">			ArrayList&lt;String&gt; arrayList = map.get(key);</span><br><span class="line">			for(Object value : arrayList)&#123;</span><br><span class="line">				System.out.println(value);</span><br><span class="line">			&#125;</span><br><span class="line">			//这里可以处理键值关系</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		for(Map.Entry&lt;String, ArrayList&lt;String&gt;&gt; entry : map.entrySet())&#123;</span><br><span class="line">			String key = entry.getKey();</span><br><span class="line">			List&lt;String&gt; lists = entry.getValue();</span><br><span class="line">			for(String value : lists)&#123;</span><br><span class="line">                System.out.println(key+&quot;:&quot;+value);				</span><br><span class="line">			&#125;</span><br><span class="line">			//这里可以处理键值关系</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</span><br><span class="line">		map.put(&quot;id&quot;, &quot;123456789&quot;);</span><br><span class="line">		map.put(&quot;name&quot;, &quot;hank&quot;);</span><br><span class="line">		map.put(&quot;sex&quot;, &quot;male&quot;);</span><br><span class="line">		MapToTraverse mtt = new MapToTraverse();</span><br><span class="line">		System.out.println(mtt.getKeyAndValue2(map));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码的方法参考了网上的一些源代码。贴在这里以供自己以后查看。 并上传java文件于资源中供下载。//以上纯手敲，错误难免 <img src="/pro/os/crawler/QJVY-NZEN-YNZ2.gif" alt="微笑">。今天心情不是很好，不写了。</p>
+
+        
+      <!--
+        
+          
+          
+          
+            <p>在Javascript中 遍历 key:value关系的对象时，有这样的方法：</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/11/09/Java中如何遍历Map呢？xiaohan1990718/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/36/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><a class="page-number" href="/page/39/">39</a><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/38/">Next &raquo;</a>
@@ -1770,30 +1642,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -1811,6 +1659,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1846,14 +1702,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -1870,6 +1718,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -1878,23 +1750,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1978,6 +1842,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2022,15 +1890,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2226,11 +2094,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2282,6 +2150,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2291,10 +2163,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2466,15 +2334,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2518,10 +2390,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2542,7 +2410,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2562,15 +2446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2595,18 +2479,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2658,6 +2530,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2670,11 +2550,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2686,7 +2562,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2698,10 +2574,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2710,23 +2582,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2735,6 +2599,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2762,6 +2634,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2770,15 +2646,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2814,6 +2686,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -2834,10 +2714,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -2846,11 +2722,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2978,11 +2850,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

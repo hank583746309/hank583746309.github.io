@@ -154,352 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-基于Redis的消息队列之生产消费者模式（明天写发布 订阅模式）Java个人学习心得" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/01/基于Redis的消息队列之生产消费者模式（明天写发布 订阅模式）Java个人学习心得/">基于Redis的消息队列之生产消费者模式（明天写发布 订阅模式）</a>
-    </h1>
-  
-
-        
-        <a href="/2017/07/01/基于Redis的消息队列之生产消费者模式（明天写发布 订阅模式）Java个人学习心得/" class="archive-article-date">
-  	<time datetime="2017-07-01T01:35:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <p><img src="/pro/os/crawler/F6RR-VVYF-RZMR.jpg" alt="基于Redis的消息队列之生产消费者模式（明天写发布/订阅模式）"></p>
-<p>基于Redis  </p>
-<h1 id="1、pom-xml"><a href="#1、pom-xml" class="headerlink" title="1、pom.xml"></a>1、pom.xml</h1><blockquote>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"><br><br><modelversion>4.0.0</modelversion><br><br><parent><br><br><groupid>org.leo.common</groupid><br><br><artifactid>common-parent</artifactid><br><br><version>1.0-SNAPSHOT</version><br><br><relativepath>../common-parent</relativepath><br><br></parent><br><br><groupid>org.leo.redis</groupid><br><br><artifactid>redis-procon</artifactid><br><br><version>${redis-procon.version}</version><br><br><packaging>war</packaging><br><br><description>基于Redis的生产消费者模式</description><br><br><name>redis-procon</name><br><br><url><a href="http://maven.apache.org" target="_blank" rel="noopener">http://maven.apache.org</a></url><br><br><properties><br><br>&lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;<br><br></properties><br><br><dependencies><br><br><dependency><br><br><groupid>org.leo.common</groupid><br><br><artifactid>common-config</artifactid><br><br><version>${common-config.version}</version><br><br></dependency><br><br><dependency><br><br><groupid>junit</groupid><br><br><artifactid>junit</artifactid><br><br><scope>test</scope><br><br></dependency><br><br><dependency><br><br><groupid>org.springframework</groupid><br><br><artifactid>spring-test</artifactid><br><br></dependency><br><br><!-- 日志适配器 --><br><br><dependency><br><br><groupid>org.apache.logging.log4j</groupid><br><br><artifactid>log4j-slf4j-impl</artifactid><br><br><scope>test</scope><br><br></dependency><br><br><!-- 日志实现 --><br><br><dependency><br><br><groupid>org.apache.logging.log4j</groupid><br><br><artifactid>log4j-core</artifactid><br><br></dependency><br><br><dependency><br><br><groupid>org.springframework</groupid><br><br><artifactid>spring-core</artifactid><br><br></dependency><br><br><dependency><br><br><groupid>org.springframework</groupid><br><br><artifactid>spring-context-support</artifactid><br><br></dependency><br><br><dependency><br><br><groupid>org.springframework</groupid><br><br><artifactid>spring-web</artifactid><br><br></dependency><br><br><!-- redis --><br><br><dependency><br><br><groupid>org.apache.commons</groupid><br><br><artifactid>commons-pool2</artifactid><br><br></dependency><br><br><dependency><br><br><groupid>org.springframework.data</groupid><br><br><artifactid>spring-data-redis</artifactid><br><br></dependency><br><br><dependency><br><br><groupid>redis.clients</groupid><br><br><artifactid>jedis</artifactid><br><br></dependency><br><br></dependencies><br><br></project>
-</blockquote>
-<p>这里引入了我的一些共通工程，大家做的时候按照自己的实际情况修改即可。</p>
-<p>我做成了war包的形式放在Tomcat里跑，大家可以做成jar包。</p>
-<h1 id="2、web-xml"><a href="#2、web-xml" class="headerlink" title="2、web.xml"></a>2、web.xml</h1><blockquote>
-<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
-<p>&lt;web-app version=”2.5” xmlns=”<a href="http://java.sun.com/xml/ns/javaee&quot;" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee&quot;</a></p>
-<p>xmlns:xsi=”<a href="http://www.w3.org/2001/XMLSchema-instance" target="_blank" rel="noopener">http://www.w3.org/2001/XMLSchema-instance</a></p>
-<p><a href="http://www.springmodules.org/schema/cache/springmodules-cache.xsd" target="_blank" rel="noopener">http://www.springmodules.org/schema/cache/springmodules-cache.xsd</a></p>
-<p><a href="http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd&quot;" target="_blank" rel="noopener">http://www.springmodules.org/schema/cache/springmodules-ehcache.xsd&quot;</a></p>
-<p>xsi:schemaLocation=”<a href="http://java.sun.com/xml/ns/javaee" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee</a></p>
-<p><a href="http://java.sun.com/xml/ns/javaee/web-app\_2\_5.xsd" target="_blank" rel="noopener">http://java.sun.com/xml/ns/javaee/web-app\_2\_5.xsd</a></p>
-<p>“&gt;</p>
-<p><display-name>Redis生产消费者</display-name></p>
-<!-- 加载spring容器 -->
-<p><context-param></context-param></p>
-<p><param-name>contextConfigLocation</param-name></p>
-<p><param-value><strong>classpath:spring/applicationContext.xml</strong></param-value></p>
-<p></p>
-<listener><br><br><listener-class>org.springframework.web.context.ContextLoaderListener</listener-class><br><br></listener>
-
-<filter><br><br><filter-name>CharacterEncodingFilter</filter-name><br><br><filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class><br><br><init-param><br><br><param-name>encoding</param-name><br><br><param-value>UTF-8</param-value><br><br></init-param><br><br></filter>
-
-<p><filter-mapping></filter-mapping></p>
-<p><filter-name>CharacterEncodingFilter</filter-name></p>
-<p><url-pattern>/</url-pattern></p>
-<p></p>
-<p></p>
-</blockquote>
-<p>注意applicationContext.xml配置的路径，按照实际情况修改，我这里是放在src/resources/spring下。</p>
-<h1 id="3、redis-properties"><a href="#3、redis-properties" class="headerlink" title="3、redis.properties"></a>3、redis.properties</h1><blockquote>
-<p>## redis</p>
-<p>redis.host=192.168.56.104</p>
-<p>redis.port=6379</p>
-<p>redis.pwd=111111</p>
-<p>redis.maxIdle=5</p>
-<p>redis.maxTotal=10</p>
-<p>redis.maxWaitMillis=10000</p>
-<p>redis.testOnBorrow=true</p>
-</blockquote>
-<p>里面的配置请按照实际情况修改。</p>
-<h1 id="4、applicationContext-xml"><a href="#4、applicationContext-xml" class="headerlink" title="4、applicationContext.xml"></a>4、applicationContext.xml</h1><blockquote>
-<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:context="http://www.springframework.org/schema/context" xsi:schemalocation="
-
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-
-http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-
-http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-
-"><br><br>&lt;context:component-scan base-package=”org.leo.ssm” /&gt;<br><br><!-- 属性文件读入 --><br><br>&lt;context:property-placeholder location=”classpath:redis.properties” /&gt;<br><br><!-- spring线程池的配置 --><br><br><bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor"><br><br><!-- 线程池维护线程的最少数量 --><br><br><property name="corePoolSize" value="5"><br><br><!-- 线程池维护线程所允许的空闲时间 --><br><br><property name="keepAliveSeconds" value="300"><br><br><!-- 线程池维护线程的最大数量 --><br><br><property name="maxPoolSize" value="10"><br><br><!-- 线程池所使用的缓冲队列 --><br><br><property name="queueCapacity" value="25"><br><br></property></property></property></property></bean><br><br><import resource="applicationContext-redis.xml"><br><br></import></beans>
-</blockquote>
-<h1 id="5、applicationContext-redis-xml"><a href="#5、applicationContext-redis-xml" class="headerlink" title="5、applicationContext-redis.xml"></a>5、applicationContext-redis.xml</h1><blockquote>
-<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:redis="http://www.springframework.org/schema/redis" xsi:schemalocation="http://www.springframework.org/schema/beans
-
-http://www.springframework.org/schema/beans/spring-beans.xsd
-
-http://www.springframework.org/schema/redis
-
-http://www.springframework.org/schema/redis/spring-redis-1.0.xsd"><br><br><bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"><br><br><property name="maxIdle" value="$\{redis.maxIdle\}"><br><br><property name="maxTotal" value="$\{redis.maxTotal\}"><br><br><property name="maxWaitMillis" value="$\{redis.maxWaitMillis\}"><br><br><property name="testOnBorrow" value="$\{redis.testOnBorrow\}"><br><br></property></property></property></property></bean><br><br><bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:host-name="$\{redis.host\}" p:port="$\{redis.port\}" p:password="$\{redis.pwd\}" p:pool-config-ref="poolConfig"><br><br><bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"><br><br><property name="connectionFactory" ref="redisConnectionFactory"><br><br><property name="keySerializer"><br><br><bean class="org.springframework.data.redis.serializer.StringRedisSerializer"><br><br></bean></property><br><br><property name="valueSerializer"><br><br><bean class="org.springframework.data.redis.serializer.StringRedisSerializer"></bean><br><br></property><br><br></property></bean><br><br></bean></beans>
-</blockquote>
-<h1 id="6、RedisQueueDaoImpl"><a href="#6、RedisQueueDaoImpl" class="headerlink" title="6、RedisQueueDaoImpl"></a>6、RedisQueueDaoImpl</h1><blockquote>
-<p>package org.leo.ssm.redis.dao.impl;</p>
-<p>import org.leo.ssm.redis.dao.RedisQueueDao;</p>
-<p>import org.springframework.beans.factory.annotation.Autowired;</p>
-<p>import org.springframework.data.redis.core.RedisTemplate;</p>
-<p>import org.springframework.stereotype.Repository;</p>
-<p>@Repository</p>
-<p>public class RedisQueueDaoImpl implements RedisQueueDao {</p>
-<p>@Autowired</p>
-<p>protected RedisTemplate&lt;String, String&gt; redisTemplate;</p>
-<p>@Override</p>
-<p>public void lpush(String key, String value) {</p>
-<p>redisTemplate.opsForList().leftPush(key, value);</p>
-<p>}</p>
-<p>public String lpop(String key) {</p>
-<p>return redisTemplate.opsForList().rightPop(key);</p>
-<p>}</p>
-<p>}</p>
-</blockquote>
-<p>接口就不附上了。  </p>
-<h1 id="7、RedisQueueServiceImpl"><a href="#7、RedisQueueServiceImpl" class="headerlink" title="7、RedisQueueServiceImpl"></a>7、RedisQueueServiceImpl</h1><blockquote>
-<p>package org.leo.ssm.redis.service.impl;</p>
-<p>import org.leo.ssm.redis.dao.RedisQueueDao;</p>
-<p>import org.leo.ssm.redis.service.RedisQueueService;</p>
-<p>import org.springframework.beans.factory.annotation.Autowired;</p>
-<p>import org.springframework.stereotype.Service;</p>
-<p>@Service</p>
-<p>public class RedisQueueServiceImpl implements RedisQueueService {</p>
-<p>@Autowired</p>
-<p>private RedisQueueDao redisQueueDao;</p>
-<p>@Override</p>
-<p>public void lpush(String key, String value) {</p>
-<p>redisQueueDao.lpush(key, value);</p>
-<p>}</p>
-<p>@Override</p>
-<p>public String lpop(String key) {</p>
-<p>return redisQueueDao.lpop(key);</p>
-<p>}</p>
-<p>}</p>
-</blockquote>
-<p>接口就不附上了。  </p>
-<h1 id="8、RedisRun"><a href="#8、RedisRun" class="headerlink" title="8、RedisRun"></a>8、RedisRun</h1><p>消费者具体执行类。UUID只是在本例中做标识用。</p>
-<blockquote>
-<p>package org.leo.ssm.redis;</p>
-<p>import java.util.UUID;</p>
-<p>import org.leo.ssm.redis.service.RedisQueueService;</p>
-<p>import org.springframework.beans.factory.annotation.Autowired;</p>
-<p>public class RedisRun implements Runnable {</p>
-<p>@Autowired</p>
-<p>private RedisQueueService redisQueueService;</p>
-<p>public volatile boolean exit = false;</p>
-<p>public RedisRun(RedisQueueService redisQueueService) {</p>
-<p>super();</p>
-<p>this.redisQueueService = redisQueueService;</p>
-<p>}</p>
-<p>@Override</p>
-<p>public void run() {</p>
-<p>String runUUID = UUID.randomUUID().toString().toUpperCase();</p>
-<p>int count = 0;</p>
-<p>while (!exit) {</p>
-<p><strong>// tq是本消费者程序从Redis中取消息的key</strong></p>
-<p>String result = redisQueueService.lpop(“<strong>tq</strong>“);</p>
-<p>if (null != result) {</p>
-<p><strong>// 取出消息之后进行业务处理</strong></p>
-<p>System.out.println(System.currentTimeMillis() + “:” + result + “–” + runUUID);</p>
-<p>} else {</p>
-<p>System.out.println(“没有取到信息，休息1秒”);</p>
-<p>try {</p>
-<p>Thread.sleep(1000);</p>
-<p>} catch (InterruptedException e) {</p>
-<p>System.out.println(“=========InterruptedException”);</p>
-<p>}</p>
-<p>count++;</p>
-<p>if (count == 10) {</p>
-<p>System.out.println(“连续10次没有取到信息，休息10秒”);</p>
-<p>try {</p>
-<p>Thread.sleep(10000);</p>
-<p>} catch (InterruptedException e) {</p>
-<p>System.out.println(“=========InterruptedException”);</p>
-<p>}</p>
-<p>count = 0;</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>System.out.println(“Thread Stop:” + runUUID);</p>
-<p>}</p>
-<p>}</p>
-</blockquote>
-<p>消费者程序会不停地从Redis中取消息，考虑到如果长时间没有消息进入队列，这样是蛮耗资源的，所以在程序后面加了休息的代码，没有从Redis取出消息，就休息1秒，连续10次没有取出消息，就休息10秒。可以自己修改。</p>
-<p>另外还要考虑任务处理失败后消息的重发机制。代码里不再赘述。</p>
-<h1 id="9、RedisInit"><a href="#9、RedisInit" class="headerlink" title="9、RedisInit"></a>9、RedisInit</h1><blockquote>
-<p>package org.leo.ssm.redis;</p>
-<p>import java.util.UUID;</p>
-<p>import org.leo.ssm.redis.service.RedisQueueService;</p>
-<p>import org.springframework.beans.factory.DisposableBean;</p>
-<p>import org.springframework.beans.factory.InitializingBean;</p>
-<p>import org.springframework.beans.factory.annotation.Autowired;</p>
-<p>import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;</p>
-<p>import org.springframework.stereotype.Component;</p>
-<p>@Component(“redisInit”)</p>
-<p>public class RedisInit implements InitializingBean, DisposableBean {</p>
-<p>@Autowired</p>
-<p>private RedisQueueService redisQueueService;</p>
-<p>@Autowired</p>
-<p>private ThreadPoolTaskExecutor taskExecutor;</p>
-<p>private RedisRun redisRun;</p>
-<p>private String threadUUID;</p>
-<p>public RedisInit() {</p>
-<p>threadUUID = UUID.randomUUID().toString().toUpperCase();</p>
-<p>System.out.println(“——RedisInit—–Start:” + threadUUID);</p>
-<p>}</p>
-<p>@Override</p>
-<p>public void afterPropertiesSet() throws Exception {</p>
-<p>redisRun = new RedisRun(redisQueueService);</p>
-<p>taskExecutor.execute(redisRun);</p>
-<p>}</p>
-<p>@Override</p>
-<p>public void destroy() throws Exception {</p>
-<p>System.out.println(“——RedisInit—–Destroy:” + threadUUID);</p>
-<p>redisRun.exit = true;</p>
-<p>for (;;) {</p>
-<p>int count = taskExecutor.getActiveCount();</p>
-<p>System.out.println(“活跃的线程数 : “ + count);</p>
-<p>if (count == 0) {</p>
-<p>taskExecutor.getThreadPoolExecutor().remove(redisRun);</p>
-<p>taskExecutor.shutdown();</p>
-<p>break;</p>
-<p>} else {</p>
-<p>try {</p>
-<p>Thread.sleep(1000);</p>
-<p>} catch (InterruptedException e) {</p>
-<p>e.printStackTrace();</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-<p>}</p>
-</blockquote>
-<p>本类实现了InitializingBean, DisposableBean接口，保证了程序在Tomcat中启动后将RedisRun加载至线程池并运行，以及在销毁时移除并关闭。</p>
-<h1 id="10、生产者"><a href="#10、生产者" class="headerlink" title="10、生产者"></a>10、生产者</h1><blockquote>
-<p>package org.leo.ssm;</p>
-<p>import org.junit.Test;</p>
-<p>import org.junit.runner.RunWith;</p>
-<p>import org.leo.ssm.redis.service.RedisQueueService;</p>
-<p>import org.springframework.beans.factory.annotation.Autowired;</p>
-<p>import org.springframework.test.context.ContextConfiguration;</p>
-<p>import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</p>
-<p>@RunWith(SpringJUnit4ClassRunner.class)</p>
-<p>@ContextConfiguration(“classpath:spring/applicationContext.xml”)</p>
-<p>public class TestPush {</p>
-<p>@Autowired</p>
-<p>private RedisQueueService redisQueueService;</p>
-<p>@Test</p>
-<p>public void testPush(){</p>
-<p><strong>redisQueueService.lpush(“tq”, “testQueue”);</strong></p>
-<p>}</p>
-<p>}</p>
-</blockquote>
-<p>这是我在工程中写的一个测试类，实际情况中不要这么写，因为要加载applicationContext.xml这导致这个生产者程序在启动的时候，一个消费者也会启动。</p>
-<p>这个程序应该写在别的工程中，其实关键代码就一句话：</p>
-<blockquote>
-<p><strong>redisQueueService.lpush(“tq”, “你要发的消息”);</strong></p>
-</blockquote>
-<ul>
-<li><strong>原文作者：</strong> Java个人学习心得</li>
-<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6437610266627670530/" target="_blank" rel="noopener">https://www.toutiao.com/item/6437610266627670530/</a></li>
-<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <p><img src="/pro/os/crawler/F6RR-VVYF-RZMR.jpg" alt="基于Redis的消息队列之生产消费者模式（明天写发布/订阅模式）"></p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NoSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">XML</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">WebApp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/07/01/基于Redis的消息队列之生产消费者模式（明天写发布 订阅模式）Java个人学习心得/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-滴滴宣布开源 Android 端插件化框架 VirtualAPK安安搞笑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1703,6 +1357,131 @@ http://www.springframework.org/schema/redis/spring-redis-1.0.xsd"><br><br><bean 
 
 
   
+    <article id="post-处理前端跨域的几种方法和原理恒星网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/04/处理前端跨域的几种方法和原理恒星网络/">处理前端跨域的几种方法和原理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/04/处理前端跨域的几种方法和原理恒星网络/" class="archive-article-date">
+  	<time datetime="2017-06-04T00:30:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>在前端编程中，跨域问题应该是很常见的，处理方式有很多，下边来说一说用到过的处理方式。</p>
+<p>什么是跨域：</p>
+<p>只要协议、域名、端口有任何一个不同，都被当做不同的域，js不能在不同的域之间进行通信和传输数据。</p>
+<p>跨域的情况：</p>
+<p>1、用ajax向不同的域请求数据</p>
+<p>2、通过js获取页面中不同域的框架中的数据(常见iframe)</p>
+<p>浏览器都有一个同源策略，其限制之一就是不能通过ajax的方法去请求不同源中的文档，限制之二是浏览器中不同域的框架之间是不能进行js的交互操作的。</p>
+<p>跨域的方法：1、 jsonp跨域原理：创建<script>标签，利用src属性跨域（src属性可以跨域），同样<img>也可以处理跨域例子：test.html —–&gt; <a href="http://a.haha.com/test.htmlajaxData">http://a.haha.com/test.htmlajaxData</a> —–&gt; <a href="http://b.haha.com/listtest.html访问ajaxData需要跨域">http://b.haha.com/listtest.html访问ajaxData需要跨域</a></p>
+<p><img src="/pro/os/crawler/VFJZ-YBAE-JF7R.jpg" alt="处理前端跨域的几种方法和原理"></p>
+<p>通过一个script标签引入一个js文件，当js文件载入成功后会把需要的json数据作为参数传入URL中指定的函数并执行此函数，因为ajaxData被当作一个js文件来引入，所以其返回的数据必须是一个能执行的js文件，所以需要服务端的配合才行。</p>
+<p>局限性： 需要服务端配合做处理 jsonp只支持“get”请求，不支持“post”请求</p>
+<p>2、 document.domain来跨越子域</p>
+<p>原理：设置相同的主域例子：一个页面，它的地址是 <a href="http://a.haha.com/test.html">http://a.haha.com/test.html</a> ， 在这个页面里面有一个iframe，它的src是 <a href="http://b.haha.com/test.html">http://b.haha.com/test.html</a> , 很显然，这个页面与它里面的iframe框架是不同域的，所以我们是无法通过在页面中书写js代码来获取iframe中的东西的</p>
+<p><img src="/pro/os/crawler/EAAU-AJQA-3UY2.jpg" alt="处理前端跨域的几种方法和原理"></p>
+<p>document.domain的设置是有限制的，我们只能把document.domain设置成自身或更高一级的父域，且主域必须相同。</p>
+<p>修改document.domain的方法只适用于不同子域的框架间的交互，对ajax访问的不适用。</p>
+<p>3、隐藏iframe做代理跨域</p>
+<p>如果你想通过ajax的方法去与不同子域的页面交互，除了使用jsonp的方法外，还可以用一个隐藏的iframe来做一个代理。</p>
+<p>原理：让这个隐藏的iframe载入一个与你想要通过ajax获取数据的目标页面处在相同的域的页面，所以这个iframe中的页面是可以正常使用ajax去获取你要的数据的，然后就是通过修改document.domain的方法，让我们能通过js完全控制这个iframe，这样我们就可以让iframe去发送ajax请求，然后收到的数据我们也可以获得了。</p>
+<p>以上第3种方式是比较常见的，也是用的比较多的，当然跨域方式有好多种，欢迎有兴趣的小伙伴一起讨论。</p>
+<ul>
+<li><strong>原文作者：</strong> 恒星网络</li>
+<li><strong>原文链接：</strong> <a href="https://www.toutiao.com/item/6427291908577427969/">https://www.toutiao.com/item/6427291908577427969/</a></li>
+<li><strong>版权声明：</strong> 本博客所有文章除特别声明外，均采用 [CC BY-NC-SA 4.0][] 许可协议。转载请注明出处。</li>
+</ul>
+</script></p>
+        
+      <!--
+        
+          
+          
+          
+            <p>在前端编程中，跨域问题应该是很常见的，处理方式有很多，下边来说一说用到过的处理方式。</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">科技</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/04/处理前端跨域的几种方法和原理恒星网络/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/30/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/32/">Next &raquo;</a>
@@ -1919,30 +1698,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -1960,6 +1715,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1995,14 +1758,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -2019,6 +1774,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -2027,23 +1806,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2127,6 +1898,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -2171,15 +1946,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2375,11 +2150,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2431,6 +2206,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2440,10 +2219,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2615,15 +2390,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2667,10 +2446,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2691,7 +2466,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2711,15 +2502,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2744,18 +2535,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2807,6 +2586,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2819,11 +2606,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2835,7 +2618,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2847,10 +2630,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2859,23 +2638,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2884,6 +2655,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2911,6 +2690,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2919,15 +2702,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2963,6 +2742,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -2983,10 +2770,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -2995,11 +2778,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3127,11 +2906,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">

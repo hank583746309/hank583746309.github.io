@@ -154,309 +154,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-写给开发者看的关系型数据库设计xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/04/01/写给开发者看的关系型数据库设计xiaohan1990718/">写给开发者看的关系型数据库设计</a>
-    </h1>
-  
-
-        
-        <a href="/2013/04/01/写给开发者看的关系型数据库设计xiaohan1990718/" class="archive-article-date">
-  	<time datetime="2013-04-01T00:46:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2013-04-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          <h1 id="写给开发者看的关系型数据库设计"><a href="#写给开发者看的关系型数据库设计" class="headerlink" title="写给开发者看的关系型数据库设计"></a>写给开发者看的关系型数据库设计</h1><p>数据库设计，一个软件项目成功的基石。很多从业人员都认为，数据库设计其实不那么重要。现实中的情景也相当雷同，开发人员的数量是数据库设计人员的数倍。多数人使用数据库中的一部分，所以也会把数据库设计想的如此简单。其实不然，数据库设计也是门学问。</p>
-<p>　　从笔者的经历看来，笔者更赞成在项目早期由开发者进行数据库设计（后期调优需要DBA）。根据笔者的项目经验，一个精通OOP和ORM的开发者，设计的数据库往往更为合理，更能适应需求的变化，如果追其原因，笔者个人猜测是因为数据库的规范化，与OO的部分思想雷同（如内聚）。而DBA，设计的数据库的优势是能将DBMS的能力发挥到极致，能够使用SQL和DBMS实现很多程序实现的逻辑，与开发者相比，DBA优化过的数据库更为高效和稳定。如标题所示，本文旨在分享一名开发者的数据库设计经验，并不涉及复杂的SQL语句或DBMS使用，因此也不会局限到某种DBMS产品上。真切地希望这篇文章对开发者能有所帮助，也希望读者能帮助笔者查漏补缺。</p>
-<h3 id="一-Codd的RDBMS12法则——RDBMS的起源"><a href="#一-Codd的RDBMS12法则——RDBMS的起源" class="headerlink" title="　　一 Codd的RDBMS12法则——RDBMS的起源"></a>　　一 Codd的RDBMS12法则——RDBMS的起源</h3><p>　　Edgar Frank Codd（埃德加·弗兰克·科德）被誉为“关系数据库之父”，并因为在数据库管理系统的理论和实践方面的杰出贡献于1981年获图灵奖。在1985年，Codd 博士发布了12条规则，这些规则简明的定义出一个关系型数据库的理念，它们被作为所有关系数据库系统的设计指导性方针。</p>
-<ol>
-<li>信息法则 关系数据库中的所有信息都用唯一的一种方式表示——表中的值。</li>
-<li>保证访问法则 依靠表名、主键值和列名的组合，保证能访问每个数据项。</li>
-<li>空值的系统化处理 支持空值（NULL），以系统化的方式处理空值，空值不依赖于数据类型。</li>
-<li>基于关系模型的动态联机目录 数据库的描述应该是自描述的，在逻辑级别上和普通数据采用同样的表示方式，即数据库必须含有描述该数据库结构的系统表或者数据库描述信息应该包含在用户可以访问的表中。</li>
-<li>统一的数据子语言法则 一个关系数据库系统可以支持几种语言和多种终端使用方式，但必须至少有一种语言，它的语句能够一某种定义良好的语法表示为字符串，并能全面地支持以下所有规则：数据定义、视图定义、数据操作、约束、授权以及事务。（这种语言就是SQL)</li>
-<li>视图更新法则 所有理论上可以更新的视图也可以由系统更新。</li>
-<li>高级的插入、更新和删除操作 把一个基础关系或派生关系作为单个操作对象处理的能力不仅适应于数据的检索，还适用于数据的插入、修改个删除，即在插入、修改和删除操作中数据行被视作集合。</li>
-<li>数据的物理独立性 不管数据库的数据在存储表示或访问方式上怎么变化，应用程序和终端活动都保持着逻辑上的不变性。</li>
-<li>数据的逻辑独立性 当对表做了理论上不会损害信息的改变时，应用程序和终端活动都会保持逻辑上的不变性。</li>
-<li>数据完整性的独立性 专用于某个关系型数据库的完整性约束必须可以用关系数据库子语言定义，而且可以存储在数据目录中，而非程序中。</li>
-<li>分布独立性 不管数据在物理是否分布式存储，或者任何时候改变分布策略，RDBMS的数据操纵子语言必须能使应用程序和终端活动保持逻辑上的不变性。</li>
-<li>非破坏性法则 如果一个关系数据库系统支持某种低级（一次处理单个记录）语言，那么这个低级语言不能违反或绕过更高级语言（一次处理多个记录）规定的完整性法则或约束，即用户不能以任何方式违反数据库的约束。</li>
-</ol>
-<h3 id="二-关系型数据库设计阶段"><a href="#二-关系型数据库设计阶段" class="headerlink" title="　　二 关系型数据库设计阶段"></a>　　二 关系型数据库设计阶段</h3><p>　　<strong>（一）规划阶段</strong></p>
-<p>　　规划阶段的主要工作是对数据库的必要性和可行性进行分析。确定是否需要使用数据库，使用哪种类型的数据库，使用哪个数据库产品。</p>
-<p>　　<strong>（二）概念阶段</strong></p>
-<p>　　概念阶段的主要工作是收集并分析需求。识别需求，主要是识别数据实体和业务规则。对于一个系统来说，数据库的主要包括业务数据和非业务数据，而业务数据的定义，则依赖于在此阶段对用户需求的分析。需要尽量识别业务实体和业务规则，对系统的整体有初步的认识，并理解数据的流动过程。理论上，该阶段将参考或产出多种文档，比如“用例图”，“数据流图”以及其他一些项目文档。如果能够在该阶段产出这些成果，无疑将会对后期进行莫大的帮助。当然，很多文档已超出数据库设计者的考虑范围。而且，如果你并不精通该领域以及用户的业务，那么请放弃自己独立完成用户需求分析的想法。用户并不是技术专家，而当你自身不能扮演“业务顾问”的角色时，请你选择与项目组的相关人员合作，或者将其视为风险呈报给PM。再次强调，大多数情况，用户只是行业从业者，而非职业技术人员，我们仅仅从用户那里收集需求，而非依赖于用户的知识。</p>
-<p>　　记录用户需求时，可以使用一些技巧，当然这部分内容有些可能会超出数据库设计人员的职责：</p>
-<ul>
-<li>努力维护一系列包含了系统设计和规格说明信息的文档，如会议记录、访谈记录、关键用户期望、功能规格、技术规格、测试规格等。</li>
-<li>频繁与干系人沟通并收集反馈。</li>
-<li>标记出你自己添加的，不属于客户要求的，未决内容。</li>
-<li>与所有关键干系人尽快确认项目范围，并力求冻结需求。</li>
-</ul>
-<p>　　此外，必须严谨处理业务规则，并详细记录。在之后的阶段，将会根据这些业务规则进行设计。</p>
-<p>　　当该阶段结束时，你应该能够回答以下问题：</p>
-<ul>
-<li>需要哪些数据？</li>
-<li>数据该被怎样使用？</li>
-<li>哪些规则控制着数据的使用？</li>
-<li>谁会使用何种数据？</li>
-<li>客户想在核心功能界面或者报表上看到哪些内容？</li>
-<li>数据现在在哪里？</li>
-<li>数据是否与其他系统有交互、集成或同步？</li>
-<li>主题数据有哪些？</li>
-<li>核心数据价值几何，对可靠性的要求程度？</li>
-</ul>
-<p>　　并且得到如下信息：</p>
-<ul>
-<li>实体和关系</li>
-<li>属性和域</li>
-<li>可以在数据库中强制执行的业务规则</li>
-<li>需要使用数据库的业务过程</li>
-</ul>
-<p>　　<strong>（三）逻辑阶段</strong></p>
-<p>　　逻辑阶段的主要工作是绘制E-R图，或者说是建模。建模工具很多，有不同的图形表示方法和软件。这些工具和软件的使用并非关键，笔者也不建议读者花大量时间在建模方法的选择上。对于大多数应用来说，E-R图足以描述实体间的关系。建模关键是思想而不是工具，软件只是起到辅助作用，识别实体关系才是本阶段的重点。</p>
-<p>　　除了实体关系，我们还应该考虑属性的域（值类型、范围、约束）</p>
-<p>　　<strong>（四）实现阶段</strong></p>
-<p>　　实现阶段主要针对选择的RDBMS定义E-R图对应的表，考虑属性类型和范围以及约束。</p>
-<p>　　<strong>（五）物理阶段</strong></p>
-<p>　　物理阶段是一个验证并调优的阶段，是在实际物理设备上部署数据库，并进行测试和调优。</p>
-<h3 id="三-设计原则"><a href="#三-设计原则" class="headerlink" title="　　三 设计原则"></a>　　三 设计原则</h3><p>　　<strong>（一）降低对数据库功能的依赖</strong></p>
-<p>　　功能应该由程序实现，而非DB实现。原因在于，如果功能由DB实现时，一旦更换的DBMS不如之前的系统强大，不能实现某些功能，这时我们将不得不去修改代码。所以，为了杜绝此类情况的发生，功能应该有程序实现，数据库仅仅负责数据的存储，以达到最低的耦合。</p>
-<p>　　<strong>（二）定义实体关系的原则</strong></p>
-<p>　　当定义一个实体与其他实体之间的关系时，需要考量如下：</p>
-<ul>
-<li>牵涉到的实体 识别出关系所涉及的所有实体。</li>
-<li>所有权 考虑一个实体“拥有”另一个实体的情况。</li>
-<li>基数 考量一个实体的实例和另一个实体实例关联的数量。</li>
-</ul>
-<p>　　关系与表数量</p>
-<ul>
-<li>描述1:1关系最少需要1张表。</li>
-<li>描述1:n关系最少需要2张表。</li>
-<li>描述n:n关系最少需要3张表。</li>
-</ul>
-<p>　　<strong>（三）列意味着唯一的值</strong></p>
-<p>　　如果表示坐标（0,0），应该使用两列表示，而不是将“0,0”放在1个列中。</p>
-<p>　　<strong>（四）列的顺序</strong></p>
-<p>　　列的顺序对于表来说无关紧要，但是从习惯上来说，采用“主键+外键+实体数据+非实体数据”这样的顺序对列进行排序显然能得到比较好的可读性。</p>
-<p>　　<strong>（五）定义主键和外键</strong></p>
-<p>　　数据表必须定义主键和外键（如果有外键）。定义主键和外键不仅是RDBMS的要求，同时也是开发的要求。几乎所有的代码生成器都需要这些信息来生成常用方法的代码（包括SQL文和引用），所以，定义主键和外键在开发阶段是必须的。之所以说在开发阶段是必须的是因为，有不少团队出于性能考虑会在进行大量测试后，在保证参照完整性不会出现大的缺陷后，会删除掉DB的所有外键，以达到最优性能。笔者认为，在性能没有出现问题时应该保留外键，而即便性能真的出现问题，也应该对SQL文进行优化，而非放弃外键约束。</p>
-<p>　　<strong>（六）选择键</strong></p>
-<p>　　1 人工键与自然键</p>
-<p>　　人工健——实体的非自然属性，根据需要由人强加的，如GUID，其对实体毫无意义；自然健——实体的自然属性，如身份证编号。</p>
-<p>　　人工键的好处：</p>
-<ul>
-<li>键值永远不变</li>
-<li>永远是单列存储</li>
-</ul>
-<p>　　人工键的缺点：</p>
-<ul>
-<li>因为人工键是没有实际意义的唯一值，所以不能通过人工键来避免重复行。</li>
-</ul>
-<p>　　笔者建议全部使用人工键。原因如下：</p>
-<ul>
-<li>在设计阶段我们无法预测到代码真正需要的值，所以干脆放弃猜测键，而使用人工键。</li>
-<li>人工键复杂处理实体关系，而不负责任何属性描述，这样的设计使得实体关系与实体内容得到高度解耦，这样做的设计思路更加清晰。</li>
-</ul>
-<p>　　笔者的另一个建议是——每张表都需要有一个对用户而言有意义的自然键，在特殊情况下也许找不到这样一个项，此时可以使用复合键。这个键我在程序中并不会使用其作为唯一标识，但是却可以在对数据库直接进行查询时使用。</p>
-<p>　　使用人工键的另一根弊端，主要源自对查询性能的考量，因此选择人工键的形式（列的类型）很重要：</p>
-<ul>
-<li>自增值类型 由于类型轻巧查询效率更好，但取值有限。</li>
-<li>GUID 查询效率不如值类型，但是取值无限，且对开发人员更加亲切。</li>
-</ul>
-<p>　　2 智能健与非智能键</p>
-<p>　　智能键——键值包含额外信息，其根据某种约定好的编码规范进行编码，从键值本身可以获取某些信息；非智能键，单纯的无意义键值，如自增的数字或GUID。</p>
-<p>　　智能键是一把双刃剑，开发人员偏爱这种包含信息的键值，程序盼望着其中潜在的数据；数据库管理员或者设计者则讨厌这种智能键，原因也是很显然的，智能键对数据库是潜在的风险。前面提到，数据库设计的原则之一是不要把具有独立意义的值的组合实现到一个单一的列中，应该使用多个独立的列。数据库设计者，更希望开发人员通过拼接多个列来得到智能键，即以复合主键的形式给开发人员使用，而不是将一个列的值分解后使用。开发人员应该接受这种数据库设计，但是很多开发者却想不明白两者的优略。笔者认为，使用单一列实现智能键存在这样一个风险，就是我们可能在设计阶段无法预期到编码规则可能会在后期发生变化。比如，构成智能键的局部键的值用完而引起规则变化或者长度变化，这种编码规则的变化对于程序的有效性验证与智能键解析是破坏性的，这是系统运维人员最不希望看到的。所以笔者建议如果需要智能键，请在业务逻辑层封装（使用只读属性），不要再持久化层实现，以避免上述问题。</p>
-<p>　　<strong>（七）是否允许NULL</strong></p>
-<p>　　关于NULL我们需要了解它的几个特性：</p>
-<ul>
-<li>任何值和NULL拼接后都为NULL。</li>
-<li>所有与NULL进行的数学操作都返回NULL。</li>
-<li>引入NULL后，逻辑不易处理。</li>
-</ul>
-<p>　　那么我们是否应该允许列为空呢？笔者认为这个问题的答案受到我们的开发语言的影响。以C#为例，因为引入了可空类型来处理数据库值类型为NULL的情形，所以是否允许为空对开发者来说意义并不大。但有一点必须注意，就是验证非空必须要在程序集进行处理，而不该依赖于DBMS的非空约束，必须确保完整数据（所有必须的属性均被赋值）到达DB（所谓的“安全区”，我们必须定义在多层系统中那些区域得到的数据是安全而纯净的）。</p>
-<p>　　<strong>（八）属性切割</strong></p>
-<p>　　一种错误想法是，属性与列是1：1的关系。对于开发者，我们公开属性而非字段。举个例子来说，对于实体“员工”有“名字”这一属性，“名字”可以再被分解为“姓”和“名”，对于开发人员来说，显然第二种数据结构更受青睐（“姓”和“名”作为两个字段）。所以，在设计时我们也应该根据需要考虑是否切割属性。</p>
-<p>　　<strong>（九）规范化——范式</strong></p>
-<p>　　当笔者还在大学时，范式是学习关系型数据库时最头疼的问题。我想也许会有读者仍然不理解范式的价值，简单来说——范式将帮助我们来保证数据的有效性和完整性。规范化的目的如下：</p>
-<ul>
-<li>消灭重复数据。</li>
-<li>避免编写不必要的，用来使重复数据同步的代码。</li>
-<li>保持表的瘦身，以及减从一张表中读取数据时需要进行的读操作数量。</li>
-<li>最大化聚集索引的使用，从而可以进行更优化的数据访问和联结。</li>
-<li>减少每张表使用的索引数量，因为维护索引的成本很高。</li>
-</ul>
-<p>　　规范化旨在——挑出复杂的实体，从中抽取出简单的实体。这个过程一直持续下去，直到数据库中每个表都只代表一件事物，并且表中每个描述的都是这件事物为止。</p>
-<p>　　1 规范化实体和属性（去除冗余）</p>
-<p>　　1NF：每个属性都只应表示一个单一的值，而非多个值。</p>
-<p>　　需要考虑几点：</p>
-<ul>
-<li>属性是原子性的 需要考虑熟悉是否分解的足够彻底，使得每个属性都表示一个单一的值。（和“（三）列意味着唯一的值”描述的原则相同。）分解原则为——当你需要分开处理每个部分时才分解值，并且分解到足够用就行。（即使当前不需要彻底分解属性，也应该考虑未来可能的需求变更。）</li>
-<li>属性的所有实例必须包含相同数量的值 实体有固定数量的属性（表有固定数量的列）。设计实体时，要让每个属性只有固定数量的值与其相关联。</li>
-<li>实体中出现的所有实体类型都必须不同</li>
-</ul>
-<p>　　当前设计不符合1NF的“臭味”：</p>
-<ul>
-<li>包含分隔符类字符的字符串数据。</li>
-<li>名字尾端有数字的属性。</li>
-<li>没有定义键或键定义不好的表。</li>
-</ul>
-<p>　　2 属性间的关系（去除冗余）</p>
-<p>　　2NF-实体必须符合1NF，每个属性描述的东西都必须针对整个键（可以理解为oop中类型属性的内聚性）。</p>
-<p>　　当前设计不符合2NF的“臭味”：</p>
-<ul>
-<li>重复的键属性名字前缀（设计之外的数据冗余） 表明这些值可能描述了某些额外的实体。</li>
-<li>有重复的数据组（设计之外的数据冗余） 这标志着属性间有函数依赖型。</li>
-<li>没有外键的复合主键 这标志着键中的键值可能标识了多种事物，而不是一种事物。</li>
-</ul>
-<p>　　3NF-实体必须符合2NF，非键属性不能描述其他非键属性。（与2NF不同，3NF处理的是非键属性和非键属性之间的关系，而不是和键属性之间的关系。</p>
-<p>　　当前设计不符合3NF的“臭味”：</p>
-<ul>
-<li>多个属性有同样的前缀。</li>
-<li>重复的数据组。</li>
-<li>汇总的数据，所引用的数据在一个完全不同的实体中。（有些人倾向于使用视图，我更倾向于使用对象集合，即由程序来完成。）</li>
-</ul>
-<p>　　BCNF-实体满足第一范式，所有属性完全依赖于某个键，如果所有的判定都是一个键，则实体满足BCNF。（BCNF简单地扩展了以前的范式，它说的是：一个实体可能有若干个键，所有属性都必须依赖于这些键中的一个，也可以理解为“每个键必须唯一标识实体，每个非键熟悉必须描述实体。”</p>
-<p>　　3 去除实体组合键中的冗余</p>
-<p>　　4NF-实体必须满足BCNF，在一个属性与实体的键之间，多值依赖（一条记录在整个表的唯一性由多个值组合起来决定的）不能超过一个。</p>
-<p>　　当前设计不符合4NF的“臭味”：</p>
-<ul>
-<li>三元关系（实体:实体:实体）。</li>
-<li>潜伏的多值属性。（如多个手机号。）</li>
-<li>临时数据或历史值。（需要将历史数据的主体提出，否则将存在大量冗余。）</li>
-</ul>
-<p>　　4 尽量将所有关系分解为二元关系　</p>
-<p>　　5NF-实体必须满足4NF，当分解的信息无损的时候，确保所有关系都被分解为二元关系。</p>
-<p>　　5NF保证在第四范式中存在的任何可以分解为实体的三元关系都被分解。有的三元关系可以在不丢失信息的前提下被分解为二元关系，当分解为两个二元关系的过程要丢失信息时，关系被宣称为处于第四范式中。所以，第五范式建议是，最好把现有的三元关系都分解为3个二元关系。</p>
-<p>　　需要注意的是，规范化的结果可能是更多的表，更复杂的查询。因此，处理到何种程度，取决于性能和数据架构的多方考量。建议规范化到第四范式，原因是5NF的判断太过隐晦。例如：表X（老师，学生，课程）是一个三元关系，可以分解为表A（老师，学生），表B（学生，课程），表C（老师，课程）。表X表示某个老师是上某个学生的某个课程的老师；表A表示老师教学生；表B表示学生上课；表C表示老师教课。单独看是无法发现问题的，但是从数据出发，”表X=表A+表B+表C”并不一定成立，即不能通过连接构建分解前的数据。因为可能有多种组合，丧失了表X反馈出的业务规则。这种现象，容易在设计阶段被忽略，但好在在开放阶段会被显现，而且并不经常发生。</p>
-<p>　　推荐做法：</p>
-<ul>
-<li>尽可能地遵守上述规范化原则。</li>
-<li>所有属性描述的都应该是体现被建模实体的本质的内容。</li>
-<li>至少必须有一个键，它唯一地标识和描述了所建实体的本质。</li>
-<li>主键要谨慎选择。</li>
-<li>在逻辑阶段能做多少规范化就做多少（性能不是逻辑阶段考虑的范畴）。</li>
-</ul>
-<p>　　<strong>（十）选择数据类型（MS SQL 2008）</strong></p>
-<p>　　MS SQL的常用类型：</p>
-<pre><code>| ------- | -------------- | ------------------------------------------------------------------ |
-| 精确数字    | 不会发生精度损失       | bit tinyint smallint int bigint decimal                            |
-| 近似数字    | 对于极值可能发生精度损失   | float(N) real                                                      |
-| 日期和时间   |                | date time smalldatetime datetime datetime2 datetimeoffset          |
-| 二进制数据   |                | bingary(N) varbinary(N) varbinary(max)                             |
-| 字符（串）数据 |                | char(N) varchar(N) varchar(max) nchar(N) nvarchar(N) nvarchar(max) |
-| 存储任意数据  |                | sql\_variant                                                       |
-| 时间戳     |                | timestamp                                                          |
-| GUID    |                | uniqueidentifier                                                   |
-| XML     | 不要试图使用该类型规避1NF | xml                                                                |
-| 空间数据    |                | geometry geography                                                 |
-| 层次数据    |                | heirarchyid                                                        |
-</code></pre><p>　　MS SQL中不在支持的或糟糕的类型选择</p>
-<ul>
-<li>image：被varbinary(max)取代。</li>
-<li>text和ntext：被varchar(max)和nvarchar(max)取代。</li>
-<li>money和smallmoney：开发过程中不好用，建议使用decimal。</li>
-</ul>
-<p>　　常用类型选择：</p>
-<p>　　类型选择的最基本规则是选择满足需要的最轻的类型，因为这样查询更快。</p>
-<pre><code>| ---- | ---------------------------------------------------------- |
-| bool | 建议使用bit而非char(1)，因为开发语言对其支持觉好，可以直接映射为bool或bool?。           |
-| 大值数据 | 使用所有备选类型中最小的那种，类型越大，查询越慢，当字节大于8000时，应使用max。                |
-| 主键   | 自增主键根据预期范围选择int或bigint，GUID使用uniqueidentifier而非varchar(N)。 |
-</code></pre><p>　　<strong>（十一）优化并行</strong></p>
-<p>　　设计DB时就应该考虑到对并行进行优化，比如，MS SQL中的timestamp类型就是极好的选择。</p>
-<h3 id="四-命名规则"><a href="#四-命名规则" class="headerlink" title="　　四 命名规则"></a>　　四 命名规则</h3><ul>
-<li>表——“模块名_表名”。表名最好不要用复数，原因是在使用ORM框架开发时，代码生成器根据DB生成类定义，表生成了某个实例的类型定义，而不是实例集合。表名不要太长。原因之一，某些软件对表名最大长度有限制；原因之二，使用代码生成器往往会根据表名生产类型名称，之后懒人会直接使用这一名称，如果将太长的名称跨网络边界显然不是明智之举。</li>
-<li>字段——bool类型用“Is”、“Can”、“Has”等表示；日期类型命名必须包含“Date”；时间类型必须包含“Time”。</li>
-<li>存储过程——使用“proc_”前缀。</li>
-<li>视图——使用“view_”前缀。</li>
-<li>触发器——使用“trig_”前缀。</li>
-</ul>
-
-        
-      <!--
-        
-          
-          
-          
-            <h1 id="写给开发者看的关系型数据库设计"><a href="#写给开发者看的关系型数据库设计" class="headerlink" title="写给开发者看的关系型数据库设计"></a>写给开发者看的关系型数据库设计</h1><p>数据库设计，一个软件项目成功的基石。很多从业人员都认为，数据库设计其实不那么重要。现实中的情景也相当雷同，开发人员的数量是数据库设计人员的数倍。多数人使用数据库中的一部分，所以也会把数据库设计想的如此简单。其实不然，数据库设计也是门学问。</p>
-            
-              
-            
-          
-        
-      -->
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2013/04/01/写给开发者看的关系型数据库设计xiaohan1990718/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-用户考虑的是什么？简单，简便，易操作xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1444,6 +1141,237 @@
 
 
   
+    <article id="post-为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/">为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本</a>
+    </h1>
+  
+
+        
+        <a href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/" class="archive-article-date">
+  	<time datetime="2012-12-25T10:15:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2012-12-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          <p>I was among many developers that recently rediscovered JavaScript. Indeed as a very capable language. But after using <em>the new</em> JavaScript for a solid year, I came to the conclusion that JavaScript <em>still</em> sucks. And no, I’m not talking about its wacky comparison operators. There is a deeper problem, and a solveable one at that. Let me explain.</p>
+<p><img src="http://boronine.com/img/monkeys.jpg" alt="monkeys.jpg"></p>
+<h2 id="No-Nonsense"><a href="#No-Nonsense" class="headerlink" title="No Nonsense"></a>No Nonsense</h2><p>I must’ve been 13 when my dad gave me <a href="http://www.amazon.com/JavaScript-Programming-Absolute-Beginner-Harris/dp/0761534105" target="_blank" rel="noopener">my first programming book</a>. I was overjoyed to find that under the hood, computers were not a tangled mess of wires and clockwork, no, the code was clear as day. I felt like I knew it all along, and in a big way I did. After all, what is code but a formalization of rational human thought?</p>
+<p>Now, in all honesty I was expecting a Java book. I googled something along the lines of “is JavaScript and Java the same language”. Turned out they’re not, and so, Java ended up being my second. I didn’t even get through the introduction before the first problem appeared: <strong>my mom and stepdad didn’t want me installing software on the family computer—I was left without a Java compiler</strong>. I remember double checking my code before uploading it to <a href="http://www.innovation.ch/java/java_compile.html" target="_blank" rel="noopener">an online compiler</a>, then waiting, downloading the jar… rinse, repeat. Boy was it tedious.</p>
+<p>From my perspective back then, JavaScript was truly a no-nonsense language. You whip up an HTML file in Notepad, open it in Internet Explorer and you’re set. There were no classes, no private and public methods, no final variables. I didn’t know the word “overengineered” back then, but it would have described exactly my impression of Java. So:</p>
+<ol>
+<li>No compilation</li>
+<li>Ubiquitous platform</li>
+<li>No advanced language features</li>
+<li>Oh, almost forgot: <strong>View Source</strong>!</li>
+</ol>
+<p>Why would a great language like that be so hated?</p>
+<h2 id="Ad-hoc-Hell"><a href="#Ad-hoc-Hell" class="headerlink" title="Ad-hoc Hell"></a>Ad-hoc Hell</h2><p>Here’s the problem: JavaScript programs inherited from their language a complete lack of design guidance. <strong>Everything was ad-hoc:</strong></p>
+<ol>
+<li><strong>No OOP</strong>. I am not familiar with any other way to structure <em>imperative</em> programs. Yes, JavaScript has a rudimentary object model, but literally no one knew how it actually worked.</li>
+<li><strong>No standard library</strong>. Copying functions from forums and pasting them into your code. Not fun.</li>
+<li><strong>No module system</strong>. Constant scouting for download links and ridiculously long source files.</li>
+<li><strong>No language resources</strong>. No high-quality resources (and hardly a single decent book) meant your best reference was misguided blog posts and newbie forum questions.</li>
+</ol>
+<p>So, what happened to make JavaScript popular again?</p>
+<h2 id="Back-in-Vogue"><a href="#Back-in-Vogue" class="headerlink" title="Back in Vogue"></a>Back in Vogue</h2><p>I think what jump-started JavaScript’s reemergence was Google’s work on the V8 engine. Suddenly, JavaScript was fast. <em>Real fast</em>. Fast enough that people decided to bite the bullet and use it to write <em>web applications</em>.</p>
+<p>Then <a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a> came out with some wanky benchmarks and, more importantly, a promise for code reuse on the client and server, a promise not really capitalized on until recently, with the likes of <a href="http://meteor.com/" target="_blank" rel="noopener">Meteor</a> and<a href="http://derbyjs.com/" target="_blank" rel="noopener">Derby</a>. Things started to change for the better:</p>
+<ol>
+<li><strong>Download buttons got BIGGER</strong></li>
+<li>Node.js kind of sort of standardized an import system</li>
+<li>People started writing pretty good libraries</li>
+<li><a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener">Good resources</a> started popping up</li>
+</ol>
+<p>However:</p>
+<ol>
+<li><strong>Still no OOP</strong></li>
+<li>Client and server JavaScript still completely disconnected</li>
+<li>Documentation, even for high profile projects, is lousy at best</li>
+</ol>
+<h2 id="Why-why"><a href="#Why-why" class="headerlink" title="Why, why?"></a>Why, why?</h2><p>I think the root of the problem with modern JavaScript and the main reason that the language still sucks lies in a certain sentiment of the JavaScript community, the sentiment that <strong>JavaScript was a good language all along, it was just a misunderstood language</strong>. Um, no. JavaScript was a premature bastard baby, raised by frickin’ wolves. Stop defending JavaScript as a language and start embracing JavaScript as a <em>platform</em>, and as a <em>compilation target</em>.</p>
+<h3 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h3><p>People can laugh at Java all they want but when I look at Java documentation I see <em>exactly</em> which objects I can make, <em>exactly</em> which parameters each method takes, <em>exactly</em> which errors they throw. The best I could hope for with a JavaScript library is a fancy piece of example code. This makes it nearly impossible to write <em>correct</em> software, unless you read the source code of the library you are using. Even such integral JavaScript projects as <a href="http://expressjs.com/api.html" target="_blank" rel="noopener">Express</a> have lousy API documentation. (<a href="http://emberjs.com/api/" target="_blank" rel="noopener">Ember’s</a> excellent API documentation might be a counter-example.)</p>
+<h3 id="Syntax-Sugar"><a href="#Syntax-Sugar" class="headerlink" title="Syntax Sugar"></a>Syntax Sugar</h3><p>The JavaScript community is too quick to dismiss syntax sugar. I think <strong>syntax sugar creates expressiveness</strong>. The same way you abstract repeating logic in your code, your language ought to abstract common idioms.</p>
+<ol>
+<li>It makes the code more concise.</li>
+<li><strong>It helps communicate the <em>meaning</em> behind your code rather than the algorithm.</strong> I already know the array iteration algorithm, thank you very much. Stop repeating it and just tell me what you are trying to do.</li>
+</ol>
+<p>As a coder, your main audience isn’t your computer, it is other programmers, including your future self. Yes, we can all feel cool writing tedious for loops, but who would honestly prefer reading <code>for (var i=0; i&lt;arr.length; i++)</code> rather than <code>for e in arr</code>? As a side note, the JavaScript version of this loop is actually slower than its CoffeeScript counterpart, do you know why?</p>
+<h3 id="JSLint"><a href="#JSLint" class="headerlink" title="JSLint"></a>JSLint</h3><p>As if being a JavaScript developer wasn’t painful in itself, <a href="http://www.jslint.com/" target="_blank" rel="noopener">JSLint</a> comes and adds insult to injury. I imagine linting JavaScript as an embarrassing punishment in some kind of coding boot camp, akin to cleaning the toilet with a tooth brush. In fact, I think I would literally shave a yak instead.</p>
+<p>On a more serious note, as programmers we should be looking for automation. Don’t you wish you could automate JSLint? Oh wait, you can! CoffeeScript generates perfectly linted code, which I find quite hilarious. Props to <a href="https://github.com/jashkenas" target="_blank" rel="noopener">Jeremy</a> for that one.</p>
+<p><img src="http://boronine.com/img/yak.jpg" alt="yak.jpg"></p>
+<h3 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h3><p>JavaScript’s object model is not enough. Prototypal inheritance is a low level feature that <em>can be used</em> to create a meaningful object model, but in no way constitutes one by itself.</p>
+<p>This is part of the reason that JavaScript’s API documentation sucks so badly, how are you supposed to document your object-oriented code when your language doesn’t even have classes? How are JavaScript libraries, and, most importantly, JavaScript developers supposed to interoperate when <a href="http://stackoverflow.com/questions/383402/is-javascript-s-new-keyword-considered-harmful" target="_blank" rel="noopener">we don’t even agree on how to instantiate objects</a>?</p>
+<h2 id="What-Are-the-Options"><a href="#What-Are-the-Options" class="headerlink" title="What Are the Options?"></a>What Are the Options?</h2><p>Years have passed, laptops were replaced numerously, regimes crumbled, subatomic particles were discovered. JavaScript is still the same. How many years are you willing to wait for basic features? Following the pessimistic tone of this article, let’s first list the things that <em>aren’t</em> going to be an option:</p>
+<ol>
+<li>Mozilla’s own JavaScript <a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.7" target="_blank" rel="noopener">1.7</a> or <a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.8" target="_blank" rel="noopener">1.8</a>. The former was released 6 and half years ago, but being backwards-incompatible, literally no one used it and no one ever will, same goes for the latter.<strong>Both dead on arrival.</strong></li>
+<li>ECMAScript Harmony. The most recent <a href="http://en.wikipedia.org/wiki/Design_by_committee" target="_blank" rel="noopener">Design by Committee</a> sloth, an evolution of the above. Transitioning to this new ECMAScript is going to be an excruciatingly slow and painful process, especially since some of its features are <a href="http://stackoverflow.com/a/6510903/212584" target="_blank" rel="noopener">incompatible with JavaScript</a>. <strong>Not a solution unless you’re willing to wait for a decade.</strong></li>
+</ol>
+<p>And, finally, the viable options:</p>
+<ol>
+<li><strong><a href="http://coffeescript.org/" target="_blank" rel="noopener">CoffeeScript</a></strong>. The syntax is very nice and it supports classes. I think CoffeeScript is not the end, but it is a spectacular start.</li>
+<li><strong><a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a></strong>. Builds on JavaScript to add optional static typing, which I, personally, am a big fan of.Not enough to replace JavaScript, but a good start as well. As pointed out by <a href="https://twitter.com/mohamedmansour" target="_blank" rel="noopener">Mohamed Mansour</a>and Dave Hodder in the comments, TypeScript goes further by implementing some ECMAScript proposals and perhaps ECMAScript will eventually borrow the optional static typing from TypeScript. Very interesting.</li>
+<li><strong><a href="http://www.dartlang.org/" target="_blank" rel="noopener">Google Dart</a></strong>. A wholly new language that ships with a to-JavaScript compiler and <a href="http://www.dartlang.org/articles/js-dart-interop/" target="_blank" rel="noopener">some JavaScript interop</a> but overall is not meant to integrate into the JavaScript ecosystem. I fail to see a compelling reason for this other than some Google engineers ignoring reality in favor of making a cool new language from scratch. As a coder I can understand that, but I think it will prove to be the language’s downfall.</li>
+<li><strong><a href="http://haxe.org/" target="_blank" rel="noopener">HaXe</a></strong>. Thanks to Laurence Taylor for pointing it out in the comments. This is a high-level language that compiles to JavaScript, Flash, NekoVM, PHP, C++, C# and Java (soon). I’ve never used it myself, but it looks really impressive.</li>
+</ol>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>One thing I am ready to bet on: the winner will be a <a href="https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS" target="_blank" rel="noopener">compile-to-JS</a> language. We aren’t ready for a transition yet, but we are making progress and even though many efforts diverge, they all pave the way for the future of the web. Regardless of which language wins in the end, I want to emphasize my main point: <strong>JavaScript as it stands today is painfully inadequate, we need to embrace the need for a new language and push forward!</strong></p>
+<p>Props to all the people making this happen and here’s to hoping that <a href="http://procbits.com/2012/05/18/why-do-all-the-great-node-js-developers-hate-coffeescript" target="_blank" rel="noopener">more Node developers divorce their JavaScript purism</a> and join the ranks.</p>
+<p>-——————————————————————–</p>
+<p>from:<a href="http://boronine.com/2012/12/14/Why-JavaScript-Still-Sucks/" target="_blank" rel="noopener">http://boronine.com/2012/12/14/Why-JavaScript-Still-Sucks/</a></p>
+<p>最近，我和许多程序员一样，对JavaScript进行重新探讨。事实上，JavaScript是一个非常有能力的语言，但使用新JavaScript一年后，我得出的结论却是JavaScript仍然很烂。我并不是在讨论其古怪的比较运算。而是从更深的层次去思考。与此同时，还会提供一些解决方案供你选择。</p>
+<p><a href="http://www.html5cn.org/data/attachment/portal/201212/25/115029kwcdc44s4d4t222u.jpg" target="_blank" rel="noopener"><img src="http://www.html5cn.org/data/attachment/portal/201212/25/115029kwcdc44s4d4t222u.jpg" alt="115029kwcdc44s4d4t222u.jpg"></a></p>
+<p>直奔主题</p>
+<p> 13岁时，父亲送给我第一本编程书籍——JavaScript初学者编程。让我兴奋的是，我发现电脑并不单单是由电线和发条所组成，里面的代码清晰明了。我觉得我基本上理解它了，实际上也差不多。终究，代码除了人类理性思想的形式化还能是什么？</p>
+<p> 说实话，我当时希望遇到的是Java，我甚至在谷歌上搜索：“JavaScript和Java是同一种语言吗？”当然不是。��以Java成为了我<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=13" target="_blank" rel="noopener">学习</a>的第二门语言，不过我母亲和继父不希望在家庭电脑里安装软件，所以我无法安装Java编译器。我清晰地记得，在把代码上传到一个<a href="http://www.innovation.ch/java/java_compile.html" target="_blank" rel="noopener">在线编译器</a>之前，得反复检查代码，然后等待、下载jar包……</p>
+<p> 我当时认为，JavaScript是一个非常严肃的语言。在Notepad里新建一个HTML文件，然后在IE里打开，就这样开始了。没有类、没有私有和公有方法，没有final变量。当时，我甚至不知道什么叫“过度设计”，但它准确地描述了我印象中的Java：</p>
+<ul>
+<li>无需编译</li>
+<li>无处不在的开发平台</li>
+<li>没有高级语言特性</li>
+<li>查看源文件</li>
+</ul>
+<p>为什么这么伟大的语言还会讨人厌？</p>
+<p>Ad-hoc地狱</p>
+<p> 下面是一些问题：设计之匆忙、初衷仅仅实现简单的网页互动、JavaScript继承完全缺乏设计指导，一切都是ad-hoc：</p>
+<ol>
+<li>没有OOP：JavaScript确实存在基本的对象模型，但几乎无人知道它是如何工作的。</li>
+<li>没有标准库：从<a href="http://www.html5cn.org/forum.php" target="_blank" rel="noopener">论坛</a>上复制粘贴代码不好玩。</li>
+<li>没有模块系统：不断查找下载链接和很长的源文件。</li>
+<li>缺乏语言资源：没有高品质的资源（几乎没有一本像样的书籍）意味着你只能从论坛或博客上获得一些非官方的参考。</li>
+</ol>
+<p>既然JavaScript有这么多缺陷，到底是什么让它如此流行？</p>
+<p>复兴</p>
+<p> JavaScript崛起的背后可能与谷歌V8引擎��息相关。JavaScript突然变得很快，真正地快速。所以人们开始硬着头皮使用它来编写Web<a href="http://www.html5cn.org/portal.php?mod=list&amp;catid=20" target="_blank" rel="noopener">应用</a>程序。</p>
+<p> 然而，<a href="http://nodejs.org/" target="_blank" rel="noopener">Node.js</a>推出了一些更吸引人的基准，允许代码在客户端和服务器端重用，很像<a href="http://meteor.com/" target="_blank" rel="noopener">Meteor</a>和<a href="http://derbyjs.com/" target="_blank" rel="noopener">Derby</a>。因此，情况开始好转：</p>
+<ol>
+<li>下载按钮变得更大</li>
+<li>Node.js kind of sort of standardized an import system</li>
+<li>人们可以编写更好的库</li>
+<li><a href="https://developer.mozilla.org/en-US/" target="_blank" rel="noopener">优秀的资源</a>开始出现</li>
+</ol>
+<p>然而：</p>
+<ol>
+<li>仍然没有采用OOP</li>
+<li>客户端和服务端的JavaScript仍然没有关联</li>
+<li>文档甚至是高知名度项目文档也很糟糕</li>
+</ol>
+<p>为什么？</p>
+<p> 我认为现代JavaScript仍然较烂的根源是其处在一个特定的社区氛围中，该氛围一直强调：JavaScript是一门非常好的语言，但却一直被人误解。不，JavaScript只是一个提早诞生且没有先例可循的语言。停止包庇并且开始把JavaScript作为一个平台去拥抱，作为一个编译目���。</p>
+<p>文档</p>
+<p> 人们可以尽情嘲笑Java，但当我看Java文档时，我可以非常明确地知道哪个对象可以创建、每个方法里的参数、需要抛出的异常等。最好的事情莫过于使用JavaScript库作为精选示例代码。这几乎是不可能写出正确的软件，除非你阅读库源码。甚至连如此完整的JavaScript项目<a href="http://expressjs.com/api.html" target="_blank" rel="noopener">Express</a>也存在令人生厌的API文档（<a href="http://emberjs.com/api/" target="_blank" rel="noopener">Ember</a>他们那些非常优秀的API文档可能是反例）。</p>
+<p>语法���</p>
+<p> JavaScript社区很快就抛弃了语法糖。语法糖是极富创造力的。将重复逻辑代码抽象出来，可以通用，帮助程序员以更好的方式编写代码。</p>
+<ul>
+<li>让代码更加简洁</li>
+<li>有助于表达代码背后的意思，而不是算法。我已经知道了数组迭代算法，好吧，谢谢你，但是请你不要告诉我这些，我只想知道你要做的东西。</li>
+</ul>
+<p> 作为一名编码人员，你的主要观众不是电脑，而是其他程序员，也包括将来的自己。书写冗长的for循环很爽，但说实话，for (var i=0; i&lt;arr.length; i++)与for=”” e=”” in=”” arr=”” 比起来，人们更愿意读后者。顺便说一下，这里的javascript版的循环比coffeescript速率要慢，你知道为什么吗？&lt;=”” font=”” style=”word-wrap: break-word;”&gt;</p>
+<p>JSLint</p>
+<p> 如果程序员使用JavaScript尚未感到痛苦，那<a href="http://www.jslint.com/" target="_blank" rel="noopener">JSLint</a>成功做到了这点，而且非常“成功”！ 想象一下，在某个编码的新兵训练营里，���要对JavaScript进行尴尬的惩罚，然后在其身上进行拔毛，这好比是拿着牙刷在刷厕所。事实上，我宁愿从牦牛身上拔毛。这是原文中的例子，小编的理解是JSLint的出现是给JavaScript挑刺的，而这样还不如直接在JavaScript身上拔毛。</p>
+<p><a href="http://www.html5cn.org/data/attachment/portal/201212/25/115033goo9w0gx7bxr9ooa.jpg" target="_blank" rel="noopener"><img src="http://www.html5cn.org/data/attachment/portal/201212/25/115033goo9w0gx7bxr9ooa.jpg" alt="115033goo9w0gx7bxr9ooa.jpg"></a></p>
+<p> 更值得注意地是，作为程序员，我们应该寻找自动化，难道你不希望自己可以自动化JSLint吗？当然，���可以。CoffeeScript可以完美的生成linted代码，正如<a href="https://github.com/jashkenas" target="_blank" rel="noopener">Jeremy</a>。</p>
+<p>OOP</p>
+<p> JavaScript对象模型还是不够成熟，原型（Prototype）继承是一个低级别的功能，可以创建一些非常有意义的对象模型，但却无法基于本身进行构建。</p>
+<p> 这也可能是JavaScript API为什么会那么糟糕的原因，当你所使用的语言甚至没有类时，该如何记录面向对象代码呢？ 最重要的是，当<a href="http://stackoverflow.com/questions/383402/is-javascript-s-new-keyword-considered-harmful" target="_blank" rel="noopener">我们甚至不知道实例化对象</a>时，JavaScript开发人员该如何实行互操作？</p>
+<p>有什么可选项吗？</p>
+<p> 年复一年，笔记本逐步成为主流、政坛也发生了不少的变化，而JavaScript仍然保持不变。你愿意等一些基本特性多少年？在这篇悲观论调的文章里，让我们先看看下面这个列表：</p>
+<ol>
+<li>Mozilla发布了自己JavaScript<a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.7" target="_blank" rel="noopener">1.7</a>或<a href="https://developer.mozilla.org/en-US/docs/JavaScript/New_in_JavaScript/1.8" target="_blank" rel="noopener">1.8</a>，前者是在6年半之前发布的，且不向后兼容，但并无人使用且永远不会有，同样也适用于后者。</li>
+<li>ECMAScript Harmony。最近，由于<a href="http://en.wikipedia.org/wiki/Design_by_committee" target="_blank" rel="noopener">设计委员会</a>的原因，发布新版ECMAScript将会有一个极其缓慢和痛苦的过渡过程，特别是它有一些特效是与<a href="http://stackoverflow.com/a/6510903/212584" target="_blank" rel="noopener">JavaScript不兼容</a>的。没有解决方案，除非你愿意再等数十年。</li>
+</ol>
+<p>下面列出一些可选项</p>
+<ol>
+<li><a href="http://coffeescript.org/" target="_blank" rel="noopener">CoffeeScript</a>语法非常漂亮且支持类。我认为CoffeeScript并未结束，只不过是刚刚华丽���开启。</li>
+<li><a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a>一种编译到JavaScript的语言，可以在JavaScript中构建并且添加了静态类型。个人而言，我是它的大粉丝。正如<a href="https://twitter.com/mohamedmansour" target="_blank" rel="noopener">Mohamed Mansour</a>和Dave Hodder在评论中指出的那样，TypeScript正在进一步实施ECMAScript的一些建议，也许ECMAScript最终会从TypeScript中借鉴可选的静态类型。</li>
+<li><a href="http://www.dartlang.org/" target="_blank" rel="noopener">Google Dart</a>一个全新的语言，附带JavaScript编译器和一些<a href="http://www.dartlang.org/articles/js-dart-interop/" target="_blank" rel="noopener">JavaScript互操作</a>，但整体���并未整合到JavaScript生态系统中。</li>
+<li><a href="http://haxe.org/" target="_blank" rel="noopener">HaXe</a>这是一个高级语言，可以编译JavaScript、Flash、NekoVM、PHP、C++、C#和Java（不久后），虽然我从未使用过，但它真的令人印象深刻。</li>
+</ol>
+<p>总结</p>
+<p> 最后，我敢押注，最终的获胜者肯定是编译为JavaScript的语言。虽然我们还没真正准备好这样的过渡，但是所取得的进展仍是有目共睹的。尽管也存在些偏离，但他们正在替未来的Web发展铺平道路。���管最终哪门语言会胜出，我都想强调一下我的主要观点：JavaScript目前仍然存在许多不足，我们需要拥抱一个新语言并且推进它。</p>
+<p>-———————————————————-</p>
+<p>from:<a href="http://www.html5cn.org/article-4332-1.html" target="_blank" rel="noopener">http://www.html5cn.org/article-4332-1.html</a></p>
+
+        
+      <!--
+        
+          
+          
+          
+            <p>I was among many developers that recently rediscovered JavaScript. Indeed as a very capable language. But after using <em>the new</em> JavaScript for a solid year, I came to the conclusion that JavaScript <em>still</em> sucks. And no, I’m not talking about its wacky comparison operators. There is a deeper problem, and a solveable one at that. Let me explain.</p>
+            
+              
+            
+          
+        
+      -->
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/12/25/为什么要使用JavaScript(中文：重思JavaScript的好与坏)中英对比版本xiaohan1990718/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/35/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><span class="page-number current">36</span><a class="page-number" href="/page/37/">37</a><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/37/">Next &raquo;</a>
@@ -1660,30 +1588,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">可视化</a>
               </li>
              
@@ -1701,6 +1605,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1736,14 +1648,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">iPhone</a>
               </li>
              
@@ -1760,6 +1664,30 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Excel</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PowerPoint</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">托福</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jQuery</a>
               </li>
              
@@ -1768,23 +1696,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">托福</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">JS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">Html</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Html</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1868,6 +1788,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NoSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
               </li>
              
@@ -1912,15 +1836,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">金蝶</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">用友</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2116,11 +2040,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">智能家居</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2172,6 +2096,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">笔记本电脑</a>
               </li>
              
@@ -2181,10 +2109,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2356,15 +2280,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">编译器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">健康</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2408,10 +2336,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go语言</a>
               </li>
              
@@ -2432,7 +2356,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">风投</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">开心网</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Azure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2452,15 +2392,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">财会</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">公务员考试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端框架</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2485,18 +2425,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Steam</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">风投</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">马斯洛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">有机食品</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2548,6 +2476,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">物联网</a>
               </li>
              
@@ -2560,11 +2496,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">华为手机</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">音乐</a>
+                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2576,7 +2508,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">百度云</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2588,10 +2520,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">空调</a>
               </li>
              
@@ -2600,23 +2528,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">QQ空间</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">WordPress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">高德纳集团</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2625,6 +2545,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">语音识别</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Dropbox</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">李嘉诚</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2652,6 +2580,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">腾讯应用宝</a>
               </li>
              
@@ -2660,15 +2592,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">鼠</a>
+                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">小笼包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Google翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2704,6 +2632,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">经济</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">拿破仑</a>
               </li>
              
@@ -2724,10 +2660,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教育</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">区块链</a>
               </li>
              
@@ -2736,11 +2668,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经济</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">马云</a>
+                <a href="javascript:void(0)" class="js-tag color3">教育</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2868,11 +2796,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
+                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">海淘</a>
+                <a href="javascript:void(0)" class="js-tag color5">职业发展</a>
               </li>
              
               <li class="article-tag-list-item">
